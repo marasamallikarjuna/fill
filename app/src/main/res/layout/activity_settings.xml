@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.SettingsActivity">
+
+    <RelativeLayout
+        android:id="@+id/reelativ_header"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/ic_header"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:elevation="1dp"
+            android:src="@drawable/ic_menu"
+            app:backgroundTint="@android:color/transparent"
+            app:elevation="0dp"
+            app:fabSize="normal"
+            app:maxImageSize="40dp" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/logo" />
+
+        <com.mi.fillspay.utilities.CircularImageView
+            app:border="true"
+            app:shadow="true"
+            android:background="@drawable/ic_white_circle"
+            app:border_width="3dp"
+            android:id="@+id/circle_image_id"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/edit_profile_id"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignEnd="@+id/circle_image_id"
+            android:layout_alignBottom="@+id/circle_image_id"
+            android:layout_margin="2dp"
+            android:src="@drawable/ic_edit_pen" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/circular_text_settings"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_marginStart="@dimen/_35sdp"
+        android:orientation="vertical"
+        android:src="@drawable/settings_round"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/settings_icon"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:src="@drawable/ic_settings_half"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_80sdp"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/settings_icon"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.mi.fillspay.utilities.GradientTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_vertical"
+            android:text="Settings"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="italic|normal"
+            app:fontFamily="@font/amarante" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:padding="2dp">
+
+            <TextView
+                android:layout_alignParentStart="true"
+                android:id="@+id/gradientTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_email"
+                android:drawableLeft="@drawable/ic_email"
+                android:gravity="center_vertical"
+                android:letterSpacing="0.1"
+                android:text="   Email Notifications"
+                android:textColor="@color/black_dull"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+            <Switch
+                android:layout_alignParentEnd="true"
+                android:id="@+id/switch1"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="wrap_content"
+                android:textOff=""
+                android:textOn=""
+                android:thumb="@android:color/transparent"
+                android:track="@android:color/transparent"
+                android:background="@drawable/switch_custom"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/gradientTextView1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_sms_icon"
+                android:drawableLeft="@drawable/ic_sms_icon"
+                android:gravity="center_vertical"
+                android:letterSpacing="0.1"
+                android:text="   SMS Notifications"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/black_dull"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+            <Switch
+                android:id="@+id/switch11"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textOff=""
+                android:textOn=""
+                android:layout_alignParentEnd="true"
+                android:thumb="@android:color/transparent"
+                android:track="@android:color/transparent"
+                android:gravity="end"
+                android:background="@drawable/switch_custom"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:drawableStart="@drawable/ic_theme_icon"
+            android:drawableLeft="@drawable/ic_theme_icon"
+            android:gravity="center_vertical"
+            android:letterSpacing="0.1"
+            android:padding="2dp"
+            android:text="   Theme"
+            android:textColor="@color/black_dull"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/amarante" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_button_style"
+                android:gravity="center_vertical"
+                android:text="  Light"
+                android:textColor="@color/black_dull"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_button_style"
+                android:gravity="center_vertical"
+                android:text="  Dark"
+                android:textColor="@color/black_dull"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:drawableStart="@drawable/ic_lang_icon"
+            android:drawableLeft="@drawable/ic_lang_icon"
+            android:letterSpacing="0.1"
+            android:padding="2dp"
+            android:text="   Language"
+            android:textColor="@color/black_dull"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/amarante" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_button_style"
+                android:gravity="center_vertical"
+                android:text="  English"
+                android:textColor="@color/black_dull"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_button_style"
+                android:gravity="center_vertical"
+                android:text=" Arabic"
+                android:textColor="@color/black_dull"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:drawableStart="@drawable/ic_profile_icon"
+            android:gravity="center_vertical"
+            android:letterSpacing="0.1"
+            android:padding="2dp"
+            android:text="   Profile"
+            android:textColor="@color/black_dull"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/amarante" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:drawableStart="@drawable/ic_login_icon"
+            android:letterSpacing="0.1"
+            android:padding="2dp"
+            android:text="   Logout"
+            android:textColor="@color/black_dull"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/amarante" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

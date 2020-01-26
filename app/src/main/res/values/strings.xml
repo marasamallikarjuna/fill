@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">FillsPay</string>
+    <string name="email">Email</string>
+    <string name="bottom_sheet_option_heading">test</string>
+    <string name="network_error">internet is not connected please establish it first</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="sampletext">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"'"s standard dummy text ever since the 1500s, it to make a type specimen book. </string>
+    <string name="speeddial_snackbar_behavior" tools:ignore="UnusedResources">
+        com.mi.fillspay.speeddial.SpeedDialView$SnackbarBehavior
+    </string>
+    <string name="speeddial_scrolling_view_snackbar_behavior" tools:ignore="UnusedResources">
+        com.mi.fillspay.ScrollingViewSnackbarBehavior
+    </string>
+
+</resources>

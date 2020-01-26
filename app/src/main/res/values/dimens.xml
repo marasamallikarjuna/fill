@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="def_wheel_width">32dp</dimen>
+    <dimen name="def_shadow_radius">2dp</dimen>
+    <dimen name="def_shadow_offset">2dp</dimen>
+
+
+    <dimen name="sd_close_elevation">5dp</dimen>
+    <dimen name="sd_fab_mini_size">56dp</dimen>
+    <dimen name="sd_fab_normal_size">56dp</dimen>
+    <dimen name="sd_fab_side_margin">2dp</dimen>
+    <dimen name="sd_label_max_width">54dp</dimen>
+    <dimen name="sd_open_elevation">2dp</dimen>
+    <dimen name="sd_overlay_elevation">@dimen/sd_close_elevation</dimen>
+
+</resources>

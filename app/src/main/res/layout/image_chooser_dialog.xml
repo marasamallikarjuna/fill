@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/_3sdp"
+    android:padding="2dp"
+    android:background="@android:color/transparent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.mi.fillspay.utilities.GradientTextView
+        android:textColor="@color/black_dull"
+        android:gravity="center"
+        tools:text="Choose Image"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:id="@+id/header_id"
+        app:layout_constraintTop_toTopOf="parent"
+        android:minHeight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_below="@+id/header_id"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/line_dash"/>
+
+    <TextView
+        android:layout_below="@+id/header_id"
+        android:layout_margin="5dp"
+        android:textSize="16sp"
+        android:textColor="@color/black_dull"
+        android:padding="5dp"
+        android:id="@+id/text_one"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="Camera"
+        android:drawablePadding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_id"
+        android:drawableTop="@drawable/camera_placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_below="@+id/header_id"
+        android:layout_toEndOf="@+id/text_one"
+        android:layout_margin="5dp"
+        android:textSize="16sp"
+        android:textColor="@color/black_dull"
+        android:padding="5dp"
+        android:id="@+id/text_two"
+        android:gravity="center"
+        android:text="Gallery"
+        android:minHeight="50dp"
+        android:drawablePadding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:drawableTop="@drawable/camera_placeholder"
+        app:layout_constraintTop_toBottomOf="@+id/text_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_margin="5dp"
+        android:layout_below="@+id/text_two"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/btn_close"
+        android:textColor="@color/white"
+        android:text="Close"
+        android:background="@color/black_dull"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="30dp" />
+
+</RelativeLayout>

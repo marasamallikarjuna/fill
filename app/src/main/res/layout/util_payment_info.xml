@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:padding="@dimen/_5sdp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_alignParentEnd="true"
+        android:padding="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_add_item_icon" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <com.mi.fillspay.utilities.GradientTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="Payment Information"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="italic|bold"
+            app:fontFamily="@font/amarante" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_button_style"
+                android:gravity="center_vertical"
+                android:text="  Debit Card"
+                android:textColor="@color/black_dull"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_button_style"
+                android:gravity="center_vertical"
+                android:text="  Credit Card"
+                android:textColor="@color/black_dull"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="15dp"
+            android:text="Debit Card"
+            android:textColor="@color/colorEdit"
+            android:textSize="13sp"
+            app:fontFamily="@font/amarante" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            app:backgroundTint="@color/colorEdit">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="4dp"
+                android:inputType="textEmailAddress|textNoSuggestions"
+                android:paddingStart="5dp"
+                android:paddingEnd="0dp"
+                android:textColor="@android:color/black"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp"
+                app:backgroundTint="@color/light_grey"
+                app:fontFamily="@font/amarante" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:text="Name On Card"
+            android:textColor="@color/colorEdit"
+            android:textSize="13sp"
+            app:fontFamily="@font/amarante" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            app:backgroundTint="@color/line_grey">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="4dp"
+                android:inputType="textEmailAddress|textNoSuggestions"
+                android:paddingStart="5dp"
+                android:paddingEnd="0dp"
+                android:textColor="@android:color/black"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp"
+                app:backgroundTint="@color/line_grey"
+                app:fontFamily="@font/amarante" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:text="Card Number"
+            android:textColor="@color/colorEdit"
+            android:textSize="13sp"
+            app:fontFamily="@font/amarante" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            app:backgroundTint="@color/colorEdit">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="4dp"
+                android:inputType="textEmailAddress|textNoSuggestions"
+                android:paddingStart="@dimen/_5ssp"
+                android:paddingEnd="@dimen/_5ssp"
+                android:textColor="@android:color/black"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp"
+                app:backgroundTint="@color/line_grey"
+                app:fontFamily="@font/amarante" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Expiry Date"
+                    android:textColor="@color/colorEdit"
+                    android:textSize="13sp"
+                    app:fontFamily="@font/amarante" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-8dp"
+                    app:backgroundTint="@color/line_grey">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_calender_icon"
+                        android:drawablePadding="4dp"
+                        android:inputType="textEmailAddress|textNoSuggestions"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="0dp"
+                        android:textColor="@android:color/black"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15dp"
+                        app:backgroundTint="@color/line_grey"
+                        app:fontFamily="@font/amarante" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="10dp"
+                    android:text="CVV"
+                    android:textColor="@color/colorEdit"
+                    android:textSize="13sp"
+                    app:fontFamily="@font/amarante" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-8dp"
+                    app:backgroundTint="@color/line_grey">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_email"
+                        android:drawablePadding="4dp"
+                        android:inputType="textEmailAddress|textNoSuggestions"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="0dp"
+                        android:textColor="@android:color/black"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15dp"
+                        app:backgroundTint="@color/line_grey"
+                        app:fontFamily="@font/amarante" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Save Your Card Details"
+            android:textSize="14dp"
+            app:fontFamily="@font/amarante" />
+
+        <com.mi.fillspay.utilities.SwipeButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:swipeText="Swipe to Proceed"
+            android:layout_gravity="end"
+            app:text_size="@dimen/_20ssp"
+            android:layout_marginStart="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_20sdp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

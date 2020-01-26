@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorEdit">#6F6E6E</color>
+    <color name="colorBl">#333232</color>
+    <color name="startColor">#FFE41D5A</color>
+    <color name="endColor">#FF212784</color>
+    <color name="greyTextcolor">#2E2E2E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="black_dull">#1B1B1B</color>
+    <color name="grey">#777777</color>
+    <color name="light_grey">#F0EFEF</color>
+    <color name="text_grey">#D1D0D0</color>
+    <color name="white_border">#FCFAFA</color>
+    <color name="color_start">#212784</color>
+    <color name="color_end">#FFE41D5A</color>
+
+    <color name="switchTrack">#ffd600</color>
+    <color name="switchTrackDisable">#ECECEE</color>
+    <color name="switchTrackActive">#B4B6B6</color>
+    <color name="switchTrackNormal">#9B9B9E</color>
+    <color name="switchThumbBgActive">#1b5e20</color>
+    <color name="switchThumbActive">#FFFFFF</color>
+    <color name="switchThumbkNormal">#64b5f6</color>
+
+    <!-- circular seek bar colours-->
+
+    <color name="def_wheel_color">#DDDDDF</color>
+    <color name="def_reached_color">#F11561</color>
+    <color name="def_pointer_color">#FFFFFF</color>
+
+    <color name="line_grey">#DBDBDB</color>
+
+    <color name="sd_label_text_color">#757575</color>
+    <color name="sd_overlay_color">#8F585858</color>
+
+</resources>

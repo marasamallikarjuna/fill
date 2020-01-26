@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:rotationY="180"
+              android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:padding="2dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="5dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_registr_icon"
+        />
+
+    <com.mi.fillspay.utilities.GradientTextView
+        android:id="@+id/tvText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textColor="#000"
+        android:textStyle="italic"
+        android:fontFamily="@font/amarante"
+        android:textSize="15sp"
+        android:text="Hello World"
+        />
+</LinearLayout>

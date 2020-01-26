@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".view.HistoryFrag">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="@dimen/_54sdp"
+            android:layout_height="@dimen/_54sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_history_circle" />
+
+        <ImageView
+            android:layout_width="@dimen/_60ssp"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:src="@drawable/transactionhistory" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="-45dp"
+        android:orientation="vertical">
+
+        <com.mi.fillspay.utilities.GradientTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amarante"
+            android:padding="@dimen/_5sdp"
+            android:text="Transaction History"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold|italic" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_2sdp"
+            tools:itemCount="1"
+            tools:listitem="@layout/layout_history_item" />
+
+    </LinearLayout>
+
+</LinearLayout>

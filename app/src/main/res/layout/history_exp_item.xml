@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_5sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:padding="@dimen/_2sdp"
+        android:text="    Amount          :        200.00"
+        android:textColor="@color/black_dull" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_2sdp"
+        android:textStyle="italic"
+        android:text="Trans Fee       :        0.00"
+        android:textColor="@color/black_dull" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_2sdp"
+        android:textStyle="italic"
+        android:text="Discount        :        0.00"
+        android:textColor="@color/black_dull" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/line_dash" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="@dimen/_3sdp"
+        android:fontFamily="@font/raspoutinemedium_tb"
+        android:textStyle="bold|italic"
+        android:padding="@dimen/_2sdp"
+        android:text="Recharge Amount    :         0.00   "
+        android:textColor="@color/endColor" />
+
+    <com.mi.fillspay.utilities.SwipeButton
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp" />
+
+</LinearLayout>

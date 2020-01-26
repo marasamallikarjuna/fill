@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_2sdp"
+            android:fontFamily="@font/amarante"
+            android:gravity="center"
+            android:padding="@dimen/_2sdp"
+            android:text="How it Works"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="italic|bold" />
+
+        <include
+            layout="@layout/circle_dot_line"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_72sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_24sdp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/_56sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_sendmoney_circle" />
+
+            <ImageView
+                android:id="@+id/image_sendmoney"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="-10dp"
+                android:src="@drawable/sendmoney" />
+
+            <TextView
+                android:id="@+id/text_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-15dp"
+                android:layout_toEndOf="@+id/image_sendmoney"
+                android:fontFamily="@font/amarante"
+                android:gravity="center"
+                android:padding="@dimen/_2sdp"
+                android:text="Choose Your Country"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                android:textStyle="italic|bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_country"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="-15dp"
+                android:layout_toEndOf="@+id/image_sendmoney"
+                android:fontFamily="@font/amarante"
+                android:gravity="center"
+                android:lineSpacingExtra="1dp"
+                android:padding="@dimen/_2sdp"
+                android:text="@string/sampletext"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="italic" />
+
+        </RelativeLayout>
+
+        <include
+            layout="@layout/circle_dot_line"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_72sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="-15dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/_56sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_plug_round" />
+
+            <ImageView
+                android:id="@+id/image_utily"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="-10dp"
+                android:src="@drawable/utilitypayments" />
+
+            <TextView
+                android:id="@+id/text_country1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-15dp"
+                android:layout_toEndOf="@+id/image_utily"
+                android:fontFamily="@font/amarante"
+                android:gravity="center"
+                android:padding="@dimen/_2sdp"
+                android:text="Choose Person"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                android:textStyle="italic|bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_country1"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="-15dp"
+                android:layout_toEndOf="@+id/image_utily"
+                android:fontFamily="@font/amarante"
+                android:gravity="center"
+                android:lineSpacingExtra="1dp"
+                android:padding="@dimen/_2sdp"
+                android:text="@string/sampletext"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="italic" />
+
+        </RelativeLayout>
+
+        <include
+            layout="@layout/circle_dot_line"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_72sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="-15dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/_56sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_mobile_rec_circle" />
+
+            <ImageView
+                android:id="@+id/image_mobilerec"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="-10dp"
+                android:src="@drawable/mobilerecharge" />
+
+            <TextView
+                android:id="@+id/text_country2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-15dp"
+                android:layout_toEndOf="@+id/image_mobilerec"
+                android:fontFamily="@font/amarante"
+                android:gravity="center"
+                android:padding="@dimen/_2sdp"
+                android:text="Choose Amount"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                android:textStyle="italic|bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_country2"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="-15dp"
+                android:layout_toEndOf="@+id/image_mobilerec"
+                android:fontFamily="@font/amarante"
+                android:gravity="center"
+                android:lineSpacingExtra="1dp"
+                android:padding="@dimen/_2sdp"
+                android:text="@string/sampletext"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="italic" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

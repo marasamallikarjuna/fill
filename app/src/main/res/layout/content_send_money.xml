@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_10sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.mi.fillspay.utilities.GradientTextView
+        android:padding="5dp"
+        android:textStyle="italic|bold"
+        app:fontFamily="@font/amarante"
+        android:textSize="18sp"
+        android:text="Add User Bank Details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:padding="@dimen/_3sdp"
+        app:fontFamily="@font/amarante"
+        android:text="Bank Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_bank"
+        android:drawablePadding="4dp"
+        android:inputType="text|textNoSuggestions"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"
+        android:layout_marginTop="-3dp"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/_16ssp"
+        app:backgroundTint="@color/colorEdit"
+        app:fontFamily="@font/amarante" />
+
+    <TextView
+        android:padding="@dimen/_3sdp"
+        app:fontFamily="@font/amarante"
+        android:text="User Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_person"
+        android:drawablePadding="4dp"
+        android:layout_marginTop="-3dp"
+        android:inputType="text|textNoSuggestions"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/_16ssp"
+        app:backgroundTint="@color/colorEdit"
+        app:fontFamily="@font/amarante" />
+
+    <TextView
+        android:padding="@dimen/_3sdp"
+        app:fontFamily="@font/amarante"
+        android:text="Account Number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_dollar"
+        android:drawablePadding="4dp"
+        android:inputType="text|textNoSuggestions"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="-3dp"
+        android:textColorHint="@color/colorAccent"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/_16ssp"
+        app:backgroundTint="@color/colorEdit"
+        app:fontFamily="@font/amarante" />
+
+    <TextView
+        android:padding="@dimen/_3sdp"
+        app:fontFamily="@font/amarante"
+        android:text="Security Code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="4dp"
+        android:inputType="text|textNoSuggestions"
+        android:layout_marginTop="-3dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/_16ssp"
+        app:backgroundTint="@color/colorEdit"
+        app:fontFamily="@font/amarante" />
+
+    <com.mi.fillspay.utilities.SwipeButton
+        android:id="@+id/swipe_sendmoney"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_gravity="end"
+        android:layout_marginStart="@dimen/_64sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

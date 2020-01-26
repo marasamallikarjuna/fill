@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="10dp">
+
+    <com.mi.fillspay.utilities.GradientTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Recharge or Bill Payment"
+        android:layout_marginBottom="5dp"
+        android:textSize="18sp"
+        android:textStyle="italic|bold"
+        app:fontFamily="@font/amarante" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:button="@drawable/radio_button_style"
+            android:gravity="center_vertical"
+            android:text="  Prepaid"
+            android:textColor="@color/black_dull"
+            android:textStyle="bold"
+            app:fontFamily="@font/amarante" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/radio_button_style"
+            android:gravity="center_vertical"
+            android:text="  Postpaid"
+            android:textColor="@color/black_dull"
+            android:textStyle="bold"
+            app:fontFamily="@font/amarante" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_marginTop="@dimen/_25sdp"
+        android:textColor="@color/black_dull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_3sdp"
+        android:text="Mobile Number"
+        app:fontFamily="@font/amarante" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_call_receiver"
+        android:drawablePadding="4dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/_15ssp"
+        app:backgroundTint="@color/colorEdit"
+        app:fontFamily="@font/amarante" />
+
+    <TextView
+        android:textColor="@color/black_dull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_3sdp"
+        android:text="Operator"
+        app:fontFamily="@font/amarante" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_operator"
+        android:textSize="@dimen/_15ssp"
+        android:drawablePadding="4dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"
+        android:textCursorDrawable="@null"
+        app:backgroundTint="@color/colorEdit"
+        app:fontFamily="@font/amarante" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_3sdp"
+        android:text="Amount"
+        android:textColor="@color/black_dull"
+        app:fontFamily="@font/amarante" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_dollar"
+        android:textSize="@dimen/_15ssp"
+        android:drawablePadding="4dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"
+        android:textCursorDrawable="@null"
+        app:backgroundTint="@color/colorEdit"
+        app:fontFamily="@font/amarante" />
+
+    <com.mi.fillspay.utilities.SwipeButton
+        android:layout_marginTop="@dimen/_30sdp"
+        android:id="@+id/swipeButton"
+        android:layout_gravity="end"
+        android:layout_marginStart="@dimen/_64sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_30sdp" />
+
+</LinearLayout>

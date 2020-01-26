@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   android:padding="@dimen/_5sdp"
+    android:layout_margin="@dimen/_5sdp"
+    android:background="@drawable/bg_gradientcard"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13ssp"
+        app:fontFamily="@font/amarante"
+        android:padding="@dimen/_2sdp"
+        android:text="Sample Text"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:padding="@dimen/_2sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:layout_centerVertical="true"
+            android:button="@drawable/radio_button_style"
+            android:id="@+id/radio_butn"
+            android:layout_width="wrap_content"
+            android:text="@null"
+            android:layout_height="wrap_content">
+        </androidx.appcompat.widget.AppCompatRadioButton>
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/radio_butn"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp"
+            app:fontFamily="@font/amarante"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_2sdp"
+            android:text="Add New Card"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_edit_pen1"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp" />
+    </RelativeLayout>
+
+</LinearLayout>

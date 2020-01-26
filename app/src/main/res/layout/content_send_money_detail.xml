@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".view.SendMoneyHomeActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_header"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/logo" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_menu" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_below="@+id/logoImageView">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Utility Payments"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/amarante" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/icon_reg"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:src="@drawable/ic_back_arrow" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+   <com.mi.fillspay.utilities.GradientTextView
+       android:layout_marginTop="-40dp"
+      android:paddingBottom="@dimen/_5sdp"
+       android:textSize="18sp"
+       android:gravity="center"
+       android:textStyle="bold"
+       app:fontFamily="@font/raspoutinedemibold_tb"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Select Amount"/>
+
+    <com.mi.fillspay.utilities.CircularImageView
+        android:background="@drawable/ic_circle_bg"
+        app:border="false"
+        android:layout_margin="@dimen/dp_8"
+        android:layout_gravity="center"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
+    <TextView
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/black_dull"
+        android:text="UserName"
+        app:fontFamily="@font/raspoutinedemibold_tb"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+ <RelativeLayout
+     android:layout_width="@dimen/_150sdp"
+     android:layout_height="@dimen/_150sdp"
+     android:layout_gravity="center">
+
+  <com.mi.fillspay.utilities.CircleSeekBar
+      android:id="@+id/seekbar"
+      android:layout_width="@dimen/_150sdp"
+      android:layout_height="@dimen/_150sdp"
+      android:padding="@dimen/_8sdp"
+      android:layout_margin="5dp"
+      android:layout_gravity="center"
+      app:wheel_has_pointer_shadow="true"
+      app:wheel_max_process="100"
+      app:wheel_pointer_shadow_radius="3dp"
+      app:wheel_cur_process="0"
+      app:wheel_pointer_color="@color/colorAccent"
+      app:wheel_reached_color="@color/def_reached_color"
+      app:wheel_unreached_color="@color/light_grey"
+      app:wheel_pointer_radius="@dimen/dp_8"
+      app:wheel_reached_width="@dimen/dp_8"
+      app:wheel_unreached_width="@dimen/dp_8" />
+
+     <TextView
+         android:textColor="@color/greyTextcolor"
+         android:id="@+id/amount"
+         android:text="Amount"
+         android:layout_above="@+id/current_progress"
+         android:layout_marginBottom="@dimen/_5sdp"
+         android:textSize="@dimen/_14ssp"
+         android:gravity="center"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+
+     <com.mi.fillspay.utilities.GradientTextView
+         android:id="@+id/current_progress"
+         android:textColor="@color/black_dull"
+         android:textStyle="italic|bold"
+         app:fontFamily="@font/amarante"
+         android:textSize="@dimen/_22ssp"
+         android:layout_centerInParent="true"
+         tools:text="0"
+         android:gravity="center"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+
+ </RelativeLayout>
+
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fontFamily="@font/raspoutinedemibold_tb"
+        android:textStyle="bold"
+        android:textColor="@color/text_grey"
+        android:text="Transaction Fee (1.5%)"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_90sdp"
+        app:backgroundTint="@color/colorEdit">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_4sdp"
+            android:inputType="textNoSuggestions"
+            android:textColor="@color/black"
+            android:hint="Type Your Comment"
+            android:textColorHint="@color/line_grey"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/_16ssp"
+            app:backgroundTint="@color/light_grey"
+            app:fontFamily="@font/amarante" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+  <!--  <EditText
+        android:layout_marginStart="@dimen/_90sdp"
+        android:textColorHint="@color/text_grey"
+        app:fontFamily="@font/raspoutinedemibold_tb"
+        android:hint="Type Your Comment"
+        android:layout_width="match_parent"
+        android:textColor="@color/black_dull"
+        android:layout_height="wrap_content" />-->
+
+    <com.mi.fillspay.utilities.SwipeButton
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:id="@+id/swipeButton"
+        app:swipeText="Swipe To Proceed"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:rotation="90"
+        android:layout_centerVertical="true"
+        android:background="@drawable/line_dash"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_3sdp"/>
+
+    <TextView
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:textColor="@color/white"
+        android:fontFamily="@font/amarante"
+        android:text="01"
+        android:textSize="@dimen/_14ssp"
+        android:background="@drawable/ic_circle_gradient"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp"/>
+
+</RelativeLayout>
