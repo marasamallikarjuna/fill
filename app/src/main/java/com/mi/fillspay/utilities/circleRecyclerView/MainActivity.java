@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.SnapHelper;

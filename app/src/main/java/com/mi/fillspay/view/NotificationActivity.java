@@ -1,9 +1,9 @@
 package com.mi.fillspay.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mi.fillspay.R;
 import com.mi.fillspay.utilities.FragmentUtil;

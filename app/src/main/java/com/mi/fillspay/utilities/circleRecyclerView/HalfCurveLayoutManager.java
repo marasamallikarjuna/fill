@@ -21,6 +21,7 @@ import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 @TargetApi(23)

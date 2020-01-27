@@ -11,11 +11,8 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
-import androidx.appcompat.widget.AppCompatImageView;
 
 import com.mi.fillspay.R;
 
