@@ -39,15 +39,15 @@ public class CenterEdgeItemsRecyclerView extends RecyclerView {
     private       boolean           mCenterEdgeItemsWhenThereAreChildren;
     private       int               mOriginalPaddingTop;
     private       int               mOriginalPaddingBottom;
-    
+
     public CenterEdgeItemsRecyclerView(Context context) {
         this(context, (AttributeSet) null);
     }
-    
+
     public CenterEdgeItemsRecyclerView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
-    
+
     public CenterEdgeItemsRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.mOriginalPaddingTop = NO_VALUE;
@@ -58,28 +58,28 @@ public class CenterEdgeItemsRecyclerView extends RecyclerView {
                     CenterEdgeItemsRecyclerView.this.setupCenteredPadding();
                     CenterEdgeItemsRecyclerView.this.mCenterEdgeItemsWhenThereAreChildren = false;
                 }
-                
+
                 return true;
             }
         };
         this.setLayoutManager(new LinearLayoutManager(context, VERTICAL, false));
     }
-    
+
     public boolean onGenericMotionEvent(MotionEvent ev) {
         RecyclerView.LayoutManager layoutManager = this.getLayoutManager();
         return layoutManager != null && !this.isLayoutFrozen() && super.onGenericMotionEvent(ev);
     }
-    
+
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.getViewTreeObserver().addOnPreDrawListener(this.mPaddingPreDrawListener);
     }
-    
+
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.getViewTreeObserver().removeOnPreDrawListener(this.mPaddingPreDrawListener);
     }
-    
+
     public void setCenterEdgeItems(boolean centerEdgeItems) {
         this.mCenterEdgeItems = centerEdgeItems;
         if (this.mCenterEdgeItems) {
@@ -93,7 +93,7 @@ public class CenterEdgeItemsRecyclerView extends RecyclerView {
             this.mCenterEdgeItemsWhenThereAreChildren = false;
         }
     }
-    
+
     private void setupCenteredPadding() {
         if (this.mCenterEdgeItems && this.getChildCount() >= 1) {
             View child = this.getChildAt(0);
@@ -111,33 +111,33 @@ public class CenterEdgeItemsRecyclerView extends RecyclerView {
             Log.w(TAG, "No children available");
         }
     }
-    
+
     private void setupOriginalPadding() {
         if (this.mOriginalPaddingTop != NO_VALUE) {
             this.setPadding(this.getPaddingLeft(), this.mOriginalPaddingTop, this.getPaddingRight(), this.mOriginalPaddingBottom);
         }
     }
-    
+
     abstract static class ChildLayoutManager extends LinearLayoutManager {
         private final float factor;
-        
+
         public ChildLayoutManager(Context context) {
             super(context, LinearLayoutManager.VERTICAL, false);
             factor = 1.0f;
         }
-        
+
         ChildLayoutManager(Context context, float factor) {
             super(context, LinearLayoutManager.VERTICAL, false);
             this.factor = factor;
         }
-        
+
         @Override
         public int scrollVerticallyBy(int dy, Recycler recycler, State state) {
             int scrolled = super.scrollVerticallyBy(dy, recycler, state);
             this.updateLayout();
             return scrolled;
         }
-        
+
         @Override
         public void onLayoutChildren(Recycler recycler, State state) {
             super.onLayoutChildren(recycler, state);
@@ -145,40 +145,35 @@ public class CenterEdgeItemsRecyclerView extends RecyclerView {
                 this.updateLayout();
             }
         }
-        
+
         @Override
         public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
-            
             final LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
-                
                 @Override
                 public PointF computeScrollVectorForPosition(int targetPosition) {
                     return ChildLayoutManager.this.computeScrollVectorForPosition(targetPosition);
                 }
-                
                 @Override
                 protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
                     return super.calculateSpeedPerPixel(displayMetrics) * factor;
                 }
             };
-            
             linearSmoothScroller.setTargetPosition(position);
             startSmoothScroll(linearSmoothScroller);
         }
-        
+
         private void updateLayout() {
             for (int count = 0; count < this.getChildCount(); ++count) {
                 View child = this.getChildAt(count);
                 this.updateChild(child, (CenterEdgeItemsRecyclerView) child.getParent());
             }
-            
         }
-        
+
         @Override
         public boolean canScrollHorizontally() {
             return false;
         }
-        
+
         public abstract void updateChild(View var1, CenterEdgeItemsRecyclerView var2);
     }
 }
