@@ -16,23 +16,23 @@ import static com.mi.fillspay.utilities.circleRecyclerView.Utils.getPixelFromDp;
 
 @SuppressWarnings("UnusedParameters")
 public class CurveView extends View {
-    
+
     private Paint dashPaint;
     private Paint straightPaint;
 
     public CurveView(Context context) {
         this(context, null, 0);
     }
-    
+
     public CurveView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
-    
+
     public CurveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
-    
+
     private void init(Context context, AttributeSet attrs) {
 
         dashPaint = new Paint();
@@ -46,7 +46,7 @@ public class CurveView extends View {
         dashPaint.setAntiAlias(true);
         dashPaint.setDither(true);
         dashPaint.setAlpha(128);
-        
+
         straightPaint = new Paint();
         straightPaint.setStyle(Paint.Style.STROKE);
         straightPaint.setColor(Color.WHITE);
@@ -57,7 +57,7 @@ public class CurveView extends View {
         straightPaint.setStrokeCap(Paint.Cap.ROUND);
         straightPaint.setAlpha(128);
     }
-    
+
     @Override
     @SuppressLint("DrawAllocation")
     protected void onDraw(Canvas canvas) {
@@ -67,10 +67,9 @@ public class CurveView extends View {
             super.onDraw(canvas);
             return;
         }
-        float centerX = -width / 8;
+        float centerX = -width / 2;
         float centerY = height / 2;
-
-        canvas.drawCircle(centerX, centerY, (float) (height / 2.4), dashPaint);
-
+        canvas.drawCircle(centerX, centerY, (float) (height / 1.85), dashPaint);
     }
 }
+
