@@ -8,7 +8,6 @@
     android:background="@android:color/white"
     android:layout_height="match_parent">
 
-
     <FrameLayout
         android:id="@+id/content_frag"
         android:layout_marginTop="@dimen/_120sdp"
@@ -28,14 +27,6 @@
             android:layout_height="70dp"
             android:layout_marginStart="@dimen/_20sdp"
             android:src="@drawable/logo" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="@dimen/_15sdp"
-            android:src="@drawable/ic_menu" />
 
         <LinearLayout
             android:layout_centerInParent="true"
@@ -71,5 +62,32 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <com.mi.fillspay.utilities.speeddial.SpeedDialOverlayLayout
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:clickable_overlay="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.mi.fillspay.utilities.speeddial.SpeedDialView
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/speedDial_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:padding="@dimen/_3sdp"
+        android:layout_gravity="top|end"
+        app:layout_behavior="@string/speeddial_scrolling_view_snackbar_behavior"
+        app:sdExpansionMode="bottom"
+        app:sdMainFabAnimationRotateAngle="90"
+        app:sdMainFabClosedSrc="@drawable/ic_menu"
+        app:sdMainFabOpenedSrc="@drawable/ic_fab_close"
+        app:sdOverlayLayout="@id/overlay" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
