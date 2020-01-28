@@ -25,7 +25,7 @@
             android:src="@drawable/mobilerecharge"
             android:id="@+id/layout_circle_text"
             android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_130sdp"   />
+            android:layout_height="@dimen/_120sdp"   />
 
     </RelativeLayout>
 

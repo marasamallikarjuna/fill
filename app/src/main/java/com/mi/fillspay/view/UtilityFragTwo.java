@@ -9,23 +9,26 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.mi.fillspay.R;
 import com.mi.fillspay.adapter.CircleLayoutManager;
 import com.mi.fillspay.adapter.SampleAdapter;
 import com.mi.fillspay.utilities.FragmentUtil;
+import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
+import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
+import com.mi.fillspay.utilities.circleRecyclerView.RVAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class UtilityFragTwo extends Fragment implements View.OnClickListener {
 
-    private RecyclerView list;
-    private ViewGroup root;
-    private CircleLayoutManager layoutManager;
-    private SampleAdapter adapter;
+    private CenterEdgeItemsRecyclerView recyclerView;
     private ImageView nextPage;
+
 
     public UtilityFragTwo() {
         // Required empty public constructor
@@ -46,19 +49,17 @@ public class UtilityFragTwo extends Fragment implements View.OnClickListener {
     }
 
     private void initValues() {
-        root = (ViewGroup) getActivity().findViewById(R.id.root);
-        list = (RecyclerView)getActivity().findViewById(R.id.recycler_view);
-        adapter = new SampleAdapter(getActivity());
-        final int radius = (int) getResources().getDimension(R.dimen.list_radius);
-        final int peek = (int) getResources().getDimension(R.dimen.list_peek);
+        recyclerView = (CenterEdgeItemsRecyclerView) getActivity().findViewById(R.id.wrv);
         nextPage = getActivity().findViewById(R.id.nextPage_id);
         nextPage.setOnClickListener(this);
-
-        layoutManager = new CircleLayoutManager(getActivity(), CircleLayoutManager.Gravity.START, CircleLayoutManager.Orientation.VERTICAL, radius, peek, true);
-
-        list.setLayoutManager(layoutManager);
-        list.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        recyclerView.setCenterEdgeItems(true);
+        HalfCurveLayoutManager manager = new HalfCurveLayoutManager(getActivity(), 1.0f);
+        recyclerView.setLayoutManager(manager);
+        SnapHelper helper = new LinearSnapHelper();
+        // Set the adapter
+        RVAdapter adapter = new RVAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
+        helper.attachToRecyclerView(recyclerView);
     }
 
     @Override

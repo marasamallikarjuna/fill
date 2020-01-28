@@ -9,6 +9,8 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,6 +28,7 @@ import com.mi.fillspay.utilities.circleRecyclerView.RVAdapter;
  */
 public class MobileRecFragOne extends Fragment implements View.OnClickListener {
     private CenterEdgeItemsRecyclerView recyclerView;
+    ImageView nextpage;
 
     public MobileRecFragOne() {
         // Required empty public constructor
@@ -73,6 +76,9 @@ public class MobileRecFragOne extends Fragment implements View.OnClickListener {
         RVAdapter adapter = new RVAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         helper.attachToRecyclerView(recyclerView);
+
+        nextpage = getActivity().findViewById(R.id.nextPage_id);
+        nextpage.setOnClickListener(this);
 
     }
 

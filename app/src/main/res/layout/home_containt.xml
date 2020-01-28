@@ -144,8 +144,8 @@
 
                     <ImageView
                         android:id="@+id/sendImageView"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="@dimen/_56sdp"
+                        android:layout_height="@dimen/_56sdp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_send_money" />
 
@@ -184,15 +184,14 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/ic_grey_circle">
+                        android:layout_height="wrap_content">
 
                         <ImageView
                             android:id="@+id/imageView2"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="@dimen/_5sdp"
-                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_grey_circle"
+                            android:paddingEnd="@dimen/_5sdp"
                             android:src="@drawable/ic_emty_cyc"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -247,8 +246,8 @@
 
                     <ImageView
                         android:id="@+id/rechargImageView"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="@dimen/_56sdp"
+                        android:layout_height="@dimen/_56sdp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_recharg" />
 
@@ -257,6 +256,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_marginTop="10dp"
+                        android:paddingStart="@dimen/_2sdp"
+                        android:paddingEnd="0dp"
                         android:text="Mobile Recharge"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
@@ -282,8 +283,8 @@
 
                     <ImageView
                         android:id="@+id/utilImageView"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="@dimen/_56sdp"
+                        android:layout_height="@dimen/_56sdp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_utily" />
 
@@ -297,6 +298,8 @@
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
                         android:textStyle="bold"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="@dimen/_2sdp"
                         app:fontFamily="@font/amarante" />
 
                 </RelativeLayout>
