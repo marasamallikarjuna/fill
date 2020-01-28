@@ -1,17 +1,27 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
+
+    <com.mi.fillspay.utilities.speeddial.SpeedDialOverlayLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:clickable_overlay="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/content_frag"
-        android:layout_marginTop="@dimen/_120sdp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_120sdp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -27,26 +37,33 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:src="@drawable/logo" />
 
-        <ImageView
+        <com.mi.fillspay.utilities.speeddial.SpeedDialView
+            android:id="@+id/speedDial_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_menu" />
+            android:layout_gravity="top|end"
+            android:layout_margin="@dimen/_10sdp"
+            android:padding="@dimen/_3sdp"
+            app:layout_behavior="@string/speeddial_scrolling_view_snackbar_behavior"
+            app:sdExpansionMode="bottom"
+            app:sdMainFabAnimationRotateAngle="90"
+            app:sdMainFabClosedSrc="@drawable/ic_menu"
+            app:sdMainFabOpenedSrc="@drawable/ic_fab_close"
+            app:sdOverlayLayout="@id/overlay" />
 
         <LinearLayout
-            android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:orientation="horizontal"
             android:weightSum="2">
 
             <TextView
                 android:id="@+id/titleTextView"
                 android:layout_width="0dp"
-                android:layout_weight="0.8"
                 android:layout_height="match_parent"
+                android:layout_weight="0.8"
                 android:gravity="center"
                 android:text="Send Money"
                 android:textColor="@android:color/white"
@@ -56,8 +73,9 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1.2"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1.2">
+
                 <ImageView
                     android:id="@+id/icon_reg"
                     android:layout_width="@dimen/_45sdp"
