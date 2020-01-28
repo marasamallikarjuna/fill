@@ -13,6 +13,7 @@ import com.mi.fillspay.utilities.GradientTextView;
 
 import static android.view.LayoutInflater.from;
 
+
 /**
  * Created by Srikar on 7/5/2017.
  */
@@ -27,29 +28,29 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         super.onAttachedToRecyclerView(recyclerView);
         manager= recyclerView;
     }
-    
+
     public RVAdapter(Context context) {
         inflater = from(context);
         this.context = context;
     }
-    
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.row_rv_text, parent, false);
         return new Holder(v);
     }
-    
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Holder hold = (Holder) holder;
-        hold.tv.setText("Hello World " + (position+1));
+        hold.tv.setText("Hello  World " + (position+1));
     }
-    
+
     @Override
     public int getItemCount() {
         return 15;
     }
-   
+
     private class Holder extends RecyclerView.ViewHolder{
         GradientTextView tv;
         ImageView imageView;
