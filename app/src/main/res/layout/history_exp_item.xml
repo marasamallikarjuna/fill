@@ -52,9 +52,9 @@
         android:textColor="@color/endColor" />
 
     <com.mi.fillspay.utilities.SwipeButton
-        android:layout_width="@dimen/_140sdp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/_32sdp"
         android:layout_height="@dimen/_30sdp"
-        android:layout_gravity="end"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp" />
 

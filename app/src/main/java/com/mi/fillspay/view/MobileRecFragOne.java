@@ -45,9 +45,7 @@ public class MobileRecFragOne extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         initViews();
-
     }
 
     private static Point getScreenSize(Context activity) {
@@ -66,7 +64,6 @@ public class MobileRecFragOne extends Fragment implements View.OnClickListener {
     }
 
     private void initViews() {
-
         recyclerView = (CenterEdgeItemsRecyclerView) getActivity().findViewById(R.id.wrv);
         recyclerView.setCenterEdgeItems(true);
         HalfCurveLayoutManager manager = new HalfCurveLayoutManager(getActivity(), 1.0f);
@@ -76,10 +73,8 @@ public class MobileRecFragOne extends Fragment implements View.OnClickListener {
         RVAdapter adapter = new RVAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         helper.attachToRecyclerView(recyclerView);
-
         nextpage = getActivity().findViewById(R.id.nextPage_id);
         nextpage.setOnClickListener(this);
-
     }
 
     @Override
