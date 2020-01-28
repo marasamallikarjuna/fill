@@ -10,16 +10,13 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearSnapHelper;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.mi.fillspay.R;
-import com.mi.fillspay.adapter.CircleLayoutManager;
-import com.mi.fillspay.adapter.SampleAdapter;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
 import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
-import com.mi.fillspay.utilities.circleRecyclerView.RVAdapter;
+import com.mi.fillspay.adapter.RVAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -9,7 +9,6 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -21,7 +20,7 @@ import com.mi.fillspay.R;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
 import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
-import com.mi.fillspay.utilities.circleRecyclerView.RVAdapter;
+import com.mi.fillspay.adapter.RVAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

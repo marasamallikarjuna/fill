@@ -13,14 +13,14 @@
         android:padding="5dp"
         android:text="Recharge or Bill Payment"
         android:layout_marginBottom="5dp"
-        android:textSize="18sp"
+        android:textSize="@dimen/_15ssp"
         android:textStyle="italic|bold"
         app:fontFamily="@font/amarante" />
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:orientation="horizontal"
         android:padding="5dp">
 
@@ -48,7 +48,7 @@
     </RadioGroup>
 
     <TextView
-        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:textColor="@color/greyTextcolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,13 +65,14 @@
         android:textColorHint="@color/colorAccent"
         android:inputType="number|textNoSuggestions"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_13ssp"
         app:backgroundTint="@color/colorEdit"
         app:fontFamily="@font/amarante" />
 
     <TextView
         android:textColor="@color/greyTextcolor"
         android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_height="wrap_content"
         android:padding="@dimen/_3sdp"
         android:text="Operator"
@@ -81,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_operator"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_13ssp"
         android:drawablePadding="4dp"
         android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"
@@ -93,6 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/_3sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:text="Amount"
         android:textColor="@color/greyTextcolor"
         app:fontFamily="@font/amarante" />
@@ -101,7 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_dollar"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_13ssp"
         android:drawablePadding="4dp"
         android:inputType="textNoSuggestions|number"
         android:textColor="@android:color/black"

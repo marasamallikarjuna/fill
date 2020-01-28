@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.mi.fillspay.R;
+import com.mi.fillspay.adapter.RVAdapter;
 
 public class MainActivity extends AppCompatActivity {
     CenterEdgeItemsRecyclerView recyclerView;

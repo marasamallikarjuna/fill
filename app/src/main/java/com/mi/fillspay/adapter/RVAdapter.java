@@ -1,4 +1,4 @@
-package com.mi.fillspay.utilities.circleRecyclerView;
+package com.mi.fillspay.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -48,7 +48,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 15;
+        return 12;
     }
 
     private class Holder extends RecyclerView.ViewHolder{

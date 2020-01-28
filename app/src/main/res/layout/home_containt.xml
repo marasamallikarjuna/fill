@@ -7,6 +7,13 @@
     android:gravity="center"
     android:orientation="vertical">
 
+        <!--<ImageView
+            android:rotation="180"
+            android:src="@drawable/semicircle_dotted"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ImageView>-->
+
     <LinearLayout
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_200sdp"
