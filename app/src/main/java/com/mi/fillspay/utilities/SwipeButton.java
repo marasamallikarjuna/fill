@@ -96,9 +96,9 @@ public class SwipeButton extends RelativeLayout {
             centerText.setText("  Swipe To Proceed "); //add any text you need
         }
 
-       // setTextSize(attributes.getDimension(R.styleable.CircularImageView_border_width, textSize));
+        // setTextSize(attributes.getDimension(R.styleable.CircularImageView_border_width, textSize));
 
-        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE);
         centerText.setTextColor(Color.BLACK);
 
         centerText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_rightarrow, 0, 0, 0);
@@ -107,9 +107,8 @@ public class SwipeButton extends RelativeLayout {
             centerText.setTypeface(getResources().getFont(R.font.raspoutinemedium_tb), Typeface.BOLD);
         }
 
-        centerText.setPadding(60, 30, 5, 30);
+        centerText.setPadding(60, 30, 20, 30);
         background.addView(centerText, layoutParams);
-
 
         final ImageView swipeButton = new ImageView(context);
         this.slidingButton = swipeButton;
@@ -125,10 +124,10 @@ public class SwipeButton extends RelativeLayout {
 
         layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
         layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-        swipeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.swipe_shape_button));
+        //   swipeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.swipe_shape_button));
         swipeButton.setImageDrawable(disabledDrawable);
+        //  swipeButton.setPadding(0,0,0,0);
         addView(swipeButton, layoutParamsButton);
-
         setOnTouchListener(getButtonTouchListener());
 
     }

@@ -68,7 +68,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="15dp"
             android:text="Debit Card"
-            android:textColor="@color/colorEdit"
+            android:textColor="@color/greyTextcolor"
             android:textSize="13sp"
             app:fontFamily="@font/amarante" />
 
@@ -99,7 +99,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
             android:text="Name On Card"
-            android:textColor="@color/colorEdit"
+            android:textColor="@color/greyTextcolor"
             android:textSize="13sp"
             app:fontFamily="@font/amarante" />
 
@@ -130,7 +130,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
             android:text="Card Number"
-            android:textColor="@color/colorEdit"
+            android:textColor="@color/greyTextcolor"
             android:textSize="13sp"
             app:fontFamily="@font/amarante" />
 
@@ -174,7 +174,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="10dp"
                     android:text="Expiry Date"
-                    android:textColor="@color/colorEdit"
+                    android:textColor="@color/greyTextcolor"
                     android:textSize="13sp"
                     app:fontFamily="@font/amarante" />
 
@@ -213,7 +213,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="10dp"
                     android:text="CVV"
-                    android:textColor="@color/colorEdit"
+                    android:textColor="@color/greyTextcolor"
                     android:textSize="13sp"
                     app:fontFamily="@font/amarante" />
 
