@@ -20,6 +20,7 @@
         android:layout_marginTop="@dimen/_12sdp"
         android:padding="@dimen/_3sdp"
         app:fontFamily="@font/amarante"
+        android:textColor="@color/greyTextcolor"
         android:text="Electricity Board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -41,6 +42,7 @@
     <TextView
         android:padding="@dimen/_3sdp"
         app:fontFamily="@font/amarante"
+        android:textColor="@color/greyTextcolor"
         android:text="Consumer Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -63,6 +65,7 @@
         android:padding="@dimen/_3sdp"
         app:fontFamily="@font/amarante"
         android:text="Country"
+        android:textColor="@color/greyTextcolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -84,6 +87,7 @@
         android:padding="@dimen/_3sdp"
         app:fontFamily="@font/amarante"
         android:text="Enter Amount"
+        android:textColor="@color/greyTextcolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
