@@ -108,7 +108,8 @@
         android:id="@+id/swipe_sendmoney"
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_gravity="end"
-        android:layout_marginStart="@dimen/_64sdp"
+        app:swipeText="Swipe to Proceed"
+        android:layout_marginStart="@dimen/_32sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

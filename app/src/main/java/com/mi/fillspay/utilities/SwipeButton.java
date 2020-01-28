@@ -126,7 +126,6 @@ public class SwipeButton extends RelativeLayout {
         layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
         //   swipeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.swipe_shape_button));
         swipeButton.setImageDrawable(disabledDrawable);
-        //  swipeButton.setPadding(0,0,0,0);
         addView(swipeButton, layoutParamsButton);
         setOnTouchListener(getButtonTouchListener());
 
