@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 @TargetApi(23)
 public class HalfCurveLayoutManager extends CenterEdgeItemsRecyclerView.ChildLayoutManager {
-    
+
     private final Path mCurvePath      = new Path();
     private final PathMeasure mPathMeasure    = new PathMeasure();
     private final float[]     mPathPoints     = new float[2];
@@ -40,11 +40,11 @@ public class HalfCurveLayoutManager extends CenterEdgeItemsRecyclerView.ChildLay
     private RecyclerView mParentView;
     private int          mLayoutWidth;
     private int          mLayoutHeight;
-    
+
     public HalfCurveLayoutManager(Context context, float factor) {
         super(context, factor);
     }
-    
+
     @Override
     public void updateChild(View child, CenterEdgeItemsRecyclerView parent) {
         if (this.mParentView != parent) {
@@ -54,8 +54,8 @@ public class HalfCurveLayoutManager extends CenterEdgeItemsRecyclerView.ChildLay
         }
         int childHeight = child.getHeight();
         int mParentViewHeight = this.mParentView.getHeight();
-        
-        float mXCurveOffset = (this.mLayoutWidth / 2) + (this.mLayoutWidth / 4);
+
+        float mXCurveOffset = (this.mLayoutWidth/4) + (this.mLayoutWidth / 4);
         this.setUpCircularInitialLayout((this.mLayoutWidth * 2) - (this.mLayoutWidth / 4), this.mLayoutHeight);
         this.mAnchorOffsetXY[0] = mXCurveOffset;
         this.mAnchorOffsetXY[1] = (float) childHeight / 2.0F;
@@ -76,7 +76,7 @@ public class HalfCurveLayoutManager extends CenterEdgeItemsRecyclerView.ChildLay
         child.offsetLeftAndRight(newLeft - child.getLeft());
         float verticalTranslation = this.mPathPoints[1] - verticalAnchor;
         child.setTranslationY(verticalTranslation);
-        
+
         float centerOffset = ((float) childHeight / 2.0f) / (float) mParentViewHeight;
         float yRelativeToCenterOffset = (child.getY() / mParentViewHeight) + centerOffset;
         if (yRelativeToCenterOffset > 0.49 && yRelativeToCenterOffset < 0.51) {
@@ -85,7 +85,7 @@ public class HalfCurveLayoutManager extends CenterEdgeItemsRecyclerView.ChildLay
             child.animate().scaleX(1f).scaleY(1f).translationX(1f).setInterpolator(new AccelerateDecelerateInterpolator()).setDuration(250).setStartDelay(50).start();
         }
     }
-    
+
     private void setUpCircularInitialLayout(int width, int height) {
         if (this.mCurvePathHeight != height) {
             this.mCurvePathHeight = height;
@@ -94,19 +94,19 @@ public class HalfCurveLayoutManager extends CenterEdgeItemsRecyclerView.ChildLay
             this.mLineGradient = 10.416667F;
             this.mCurvePath.reset();
             this.mCurvePath.moveTo(0.5F * (float) width, this.mCurveBottom);
-            
+
             this.mCurvePath.lineTo(0.34F * (float) width, 0.075F * (float) height);
-            
+
             this.mCurvePath.cubicTo(0.22F * (float) width, 0.17F * (float) height,
-                                    0.13F * (float) width, 0.32F * (float) height,
-                                    0.13F * (float) width, 0.5F * (float) height);
-            
+                    0.13F * (float) width, 0.32F * (float) height,
+                    0.13F * (float) width, 0.5F * (float) height);
+
             this.mCurvePath.cubicTo(0.13F * (float) width, 0.68F * (float) height,
-                                    0.22F * (float) width, 0.83F * (float) height,
-                                    0.34F * (float) width, 0.925F * (float) height);
-            
+                    0.22F * (float) width, 0.83F * (float) height,
+                    0.34F * (float) width, 0.925F * (float) height);
+
             this.mCurvePath.lineTo(0.5F * (float) width, this.mCurveTop);
-            
+
             this.mPathMeasure.setPath(this.mCurvePath, false);
             this.mPathLength = this.mPathMeasure.getLength();
         }
