@@ -7,12 +7,20 @@ public class UtilitiesRequest {
     @SerializedName("locationID")
     @Expose
     private String locationID;
+
     @SerializedName("pointOfSaleID")
     @Expose
     private String pointOfSaleID;
+
     @SerializedName("countryCode")
     @Expose
     private String countryCode;
+
+    public UtilitiesRequest(String locationID, String pointOfSaleID, String countryCode) {
+        this.locationID = locationID;
+        this.pointOfSaleID = pointOfSaleID;
+        this.countryCode = countryCode;
+    }
 
     public String getLocationID() {
         return locationID;

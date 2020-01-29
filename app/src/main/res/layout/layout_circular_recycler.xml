@@ -7,6 +7,7 @@
     android:gravity="center">
 
     <com.mi.fillspay.utilities.circleRecyclerView.CurveView
+        android:layout_marginStart="@dimen/recycler_curve_margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

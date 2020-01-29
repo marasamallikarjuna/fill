@@ -13,14 +13,17 @@ import com.mi.fillspay.model.RegisterRequest;
 import com.mi.fillspay.model.ResponseData;
 import com.mi.fillspay.model.SubutilityRequest;
 import com.mi.fillspay.model.UtilitiesRequest;
+import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.model.ViewAmountDueRequest;
 import com.mi.fillspay.model.ViewAmountDueResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface ApiRequest {
@@ -32,8 +35,7 @@ public interface ApiRequest {
     Call<LoginResponse> postLogin(@Body LoginRequest body);
 
     @POST("/paykii/getutilities")
-    Call<String> getUtilities(@Body UtilitiesRequest body, @Header("Authorization") String token );
-
+    Call<ArrayList<UtilityResponse>> getUtilities(@Body UtilitiesRequest body, @Header("Authorization") String token );
 
     @POST("/paykii/getsubutility")
     Call<String> getSubUtilities(@Body SubutilityRequest body, @Header("Authorization") String token );
@@ -53,7 +55,5 @@ public interface ApiRequest {
 
     @POST("/paykii/viewAmountDue")
     Call<ProcessPaymentResponse> processPayment(@Body ProcessPaymentRequest body, @Header("Authorization") String token );
-
-
 
 }

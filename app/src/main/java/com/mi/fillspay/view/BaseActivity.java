@@ -44,7 +44,7 @@ public class BaseActivity extends AppCompatActivity {
 
         setContentView(R.layout.splash_layout);
         _dialog = new ProgressDialog(BaseActivity.this);
-        _preferencesHelper=new AppPreferencesHelper(this,"Spandana");
+        _preferencesHelper = new AppPreferencesHelper(this,"Spandana");
         marshMallowPermission=new MarshMallowPermission(this);
     }
 

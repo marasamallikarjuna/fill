@@ -1,5 +1,6 @@
 package com.mi.fillspay.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -49,13 +50,14 @@ public class MobileRechargeHomeActivity extends AppCompatActivity {
             public boolean onActionSelected(SpeedDialActionItem actionItem) {
                 switch (actionItem.getId()){
                     case R.id.fab_item1:
-                        Toast.makeText(MobileRechargeHomeActivity.this, "one", Toast.LENGTH_SHORT).show();
+                        Intent in = new Intent(MobileRechargeHomeActivity.this,NotificationActivity.class);
+                        startActivity(in);
                         break;
                     case R.id.fab_item2:
-                        Toast.makeText(MobileRechargeHomeActivity.this, "two", Toast.LENGTH_SHORT).show();
+                        Intent in1 = new Intent(MobileRechargeHomeActivity.this,HowToUseActivity.class);
+                        startActivity(in1);
                         break;
                     case R.id.fab_item3:
-                        Toast.makeText(MobileRechargeHomeActivity.this, "three", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;

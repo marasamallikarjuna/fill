@@ -67,6 +67,5 @@ public class UtilityActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 }

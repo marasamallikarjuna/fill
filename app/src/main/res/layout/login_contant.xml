@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,59 +21,55 @@
         android:layout_marginTop="-8dp"
         app:backgroundTint="@color/colorEdit">
 
-         <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/emailEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_email"
-            android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="4dp"
-            app:fontFamily="@font/amarante"
-             android:textSize="@dimen/_16ssp"
-             android:id="@+id/emailEdit"
             android:inputType="textEmailAddress|textNoSuggestions"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@null"
-            app:backgroundTint="@color/colorEdit" />
+            android:textSize="@dimen/_14ssp"
+            app:backgroundTint="@color/colorEdit"
+            app:fontFamily="@font/amarante" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorEdit"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="5dp"
+        android:text="Password"
+        android:textColor="@color/colorEdit"
         android:textSize="13sp"
-        app:fontFamily="@font/amarante"
-        android:layout_marginLeft="4dp"
-        android:text="Password"/>
+        app:fontFamily="@font/amarante" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
         android:layout_marginTop="-8dp"
-        app:fontFamily="@font/amarante"
-        android:textSize="15dp"
+        android:textSize="@dimen/_14ssp"
         app:backgroundTint="@color/colorEdit"
+        app:fontFamily="@font/amarante"
+        app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/colorEdit">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/passwordEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:fontFamily="@font/amarante"
             android:drawableStart="@drawable/ic_lock"
             android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="4dp"
-            android:textSize="@dimen/_16ssp"
-            android:id="@+id/passwordEdit"
             android:inputType="textPassword|textNoSuggestions"
             android:textColor="@android:color/black"
             android:textColorHint="@color/colorAccent"
             android:textCursorDrawable="@null"
-            app:backgroundTint="@color/colorEdit" />
+            android:textSize="@dimen/_16ssp"
+            app:backgroundTint="@color/colorEdit"
+            app:fontFamily="@font/amarante" />
     </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
 
 
 </LinearLayout>
