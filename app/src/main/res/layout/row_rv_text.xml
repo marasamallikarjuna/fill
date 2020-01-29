@@ -24,6 +24,6 @@
         android:fontFamily="@font/amarante"
         android:text="Hello World"
         android:textColor="#000"
-        android:textSize="15sp"
-        android:textStyle="italic" />
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="italic|bold" />
 </LinearLayout>

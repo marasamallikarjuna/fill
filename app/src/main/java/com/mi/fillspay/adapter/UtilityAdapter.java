@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.mi.fillspay.R;
 import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.utilities.GradientTextView;
+
 import java.util.ArrayList;
 
 import static android.view.LayoutInflater.from;
@@ -31,7 +33,7 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         manager = recyclerView;
     }
 
-    public UtilityAdapter(Context context,ArrayList<UtilityResponse> utilityResponse) {
+    public UtilityAdapter(Context context, ArrayList<UtilityResponse> utilityResponse) {
         inflater = from(context);
         this.context = context;
         this.utilityResponses = utilityResponse;
@@ -47,24 +49,23 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Holder hold = (Holder) holder;
         hold.tv.setText("Hello  World " + (position + 1));
+        Glide.with(context).load(utilityResponses.get(holder.getAdapterPosition())).placeholder(R.drawable.ic_registr_icon).into(hold.imageView);
+        hold.tv.setText(utilityResponses.get(holder.getAdapterPosition()).getUtilityname());
     }
 
     @Override
     public int getItemCount() {
-        return 12;
+        return utilityResponses.size();
     }
 
     private class Holder extends RecyclerView.ViewHolder {
-       GradientTextView tv;
+        GradientTextView tv;
         ImageView imageView;
 
         Holder(View itemView) {
             super(itemView);
             tv = (GradientTextView) itemView.findViewById(R.id.tvText);
             imageView = (ImageView) itemView.findViewById(R.id.img_logo);
-
-            Glide.with(context).load(utilityResponses.get(getAdapterPosition())).into(imageView);
-            tv.setText(utilityResponses.get(getAdapterPosition()).getUtilityname());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

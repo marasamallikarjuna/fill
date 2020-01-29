@@ -51,7 +51,6 @@ public class SendMoneyFragThree extends Fragment {
             @Override
             public void onSwipeListener() {
                 FragmentUtil.setFragment(new SendMoneyFragFour(), getActivity(), "Send Mobile fragment three", R.id.content_frag, true);
-
             }
         });
 

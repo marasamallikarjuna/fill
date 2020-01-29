@@ -5,6 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class UtilityResponse {
 
+    public UtilityResponse(String utilityname, String image) {
+        this.utilityname = utilityname;
+        this.image = image;
+    }
+
     @SerializedName("utilityname")
     @Expose
     private String utilityname;

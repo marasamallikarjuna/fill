@@ -11,6 +11,7 @@
         android:padding="5dp"
         android:textStyle="italic|bold"
         app:fontFamily="@font/amarante"
+        android:textColor="@color/black_dull"
         android:textSize="18sp"
         android:text="Add User Bank Details"
         android:layout_width="match_parent"

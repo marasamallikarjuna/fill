@@ -2,6 +2,7 @@ package com.mi.fillspay.view;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,11 +70,11 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
                 recyclerView.setCenterEdgeItems(true);
                 HalfCurveLayoutManager manager = new HalfCurveLayoutManager(getActivity(), 1.0f);
                 recyclerView.setLayoutManager(manager);
-                SnapHelper helper = new LinearSnapHelper();
+             //   SnapHelper helper = new LinearSnapHelper();
                 // Set the adapter
                 UtilityAdapter adapter = new UtilityAdapter(getActivity(), utilityResponses);
                 recyclerView.setAdapter(adapter);
-                helper.attachToRecyclerView(recyclerView);
+            //    helper.attachToRecyclerView(recyclerView);
             }
         });
     }

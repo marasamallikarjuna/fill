@@ -21,7 +21,7 @@ public class UtilitiesRepository {
     public UtilitiesRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
-    public LiveData<ArrayList<UtilityResponse>> getUtilities(UtilitiesRequest utilitiesRequest, String token) {
+  /*  public LiveData<ArrayList<UtilityResponse>> getUtilities(UtilitiesRequest utilitiesRequest, String token) {
         final MutableLiveData<ArrayList<UtilityResponse>> data = new MutableLiveData<>();
         try {
             apiRequest.getUtilities(utilitiesRequest,token).enqueue(new Callback<ArrayList<UtilityResponse>>() {
@@ -43,5 +43,20 @@ public class UtilitiesRepository {
             e.printStackTrace();
         }
         return data;
+    }*/
+
+    public LiveData<ArrayList<UtilityResponse>> getUtilities(UtilitiesRequest utilitiesRequest, String token) {
+        final MutableLiveData<ArrayList<UtilityResponse>> data = new MutableLiveData<>();
+
+        ArrayList<UtilityResponse> list= new ArrayList<>();
+        list.add(new UtilityResponse("Electricity",""));
+        list.add(new UtilityResponse("Mobile Recharge",""));
+        list.add(new UtilityResponse("Water Bill",""));
+        list.add(new UtilityResponse("Gas",""));
+        list.add(new UtilityResponse("Cable",""));
+        data.setValue(list);
+
+        return data;
     }
+
 }
