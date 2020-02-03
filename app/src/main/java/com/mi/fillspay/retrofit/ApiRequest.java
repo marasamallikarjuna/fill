@@ -5,6 +5,7 @@ import com.mi.fillspay.model.BillerDescRequest;
 import com.mi.fillspay.model.BillerDescResponse;
 import com.mi.fillspay.model.ConsumerNoFormatRequest;
 import com.mi.fillspay.model.ConsumerNoFormatResponse;
+import com.mi.fillspay.model.CountryRequest;
 import com.mi.fillspay.model.LoginRequest;
 import com.mi.fillspay.model.LoginResponse;
 import com.mi.fillspay.model.ProcessPaymentRequest;
@@ -34,24 +35,23 @@ public interface ApiRequest {
     @POST("/authenticate")
     Call<LoginResponse> postLogin(@Body LoginRequest body);
 
+    @POST("/paykii/getCountries")
+    Call<String[]> getCountries(@Body CountryRequest body, @Header("Authorization") String token );
+
     @POST("/paykii/getutilities")
-    Call<ArrayList<UtilityResponse>> getUtilities(@Body UtilitiesRequest body, @Header("Authorization") String token );
+    Call<String[]> getUtilities(@Body UtilitiesRequest body, @Header("Authorization") String token );
 
     @POST("/paykii/getsubutility")
     Call<String> getSubUtilities(@Body SubutilityRequest body, @Header("Authorization") String token );
 
-
     @POST("/paykii/listOfEachBillerTypeCatalog")
     Call<List<BillerDescResponse>> getBillerDesc(@Body BillerDescRequest body, @Header("Authorization") String token );
-
 
     @POST("/paykii/consumerNumberFormat")
     Call<ConsumerNoFormatResponse> getConsmerNoFarmat(@Body ConsumerNoFormatRequest body, @Header("Authorization") String token );
 
-
     @POST("/paykii/viewAmountDue")
     Call<ViewAmountDueResponse> getViewAmountDue(@Body ViewAmountDueRequest body, @Header("Authorization") String token );
-
 
     @POST("/paykii/viewAmountDue")
     Call<ProcessPaymentResponse> processPayment(@Body ProcessPaymentRequest body, @Header("Authorization") String token );

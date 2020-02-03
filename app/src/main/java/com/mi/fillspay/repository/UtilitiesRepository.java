@@ -9,15 +9,14 @@ import com.mi.fillspay.model.UtilitiesRequest;
 import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.retrofit.ApiRequest;
 import com.mi.fillspay.retrofit.RetrofitRequest;
-
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UtilitiesRepository {
     private ApiRequest apiRequest;
+
     public UtilitiesRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
@@ -45,17 +44,29 @@ public class UtilitiesRepository {
         return data;
     }*/
 
-    public LiveData<ArrayList<UtilityResponse>> getUtilities(UtilitiesRequest utilitiesRequest, String token) {
-        final MutableLiveData<ArrayList<UtilityResponse>> data = new MutableLiveData<>();
+    public LiveData<String[]> getUtilities(UtilitiesRequest utilitiesRequest, String token) {
+        final MutableLiveData<String[]> data = new MutableLiveData<>();
+        try {
+            apiRequest.getUtilities(utilitiesRequest, token).enqueue(new Callback<String[]>() {
+                @Override
+                public void onResponse(Call<String[]> call, Response<String[]> response) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                        Log.d("sugadgf", response.toString());
+                        Log.i("Mallikarjuna", "+++sucess+++" + response.toString());
+                    }
+                }
 
-        ArrayList<UtilityResponse> list= new ArrayList<>();
-        list.add(new UtilityResponse("Electricity",""));
-        list.add(new UtilityResponse("Mobile Recharge",""));
-        list.add(new UtilityResponse("Water Bill",""));
-        list.add(new UtilityResponse("Gas",""));
-        list.add(new UtilityResponse("Cable",""));
-        data.setValue(list);
+                @Override
+                public void onFailure(Call<String[]> call, Throwable t) {
+                    data.setValue(null);
+                    Log.i("Mallikarjuna", "+++error+++" + t.getMessage());
+                }
+            });
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return data;
     }
 

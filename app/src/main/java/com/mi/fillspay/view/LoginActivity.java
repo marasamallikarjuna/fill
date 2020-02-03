@@ -43,7 +43,7 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if (isNetworkConnected()) {
-
+                    _preferencesHelper.setAccessToken(getResources().getString(R.string.token));
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     Pair[] pairs = new Pair[1];
                     pairs[0] = new Pair<View, String>(titleTextView, "tvLogin");

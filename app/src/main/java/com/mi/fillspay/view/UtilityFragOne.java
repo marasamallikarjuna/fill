@@ -16,13 +16,17 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.mi.fillspay.R;
+import com.mi.fillspay.adapter.CountryAdapter;
 import com.mi.fillspay.adapter.RVAdapter;
 import com.mi.fillspay.adapter.UtilityAdapter;
+import com.mi.fillspay.local.prefe.AppPreferencesHelper;
+import com.mi.fillspay.model.CountryRequest;
 import com.mi.fillspay.model.UtilitiesRequest;
 import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
 import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
+import com.mi.fillspay.view_model.CountryViewModel;
 import com.mi.fillspay.view_model.UtilitiesViewModel;
 
 import java.util.ArrayList;
@@ -34,7 +38,8 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
 
     private CenterEdgeItemsRecyclerView recyclerView;
     private ImageView nextPage;
-    UtilitiesViewModel utilitiesViewModel;
+    CountryViewModel countryViewModel;
+    AppPreferencesHelper _preferencesHelper;
 
     public UtilityFragOne() {
         // Required empty public constructor
@@ -57,24 +62,23 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
         recyclerView = (CenterEdgeItemsRecyclerView) getActivity().findViewById(R.id.wrv);
         nextPage = getActivity().findViewById(R.id.nextPage_id);
         nextPage.setOnClickListener(this);
-        getUtilities();
+        getCountries();
     }
 
-    private void getUtilities() {
+    private void getCountries() {
 
-        utilitiesViewModel = ViewModelProviders.of(this).get(UtilitiesViewModel.class);
+        _preferencesHelper = new AppPreferencesHelper(getActivity(),"Spandana");
 
-        utilitiesViewModel.getUtilities(new UtilitiesRequest("", "", ""), "").observe(this, new Observer<ArrayList<UtilityResponse>>() {
+        countryViewModel = ViewModelProviders.of(this).get(CountryViewModel.class);
+
+        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"),_preferencesHelper.getAccessToken()).observe(this, new Observer<String[]>() {
             @Override
-            public void onChanged(ArrayList<UtilityResponse> utilityResponses) {
+            public void onChanged(String[] utilityResponses) {
                 recyclerView.setCenterEdgeItems(true);
                 HalfCurveLayoutManager manager = new HalfCurveLayoutManager(getActivity(), 1.0f);
                 recyclerView.setLayoutManager(manager);
-             //   SnapHelper helper = new LinearSnapHelper();
-                // Set the adapter
-                UtilityAdapter adapter = new UtilityAdapter(getActivity(), utilityResponses);
+                CountryAdapter adapter = new CountryAdapter(getActivity(), utilityResponses);
                 recyclerView.setAdapter(adapter);
-            //    helper.attachToRecyclerView(recyclerView);
             }
         });
     }

@@ -6,23 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 import com.mi.fillspay.R;
-import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.utilities.GradientTextView;
+
 import java.util.ArrayList;
 
 import static android.view.LayoutInflater.from;
 
-/**
- * Created by Srikar on 7/5/2017.
- */
-public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater inflater;
     private RecyclerView manager;
     private Context context;
-    private ArrayList<UtilityResponse> utilityResponses;
+    private String[] stringArray;
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -30,10 +26,10 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         manager = recyclerView;
     }
 
-    public UtilityAdapter(Context context, ArrayList<UtilityResponse> utilityResponse) {
+    public CountryAdapter(Context context, String[] stringArray) {
         inflater = from(context);
         this.context = context;
-        this.utilityResponses = utilityResponse;
+        this.stringArray = stringArray;
     }
 
     @Override
@@ -45,14 +41,12 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Holder hold = (Holder) holder;
-        hold.tv.setText("Hello  World " + (position + 1));
-        Glide.with(context).load(utilityResponses.get(holder.getAdapterPosition())).placeholder(R.drawable.ic_registr_icon).into(hold.imageView);
-        hold.tv.setText(utilityResponses.get(holder.getAdapterPosition()).getUtilityname());
+        hold.tv.setText(stringArray[position]);
     }
 
     @Override
     public int getItemCount() {
-        return utilityResponses.size();
+        return stringArray.length;
     }
 
     private class Holder extends RecyclerView.ViewHolder {
