@@ -2,44 +2,37 @@ package com.mi.fillspay.view;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearSnapHelper;
-import androidx.recyclerview.widget.SnapHelper;
-
 import com.mi.fillspay.R;
 import com.mi.fillspay.adapter.CountryAdapter;
-import com.mi.fillspay.adapter.RVAdapter;
-import com.mi.fillspay.adapter.UtilityAdapter;
+import com.mi.fillspay.interfaces.OnItemClick;
 import com.mi.fillspay.local.prefe.AppPreferencesHelper;
 import com.mi.fillspay.model.CountryRequest;
-import com.mi.fillspay.model.UtilitiesRequest;
-import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
 import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
 import com.mi.fillspay.view_model.CountryViewModel;
-import com.mi.fillspay.view_model.UtilitiesViewModel;
 
-import java.util.ArrayList;
+import static com.mi.fillspay.interfaces.keys.COUNTRY_CODE;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UtilityFragOne extends Fragment implements View.OnClickListener {
+public class UtilityFragOne extends Fragment implements View.OnClickListener{
 
     private CenterEdgeItemsRecyclerView recyclerView;
     private ImageView nextPage;
     CountryViewModel countryViewModel;
     AppPreferencesHelper _preferencesHelper;
+    String country;
 
     public UtilityFragOne() {
         // Required empty public constructor
@@ -77,7 +70,12 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
                 recyclerView.setCenterEdgeItems(true);
                 HalfCurveLayoutManager manager = new HalfCurveLayoutManager(getActivity(), 1.0f);
                 recyclerView.setLayoutManager(manager);
-                CountryAdapter adapter = new CountryAdapter(getActivity(), utilityResponses);
+                CountryAdapter adapter = new CountryAdapter(getActivity(), utilityResponses, new OnItemClick() {
+                    @Override
+                    public void Onclick(String str) {
+                        country = str;
+                    }
+                });
                 recyclerView.setAdapter(adapter);
             }
         });
@@ -87,7 +85,18 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nextPage_id:
-                FragmentUtil.setFragment(new UtilityFragTwo(), getActivity(), "Utility fragment one", R.id.content_frag, true);
+
+                if(country!=null) {
+                    Fragment frag = new UtilityFragTwo();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(COUNTRY_CODE, country);
+                    frag.setArguments(bundle);
+                    FragmentUtil.setFragment(frag, getActivity(), "Utility fragment one", R.id.content_frag, true);
+                }else {
+                    Toast.makeText(getActivity(), "Please choose country", Toast.LENGTH_SHORT).show();
+                }
+
         }
     }
+
 }

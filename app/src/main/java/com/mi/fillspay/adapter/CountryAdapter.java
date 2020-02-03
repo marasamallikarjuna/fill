@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mi.fillspay.R;
+import com.mi.fillspay.interfaces.OnItemClick;
 import com.mi.fillspay.utilities.GradientTextView;
-
-import java.util.ArrayList;
-
 import static android.view.LayoutInflater.from;
 
 public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -18,6 +16,7 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private LayoutInflater inflater;
     private RecyclerView manager;
     private Context context;
+    private OnItemClick onItemClick;
     private String[] stringArray;
 
     @Override
@@ -26,10 +25,11 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         manager = recyclerView;
     }
 
-    public CountryAdapter(Context context, String[] stringArray) {
+    public CountryAdapter(Context context, String[] stringArray,OnItemClick onItemClick) {
         inflater = from(context);
         this.context = context;
         this.stringArray = stringArray;
+        this.onItemClick = onItemClick;
     }
 
     @Override
@@ -64,6 +64,7 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     imageView.setBackground(context.getResources().getDrawable(R.drawable.ic_bg_logo));
                     int adapterPosition = getAdapterPosition();
                     manager.smoothScrollToPosition(adapterPosition);
+                    onItemClick.Onclick(stringArray[adapterPosition]);
                 }
             });
         }

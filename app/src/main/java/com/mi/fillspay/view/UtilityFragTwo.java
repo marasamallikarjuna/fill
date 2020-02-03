@@ -11,29 +11,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearSnapHelper;
-import androidx.recyclerview.widget.SnapHelper;
 
 import com.mi.fillspay.R;
 import com.mi.fillspay.adapter.CountryAdapter;
-import com.mi.fillspay.adapter.UtilityAdapter;
+import com.mi.fillspay.interfaces.OnItemClick;
 import com.mi.fillspay.local.prefe.AppPreferencesHelper;
-import com.mi.fillspay.model.CountryRequest;
 import com.mi.fillspay.model.UtilitiesRequest;
-import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
 import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
-import com.mi.fillspay.adapter.RVAdapter;
-import com.mi.fillspay.view_model.CountryViewModel;
 import com.mi.fillspay.view_model.UtilitiesViewModel;
 
-import java.util.ArrayList;
+import static com.mi.fillspay.interfaces.keys.COUNTRY_CODE;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UtilityFragTwo extends Fragment implements View.OnClickListener {
+public class UtilityFragTwo extends Fragment implements View.OnClickListener, OnItemClick {
 
     private CenterEdgeItemsRecyclerView recyclerView;
     private ImageView nextPage;
@@ -62,23 +56,32 @@ public class UtilityFragTwo extends Fragment implements View.OnClickListener {
         recyclerView = (CenterEdgeItemsRecyclerView) getActivity().findViewById(R.id.wrv);
         nextPage = getActivity().findViewById(R.id.nextPage_id);
         nextPage.setOnClickListener(this);
-        getUtilities();
+
+        Bundle bundle = getArguments();
+
+        if (bundle != null)
+            getUtilities(String.valueOf(bundle.getString(COUNTRY_CODE)));
     }
 
 
-    private void getUtilities() {
+    private void getUtilities(String countryCode) {
 
-        _preferencesHelper = new AppPreferencesHelper(getActivity(),"Spandana");
+        _preferencesHelper = new AppPreferencesHelper(getActivity(), "Spandana");
 
         utilitiesViewModel = ViewModelProviders.of(this).get(UtilitiesViewModel.class);
 
-        utilitiesViewModel.getUtilities(new UtilitiesRequest("1", "1", ""),_preferencesHelper.getAccessToken()).observe(this, new Observer<String[]>() {
+        utilitiesViewModel.getUtilities(new UtilitiesRequest("1", "1", countryCode), _preferencesHelper.getAccessToken()).observe(this, new Observer<String[]>() {
             @Override
             public void onChanged(String[] utilityResponses) {
                 recyclerView.setCenterEdgeItems(true);
                 HalfCurveLayoutManager manager = new HalfCurveLayoutManager(getActivity(), 1.0f);
                 recyclerView.setLayoutManager(manager);
-                CountryAdapter adapter = new CountryAdapter(getActivity(), utilityResponses);
+                CountryAdapter adapter = new CountryAdapter(getActivity(), utilityResponses, new OnItemClick() {
+                    @Override
+                    public void Onclick(String str) {
+
+                    }
+                });
                 recyclerView.setAdapter(adapter);
             }
         });
@@ -87,9 +90,14 @@ public class UtilityFragTwo extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.nextPage_id:
-                FragmentUtil.setFragment(new ElecFragOne(),getActivity(),"Electricity fragment one", R.id.content_frag,true);
+                FragmentUtil.setFragment(new ElecFragOne(), getActivity(), "Electricity fragment one", R.id.content_frag, true);
         }
+    }
+
+    @Override
+    public void Onclick(String str) {
+
     }
 }

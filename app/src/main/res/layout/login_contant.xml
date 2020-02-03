@@ -30,6 +30,7 @@
             android:inputType="textEmailAddress|textNoSuggestions"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@null"
+            android:text="madan@mobility.international"
             android:textSize="@dimen/_14ssp"
             app:backgroundTint="@color/colorEdit"
             app:fontFamily="@font/amarante" />
@@ -66,6 +67,7 @@
             android:textColor="@android:color/black"
             android:textColorHint="@color/colorAccent"
             android:textCursorDrawable="@null"
+            android:text="password"
             android:textSize="@dimen/_16ssp"
             app:backgroundTint="@color/colorEdit"
             app:fontFamily="@font/amarante" />

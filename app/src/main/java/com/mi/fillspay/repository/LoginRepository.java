@@ -30,6 +30,7 @@ public class LoginRepository {
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.body() != null) {
                         data.setValue(response.body());
+                        Log.d("dghdsjkfg",response.body().getToken());
                         Log.i("Mallikarjuna","+++sucess+++"+response.toString());
                     }
                 }

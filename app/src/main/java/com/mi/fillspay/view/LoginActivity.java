@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,21 +44,19 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if (isNetworkConnected()) {
-                    _preferencesHelper.setAccessToken(getResources().getString(R.string.token));
+                   /* _preferencesHelper.setAccessToken(getResources().getString(R.string.token));
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     Pair[] pairs = new Pair[1];
                     pairs[0] = new Pair<View, String>(titleTextView, "tvLogin");
                     ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, pairs);
-                    startActivity(intent, activityOptions.toBundle());
-
-                /*    if (!isValidEmail(emailEdit.getText().toString())){
+                    startActivity(intent, activityOptions.toBundle());*/
+                    if (TextUtils.isEmpty(emailEdit.getText().toString())){
                         Toast.makeText(getApplicationContext(), "enter valid email id", Toast.LENGTH_SHORT).show();
                     }else if (passwordEdit.getText().toString().equalsIgnoreCase("")){
                         Toast.makeText(getApplicationContext(), "enter valid password", Toast.LENGTH_SHORT).show();
                     }else{
                         sendLoginDetails(new LoginRequest(emailEdit.getText().toString(),passwordEdit.getText().toString()));
-                    }*/
-
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.network_error), Toast.LENGTH_SHORT).show();
                 }
@@ -85,7 +84,7 @@ public class LoginActivity extends BaseActivity {
             if (loginResponse!=null) {
                 if (loginResponse.getToken() != null) {
                     if (!loginResponse.getToken().equalsIgnoreCase("")) {
-                        _preferencesHelper.setAccessToken(loginResponse.getToken());
+                        _preferencesHelper.setAccessToken("Bearer "+loginResponse.getToken());
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         Pair[] pairs = new Pair[1];
                         pairs[0] = new Pair<View, String>(titleTextView, "tvLogin");

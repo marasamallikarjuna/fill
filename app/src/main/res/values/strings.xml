@@ -14,7 +14,4 @@
     <string name="speeddial_scrolling_view_snackbar_behavior" tools:ignore="UnusedResources">
         com.mi.fillspay.ScrollingViewSnackbarBehavior
     </string>
-    <string name="token">
-      Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5MTkwMTQyNTA4NTUiLCJzY29wZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwiZXhwIjoxNTgwNzE3Mjg0LCJpYXQiOjE1ODA3MTM2ODR9.QiUt-7NX-NWsAGb1uFTnyG_483b4BHIpPzAVR3wcigB3dz-2Ue9sIEgyKkcQAcUM-4ydJfcrTLw5yY2iQ0fQwg
-    </string>
 </resources>

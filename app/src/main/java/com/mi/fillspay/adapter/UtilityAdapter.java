@@ -11,7 +11,6 @@ import com.mi.fillspay.R;
 import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.utilities.GradientTextView;
 import java.util.ArrayList;
-
 import static android.view.LayoutInflater.from;
 
 /**
@@ -45,7 +44,6 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Holder hold = (Holder) holder;
-        hold.tv.setText("Hello  World " + (position + 1));
         Glide.with(context).load(utilityResponses.get(holder.getAdapterPosition())).placeholder(R.drawable.ic_registr_icon).into(hold.imageView);
         hold.tv.setText(utilityResponses.get(holder.getAdapterPosition()).getUtilityname());
     }

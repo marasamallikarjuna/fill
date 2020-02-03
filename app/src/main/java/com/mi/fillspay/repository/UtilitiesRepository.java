@@ -52,18 +52,16 @@ public class UtilitiesRepository {
                 public void onResponse(Call<String[]> call, Response<String[]> response) {
                     if (response.body() != null) {
                         data.setValue(response.body());
-                        Log.d("sugadgf", response.toString());
+                        Log.d("sugadgf", response.body().toString());
                         Log.i("Mallikarjuna", "+++sucess+++" + response.toString());
                     }
                 }
-
                 @Override
                 public void onFailure(Call<String[]> call, Throwable t) {
                     data.setValue(null);
                     Log.i("Mallikarjuna", "+++error+++" + t.getMessage());
                 }
             });
-
         } catch (Exception e) {
             e.printStackTrace();
         }
