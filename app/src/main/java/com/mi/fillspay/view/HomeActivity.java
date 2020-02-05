@@ -40,7 +40,6 @@ public class HomeActivity extends BaseActivity {
         reImageView.setOnLongClickListener(longClickListener);
         enterImageView.setOnDragListener(dragListener);
 
-
         findViewById(R.id.bottomImageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,7 +101,6 @@ public class HomeActivity extends BaseActivity {
 
                     }else if (v.getId()== R.id.rechargImageView){
                       //  Toast.makeText(HomeActivity.this,"Mobile Recharge",Toast.LENGTH_SHORT).show();
-
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             Intent intent   = new Intent(HomeActivity.this, MobileRechargeHomeActivity.class);
                             Pair[] pairs    = new Pair[1];
@@ -115,7 +113,6 @@ public class HomeActivity extends BaseActivity {
                     break;
 
                 case DragEvent.ACTION_DRAG_ENDED:
-
                     break;
             }
 

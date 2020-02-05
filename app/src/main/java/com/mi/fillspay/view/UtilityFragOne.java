@@ -1,6 +1,5 @@
 package com.mi.fillspay.view;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import com.mi.fillspay.adapter.CountryAdapter;
 import com.mi.fillspay.interfaces.OnItemClick;
 import com.mi.fillspay.local.prefe.AppPreferencesHelper;
 import com.mi.fillspay.model.CountryRequest;
+import com.mi.fillspay.utilities.AppUtilities;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
 import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
@@ -26,7 +26,7 @@ import static com.mi.fillspay.interfaces.keys.COUNTRY_CODE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UtilityFragOne extends Fragment implements View.OnClickListener{
+public class UtilityFragOne extends Fragment implements View.OnClickListener {
 
     private CenterEdgeItemsRecyclerView recyclerView;
     private ImageView nextPage;
@@ -60,13 +60,16 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener{
 
     private void getCountries() {
 
-        _preferencesHelper = new AppPreferencesHelper(getActivity(),"Spandana");
+        AppUtilities.showProgress(getActivity());
+
+        _preferencesHelper = new AppPreferencesHelper(getActivity(), "Spandana");
 
         countryViewModel = ViewModelProviders.of(this).get(CountryViewModel.class);
 
-        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"),_preferencesHelper.getAccessToken()).observe(this, new Observer<String[]>() {
+        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"), _preferencesHelper.getAccessToken()).observe(this, new Observer<String[]>() {
             @Override
             public void onChanged(String[] utilityResponses) {
+                AppUtilities.stopProgress();
                 recyclerView.setCenterEdgeItems(true);
                 HalfCurveLayoutManager manager = new HalfCurveLayoutManager(getActivity(), 1.0f);
                 recyclerView.setLayoutManager(manager);
@@ -85,17 +88,15 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nextPage_id:
-
-                if(country!=null) {
+                if (country != null) {
                     Fragment frag = new UtilityFragTwo();
                     Bundle bundle = new Bundle();
-                    bundle.putString(COUNTRY_CODE, country);
+                    bundle.putString(COUNTRY_CODE,country);
                     frag.setArguments(bundle);
                     FragmentUtil.setFragment(frag, getActivity(), "Utility fragment one", R.id.content_frag, true);
-                }else {
+                } else {
                     Toast.makeText(getActivity(), "Please choose country", Toast.LENGTH_SHORT).show();
                 }
-
         }
     }
 

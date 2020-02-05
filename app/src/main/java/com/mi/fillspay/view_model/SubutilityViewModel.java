@@ -12,14 +12,14 @@ import com.mi.fillspay.repository.SubutilityRepository;
 public class SubutilityViewModel extends AndroidViewModel {
 
     private SubutilityRepository utilitiesRepository;
-    private LiveData<String> data;
+    private LiveData<String[]> data;
 
     public SubutilityViewModel(@NonNull Application application) {
         super(application);
         utilitiesRepository=new SubutilityRepository();
     }
 
-    public LiveData<String> getSubUtilities(SubutilityRequest utilitiesRequest, String token) {
+    public LiveData<String[]> getSubUtilities(SubutilityRequest utilitiesRequest, String token) {
         this.data = utilitiesRepository.getSubUtilities(utilitiesRequest,token);
         return data;
     }

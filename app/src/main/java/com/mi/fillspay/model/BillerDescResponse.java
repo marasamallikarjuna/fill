@@ -8,21 +8,27 @@ public class BillerDescResponse {
     @SerializedName("billerType")
     @Expose
     private String billerType;
+
     @SerializedName("countryName")
     @Expose
     private String countryName;
+
     @SerializedName("catalogVersion")
     @Expose
     private String catalogVersion;
+
     @SerializedName("countryCode")
     @Expose
     private String countryCode;
+
     @SerializedName("billerDescription")
     @Expose
     private String billerDescription;
+
     @SerializedName("billerName")
     @Expose
     private String billerName;
+
     @SerializedName("billerID")
     @Expose
     private String billerID;

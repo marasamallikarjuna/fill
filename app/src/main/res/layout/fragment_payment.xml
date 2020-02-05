@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    android:orientation="horizontal"
-    tools:context=".view.UtilityFragThree">
+    tools:context=".view.PaymentFrag">
+
+    <!-- TODO: Update blank fragment layout -->
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -17,26 +17,26 @@
             android:layout_width="@dimen/_64sdp"
             android:layout_height="@dimen/_64sdp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_plug_round" />
+            android:src="@drawable/ic_dollar_circle" />
 
         <ImageView
-            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_36sdp"
             android:layout_centerVertical="true"
             android:id="@+id/layout_circle_text"
             android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_120sdp"
-            android:src="@drawable/paybill"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/payinfo"
             />
 
     </RelativeLayout>
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
-        android:layout_marginStart="-15dp"
+        android:layout_marginStart="-16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/content_elec_form"/>
+        <include layout="@layout/util_payment_info"/>
 
     </RelativeLayout>
 

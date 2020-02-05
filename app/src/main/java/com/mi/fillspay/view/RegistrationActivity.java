@@ -1,6 +1,8 @@
 package com.mi.fillspay.view;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,6 +23,10 @@ public class RegistrationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_main);
+        initValues();
+    }
+
+    private void initValues() {
 
         emailEdit=findViewById(R.id.emailEdit);
         mobileEdit=findViewById(R.id.mobileEdit);
@@ -39,9 +45,7 @@ public class RegistrationActivity extends BaseActivity {
         findViewById(R.id.registerImageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(isNetworkConnected()) {
-
                     if (!isValidEmail(emailEdit.getText().toString())) {
                         Toast.makeText(getApplicationContext(), "enter valid email id", Toast.LENGTH_SHORT).show();
                     } else if (!isNumberValid(mobileEdit.getText().toString())) {
@@ -58,12 +62,27 @@ public class RegistrationActivity extends BaseActivity {
                 }else {
                     Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.network_error), Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
 
+        mobileEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                Toast.makeText(RegistrationActivity.this, s.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 

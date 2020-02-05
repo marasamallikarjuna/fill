@@ -30,6 +30,7 @@ public class BillerDescRepository {
                 public void onResponse(Call<List<BillerDescResponse>> call, Response<List<BillerDescResponse>> response) {
                     if (response.body() != null) {
                         data.setValue(response.body());
+                        Log.d("idfdsf",response.body().toString());
                         Log.i("Mallikarjuna","+++sucess+++"+response.toString());
                     }
                 }

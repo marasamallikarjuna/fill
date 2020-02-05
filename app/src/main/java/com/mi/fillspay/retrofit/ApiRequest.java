@@ -42,7 +42,7 @@ public interface ApiRequest {
     Call<String[]> getUtilities(@Body UtilitiesRequest body, @Header("Authorization") String token );
 
     @POST("/paykii/getsubutility")
-    Call<String> getSubUtilities(@Body SubutilityRequest body, @Header("Authorization") String token );
+    Call<String[]> getSubUtilities(@Body SubutilityRequest body, @Header("Authorization") String token );
 
     @POST("/paykii/listOfEachBillerTypeCatalog")
     Call<List<BillerDescResponse>> getBillerDesc(@Body BillerDescRequest body, @Header("Authorization") String token );

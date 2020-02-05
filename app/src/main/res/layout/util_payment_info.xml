@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:padding="@dimen/_5sdp"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/_2sdp">
 
     <ImageView
         android:layout_width="@dimen/dp_40"
@@ -20,16 +20,29 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <com.mi.fillspay.utilities.GradientTextView
+      <!--  <com.mi.fillspay.utilities.GradientTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="2dp"
             android:text="Payment Information"
             android:textSize="@dimen/_15ssp"
             android:textStyle="italic|bold"
-            app:fontFamily="@font/amarante" />
+            app:fontFamily="@font/amarante" />-->
+
+        <com.mi.fillspay.utilities.GradientTextView
+            android:id="@+id/regTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Information"
+            android:paddingEnd="@dimen/_2sdp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/amarante"
+            />
 
         <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -37,6 +50,7 @@
             android:padding="5dp">
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rd_btn1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -49,6 +63,7 @@
                 app:fontFamily="@font/amarante" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rd_btn2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -66,8 +81,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="15dp"
-            android:text="Debit Card"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:enabled="false"
+            android:text="Card Type"
             android:textColor="@color/greyTextcolor"
             android:textSize="13sp"
             app:fontFamily="@font/amarante" />
@@ -79,16 +95,18 @@
             app:backgroundTint="@color/colorEdit">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_card_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="4dp"
                 android:inputType="textEmailAddress|textNoSuggestions"
+                android:maxLength="15"
                 android:paddingStart="5dp"
                 android:paddingEnd="0dp"
                 android:textColor="@android:color/black"
                 android:textCursorDrawable="@null"
-                android:textSize="15dp"
+                android:textSize="@dimen/_13sdp"
                 app:backgroundTint="@color/light_grey"
                 app:fontFamily="@font/amarante" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -97,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:text="Name On Card"
             android:textColor="@color/greyTextcolor"
             android:textSize="13sp"
@@ -115,11 +133,12 @@
                 android:drawableStart="@drawable/ic_person"
                 android:drawablePadding="4dp"
                 android:inputType="textEmailAddress|textNoSuggestions"
+                android:maxLength="80"
                 android:paddingStart="5dp"
                 android:paddingEnd="0dp"
                 android:textColor="@android:color/black"
                 android:textCursorDrawable="@null"
-                android:textSize="15dp"
+                android:textSize="@dimen/_13sdp"
                 app:backgroundTint="@color/line_grey"
                 app:fontFamily="@font/amarante" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -128,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:text="Card Number"
             android:textColor="@color/greyTextcolor"
             android:textSize="13sp"
@@ -145,12 +164,13 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="4dp"
-                android:inputType="textEmailAddress|textNoSuggestions"
+                android:inputType="number|textNoSuggestions"
+                android:maxLength="16"
                 android:paddingStart="@dimen/_5ssp"
                 android:paddingEnd="@dimen/_5ssp"
                 android:textColor="@android:color/black"
                 android:textCursorDrawable="@null"
-                android:textSize="15dp"
+                android:textSize="@dimen/_13sdp"
                 app:backgroundTint="@color/line_grey"
                 app:fontFamily="@font/amarante" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -172,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:text="Expiry Date"
                     android:textColor="@color/greyTextcolor"
                     android:textSize="13sp"
@@ -189,12 +209,13 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_calender_icon"
                         android:drawablePadding="4dp"
-                        android:inputType="textEmailAddress|textNoSuggestions"
+                        android:inputType="text|textNoSuggestions"
+                        android:maxLength="8"
                         android:paddingStart="5dp"
                         android:paddingEnd="0dp"
                         android:textColor="@android:color/black"
                         android:textCursorDrawable="@null"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/_13sdp"
                         app:backgroundTint="@color/line_grey"
                         app:fontFamily="@font/amarante" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -211,7 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:text="CVV"
                     android:textColor="@color/greyTextcolor"
                     android:textSize="13sp"
@@ -228,12 +249,13 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_email"
                         android:drawablePadding="4dp"
-                        android:inputType="textEmailAddress|textNoSuggestions"
+                        android:inputType="number|textNoSuggestions"
+                        android:maxLength="3"
                         android:paddingStart="5dp"
                         android:paddingEnd="0dp"
                         android:textColor="@android:color/black"
                         android:textCursorDrawable="@null"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/_13sdp"
                         app:backgroundTint="@color/line_grey"
                         app:fontFamily="@font/amarante" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -246,18 +268,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:buttonTint="@color/black_dull"
+            android:textColor="@color/black_dull"
             android:text="Save Your Card Details"
-            android:textSize="14dp"
+            android:textSize="@dimen/_11sdp"
             app:fontFamily="@font/amarante" />
 
         <com.mi.fillspay.utilities.SwipeButton
+            android:id="@+id/swipe_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:swipeText="Swipe to Proceed"
             android:layout_gravity="end"
-            app:text_size="@dimen/_20ssp"
-            android:layout_marginStart="@dimen/_60sdp"
-            android:layout_marginTop="@dimen/_20sdp" />
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:swipeText="Swipe to Proceed"
+            app:text_size="@dimen/_20ssp" />
 
     </LinearLayout>
 

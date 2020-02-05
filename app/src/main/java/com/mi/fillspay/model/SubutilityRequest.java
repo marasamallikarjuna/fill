@@ -5,6 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class SubutilityRequest {
 
+    public SubutilityRequest(String locationID, String pointOfSaleID, String utility, String countryCode) {
+        this.locationID = locationID;
+        this.pointOfSaleID = pointOfSaleID;
+        this.utility = utility;
+        this.countryCode = countryCode;
+    }
+
     @SerializedName("locationID")
     @Expose
     private String locationID;

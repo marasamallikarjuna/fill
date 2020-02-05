@@ -1,14 +1,19 @@
 package com.mi.fillspay.utilities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 
 import androidx.core.content.FileProvider;
+
+import com.mi.fillspay.R;
+import com.mi.fillspay.view.BaseActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -17,7 +22,9 @@ import java.io.InputStream;
 
 public class AppUtilities {
 
-    public static Bitmap getThumbnail(final Context context,Uri uri) throws IOException {
+    private static ProgressDialog _dialog;
+
+    public static Bitmap getThumbnail(final Context context, Uri uri) throws IOException {
         InputStream input = context.getContentResolver().openInputStream(uri);
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
         onlyBoundsOptions.inJustDecodeBounds = true;
@@ -40,6 +47,22 @@ public class AppUtilities {
         return bitmap;
     }
 
+    public static void showProgress(final Context context) {
+        _dialog = new ProgressDialog(context);
+        _dialog.show();
+        _dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        _dialog.setContentView(R.layout.progress);
+        _dialog.setCancelable(false);
+    }
+
+
+    public static void stopProgress() {
+        if (_dialog != null)
+            if (_dialog.isShowing()) {
+                _dialog.dismiss();
+            }
+    }
+
     public static byte[] bitmapToByte(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -52,7 +75,7 @@ public class AppUtilities {
         else return k;
     }
 
-    public static Uri getPickImageResultUri(final Context mcontext,Intent data) {
+    public static Uri getPickImageResultUri(final Context mcontext, Intent data) {
         boolean isCamera = true;
         if (data != null) {
             String action = data.getAction();
@@ -68,7 +91,7 @@ public class AppUtilities {
         Uri outputFileUri = null;
         File getImage = mcontext.getExternalCacheDir();
         if (getImage != null) {
-            outputFileUri = FileProvider.getUriForFile(mcontext, mcontext.getApplicationContext().getPackageName() + ".provider",new File(getImage.getPath(), "profile.png"));
+            outputFileUri = FileProvider.getUriForFile(mcontext, mcontext.getApplicationContext().getPackageName() + ".provider", new File(getImage.getPath(), "profile.png"));
         }
         return outputFileUri;
     }

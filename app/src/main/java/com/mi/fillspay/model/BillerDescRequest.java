@@ -5,18 +5,30 @@ import com.google.gson.annotations.SerializedName;
 
 public class BillerDescRequest {
 
+    public BillerDescRequest(String locationID, String pointOfSaleID, String countryCode, String utility, String billerDescription) {
+        this.locationID = locationID;
+        this.pointOfSaleID = pointOfSaleID;
+        this.countryCode = countryCode;
+        this.utility = utility;
+        this.billerDescription = billerDescription;
+    }
+
     @SerializedName("locationID")
     @Expose
     private String locationID;
+
     @SerializedName("pointOfSaleID")
     @Expose
     private String pointOfSaleID;
-    @SerializedName("utility")
-    @Expose
-    private String utility;
+
     @SerializedName("countryCode")
     @Expose
     private String countryCode;
+
+    @SerializedName("utility")
+    @Expose
+    private String utility;
+
     @SerializedName("billerDescription")
     @Expose
     private String billerDescription;

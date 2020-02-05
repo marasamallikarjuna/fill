@@ -1,52 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_10sdp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+  <!--  <com.mi.fillspay.utilities.GradientTextView
+        android:id="@+id/header_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:fontFamily="@font/amarante" />-->
 
     <com.mi.fillspay.utilities.GradientTextView
-        android:padding="@dimen/_5sdp"
-        android:textStyle="italic|bold"
-        app:fontFamily="@font/amarante"
-        android:textSize="@dimen/_14ssp"
-        android:text="Pay Your Electricity Bill"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/header_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay Your Bill"
+        android:paddingEnd="@dimen/_2sdp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_15ssp"
+        android:fontFamily="@font/amarante"
+        />
 
     <TextView
+        android:id="@+id/board_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12sdp"
         android:padding="@dimen/_3sdp"
-        app:fontFamily="@font/amarante"
+        android:text=" Board"
         android:textColor="@color/greyTextcolor"
-        android:text="Electricity Board"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:fontFamily="@font/amarante" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_plug_icon"
-        android:drawableLeft="@drawable/ic_bank"
         android:drawablePadding="@dimen/_4sdp"
+        android:id="@+id/autoComBillers_ids"
         android:inputType="text|textNoSuggestions"
-        android:textColor="@android:color/black"
         android:maxLength="120"
+        android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_13ssp"
         app:backgroundTint="@color/colorEdit"
         app:fontFamily="@font/amarante" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
         android:padding="@dimen/_3sdp"
-        app:fontFamily="@font/amarante"
-        android:textColor="@color/greyTextcolor"
-        android:text="Consumer Name"
+        android:text="View Sample Bill"
+        android:textColor="@color/color_start"
+        android:visibility="gone" />
+
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:padding="@dimen/_3sdp"
+        android:text="Consumer Name"
+        android:textColor="@color/greyTextcolor"
+        app:fontFamily="@font/amarante" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"
@@ -54,21 +76,22 @@
         android:drawableStart="@drawable/ic_profile_icon"
         android:drawablePadding="4dp"
         android:inputType="text|textNoSuggestions"
+        android:maxLength="50"
         android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"
         android:textCursorDrawable="@null"
-        android:maxLength="50"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_13ssp"
         app:backgroundTint="@color/colorEdit"
         app:fontFamily="@font/amarante" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
         android:padding="@dimen/_3sdp"
-        app:fontFamily="@font/amarante"
         android:text="Country"
         android:textColor="@color/greyTextcolor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:fontFamily="@font/amarante" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"
@@ -76,21 +99,22 @@
         android:drawableStart="@drawable/ic_country_icon"
         android:drawablePadding="4dp"
         android:inputType="text|textNoSuggestions"
+        android:maxLength="25"
         android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"
         android:textCursorDrawable="@null"
-        android:maxLength="25"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_13ssp"
         app:backgroundTint="@color/colorEdit"
         app:fontFamily="@font/amarante" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
         android:padding="@dimen/_3sdp"
-        app:fontFamily="@font/amarante"
         android:text="Enter Amount"
         android:textColor="@color/greyTextcolor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:fontFamily="@font/amarante" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"
@@ -98,19 +122,20 @@
         android:drawableStart="@drawable/ic_dollar"
         android:drawablePadding="4dp"
         android:inputType="number|textNoSuggestions"
-        android:textColor="@android:color/black"
         android:maxLength="8"
+        android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_13ssp"
         app:backgroundTint="@color/colorEdit"
         app:fontFamily="@font/amarante" />
 
     <com.mi.fillspay.utilities.SwipeButton
-        android:layout_marginTop="@dimen/_30sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:layout_gravity="end"
+        android:id="@+id/swipe_btn_id"
         android:layout_width="250dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_5sdp" />
 
 </LinearLayout>
