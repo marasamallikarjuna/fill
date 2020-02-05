@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/_10sdp">
+    android:padding="@dimen/_5sdp">
 
   <!--  <com.mi.fillspay.utilities.GradientTextView
         android:id="@+id/header_name"
@@ -37,13 +37,14 @@
         android:textColor="@color/greyTextcolor"
         app:fontFamily="@font/amarante" />
 
-    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+    <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_plug_icon"
         android:drawablePadding="@dimen/_4sdp"
         android:id="@+id/autoComBillers_ids"
         android:inputType="text|textNoSuggestions"
+        android:focusable="false"
         android:maxLength="120"
         android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"

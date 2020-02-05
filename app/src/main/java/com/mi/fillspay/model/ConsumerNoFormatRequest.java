@@ -15,6 +15,12 @@ public class ConsumerNoFormatRequest {
     @Expose
     private String billerID;
 
+    public ConsumerNoFormatRequest(String locationID, String pointOfSaleID, String billerID) {
+        this.locationID = locationID;
+        this.pointOfSaleID = pointOfSaleID;
+        this.billerID = billerID;
+    }
+
     public String getLocationID() {
         return locationID;
     }

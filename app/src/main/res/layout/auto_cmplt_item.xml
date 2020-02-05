@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
+    android:padding="@dimen/_3sdp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:ellipsize="marquee"
-    android:gravity="center_vertical"
-    android:minHeight="@dimen/_24sdp"
-    android:padding="@dimen/_5sdp"
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:textColor="@color/black_dull" />
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:src="@drawable/ic_plug_round"
+        android:id="@+id/image_log"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp"/>
+
+    <TextView
+        android:layout_toEndOf="@+id/image_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:id="@+id/text_id_"
+        android:minHeight="@dimen/_32sdp"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/black_dull" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_below="@+id/image_log"
+        android:background="@color/light_grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</RelativeLayout>

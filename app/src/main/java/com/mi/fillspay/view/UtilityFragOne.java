@@ -91,7 +91,7 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
                 if (country != null) {
                     Fragment frag = new UtilityFragTwo();
                     Bundle bundle = new Bundle();
-                    bundle.putString(COUNTRY_CODE,country);
+                    bundle.putString(COUNTRY_CODE, country);
                     frag.setArguments(bundle);
                     FragmentUtil.setFragment(frag, getActivity(), "Utility fragment one", R.id.content_frag, true);
                 } else {
@@ -99,5 +99,4 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
                 }
         }
     }
-
 }

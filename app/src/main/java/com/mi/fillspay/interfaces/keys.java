@@ -1,6 +1,7 @@
 package com.mi.fillspay.interfaces;
 
-public class keys {
-    public static String COUNTRY_CODE="countryCode";
-    public static String UTILITY_NAME="utilityName";
+public interface keys {
+     String COUNTRY_CODE="countryCode";
+     String UTILITY_NAME="utilityName";
+     int ACTIVITY_RESULT=32;
 }

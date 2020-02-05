@@ -1,40 +1,33 @@
 package com.mi.fillspay.view;
 
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mi.fillspay.R;
-import com.mi.fillspay.adapter.CountryAdapter;
-import com.mi.fillspay.interfaces.OnItemClick;
 import com.mi.fillspay.interfaces.OnSwipeCompleted;
 import com.mi.fillspay.local.prefe.AppPreferencesHelper;
-import com.mi.fillspay.model.BillerDescRequest;
 import com.mi.fillspay.model.BillerDescResponse;
-import com.mi.fillspay.model.CountryRequest;
-import com.mi.fillspay.utilities.AppUtilities;
+import com.mi.fillspay.model.ConsumerNoFormatRequest;
+import com.mi.fillspay.model.ConsumerNoFormatResponse;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.GradientTextView;
 import com.mi.fillspay.utilities.SwipeButton;
-import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
 import com.mi.fillspay.view_model.BillerDescViewModel;
-import com.mi.fillspay.view_model.CountryViewModel;
+import com.mi.fillspay.view_model.ConsumerNoFormatViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import static com.mi.fillspay.interfaces.keys.ACTIVITY_RESULT;
 import static com.mi.fillspay.interfaces.keys.COUNTRY_CODE;
 import static com.mi.fillspay.interfaces.keys.UTILITY_NAME;
 
@@ -42,12 +35,12 @@ import static com.mi.fillspay.interfaces.keys.UTILITY_NAME;
  * A simple {@link Fragment} subclass.
  */
 public class UtilityFragThree extends Fragment {
+    AppPreferencesHelper _preferencesHelper;
     GradientTextView headerName;
     SwipeButton swipeButton;
     TextView tv_boardName;
-    AppPreferencesHelper _preferencesHelper;
-    BillerDescViewModel billerDescViewModel;
-    AutoCompleteTextView autoCompltBillerNames;
+    AppCompatEditText actv;
+    ConsumerNoFormatViewModel consumerViewModel;
 
     public UtilityFragThree() {
         // Required empty public constructor
@@ -70,43 +63,57 @@ public class UtilityFragThree extends Fragment {
         headerName = getActivity().findViewById(R.id.header_name);
         tv_boardName = getActivity().findViewById(R.id.board_name);
         swipeButton = getActivity().findViewById(R.id.swipe_btn_id);
+        actv = getActivity().findViewById(R.id.autoComBillers_ids);
 
         if (getArguments() != null) {
             headerName.setText("Pay Your " + getArguments().getString(UTILITY_NAME) + " Bill");
             tv_boardName.setText(getArguments().getString(UTILITY_NAME) + " Board");
-            getBillers(getArguments().getString(UTILITY_NAME), getArguments().getString(COUNTRY_CODE));
         }
+
+        actv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent billersIntent = new Intent(getActivity(), BillersListActivity.class);
+                billersIntent.putExtra(COUNTRY_CODE, getArguments().getString(COUNTRY_CODE));
+                billersIntent.putExtra(UTILITY_NAME, getArguments().getString(UTILITY_NAME));
+                startActivityForResult(billersIntent, ACTIVITY_RESULT);// Activity is started with requestCode 2
+            }
+        });
 
         swipeButton.setOnSwipedCompletedListener(new OnSwipeCompleted() {
             @Override
             public void onSwipeListener() {
                 Fragment frag = new PaymentFrag();
-                FragmentUtil.setFragment(frag, getActivity(), "Utility fragment one", R.id.content_frag, true);
+                FragmentUtil.setFragment(frag, getActivity(), "Utility fragment one",R.id.content_frag, true);
             }
         });
     }
 
-    private void getBillers(String billerDescription, String countryCode) {
-        //  AppUtilities.showProgress(getActivity());
-        _preferencesHelper = new AppPreferencesHelper(getActivity(), "Spandana");
-        billerDescViewModel = ViewModelProviders.of(this).get(BillerDescViewModel.class);
-        billerDescViewModel.getBillerDesc(new BillerDescRequest("1", "1", countryCode, "Utility", billerDescription),
-                _preferencesHelper.getAccessToken()).observe(this, new Observer<List<BillerDescResponse>>() {
-            @Override
-            public void onChanged(List<BillerDescResponse> billerDescResponses) {
-                //  AppUtilities.stopProgress();
-                ArrayList<String> billers = new ArrayList<>();
-                for (int i = 0; i < billerDescResponses.size(); i++) {
-                    billers.add(billerDescResponses.get(i).getBillerName());
-                }
-                String[] biller = billers.toArray(new String[billers.size()]);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.auto_cmplt_item, biller);
-                //Getting the instance of AutoCompleteTextView
-                AutoCompleteTextView actv = (AutoCompleteTextView) getActivity().findViewById(R.id.autoComBillers_ids);
-                actv.setThreshold(0);//will start working from first character
-                actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-                actv.setTextColor(Color.BLACK);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ACTIVITY_RESULT) {
+            if (data != null) {
+                BillerDescResponse item = data.getParcelableExtra("MESSAGE");
+                actv.setText(item.getBillerName());
+                getConsumerNumberFormat(item.getBillerID());
             }
-        });
+        }
+    }
+
+    private void getConsumerNumberFormat(String biller_id) {
+
+        _preferencesHelper = new AppPreferencesHelper(getActivity(),"Spandana");
+
+        consumerViewModel = ViewModelProviders.of(getActivity()).get(ConsumerNoFormatViewModel.class);
+
+       /* consumerViewModel.getConsmerNoFarmat(new ConsumerNoFormatRequest("1","1",biller_id),_preferencesHelper.getAccessToken()).observe(new Observer<ConsumerNoFormatResponse>() {
+            @Override
+            public void onChanged(ConsumerNoFormatResponse consumerNoFormatResponse) {
+
+            }
+        });*/
+
     }
 }

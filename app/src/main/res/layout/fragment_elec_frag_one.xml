@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="horizontal"
     tools:context=".view.UtilityFragThree">
@@ -14,29 +14,28 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="@dimen/_64sdp"
-            android:layout_height="@dimen/_64sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_plug_round" />
 
         <ImageView
-            android:layout_marginStart="@dimen/_40sdp"
-            android:layout_centerVertical="true"
             android:id="@+id/layout_circle_text"
             android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_120sdp"
-            android:src="@drawable/paybill"
-            />
+            android:layout_height="@dimen/_130sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_36sdp"
+            android:src="@drawable/paybill" />
 
     </RelativeLayout>
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
-        android:layout_marginStart="-15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-20dp">
 
-        <include layout="@layout/content_elec_form"/>
+        <include layout="@layout/content_elec_form" />
 
     </RelativeLayout>
 

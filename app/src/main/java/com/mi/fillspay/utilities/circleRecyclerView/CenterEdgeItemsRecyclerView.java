@@ -58,7 +58,6 @@ public class CenterEdgeItemsRecyclerView extends RecyclerView {
                     CenterEdgeItemsRecyclerView.this.setupCenteredPadding();
                     CenterEdgeItemsRecyclerView.this.mCenterEdgeItemsWhenThereAreChildren = false;
                 }
-
                 return true;
             }
         };

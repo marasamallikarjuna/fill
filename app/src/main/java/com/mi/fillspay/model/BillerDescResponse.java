@@ -1,9 +1,12 @@
 package com.mi.fillspay.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BillerDescResponse {
+public class BillerDescResponse implements Parcelable {
 
     @SerializedName("billerType")
     @Expose
@@ -32,6 +35,28 @@ public class BillerDescResponse {
     @SerializedName("billerID")
     @Expose
     private String billerID;
+
+    protected BillerDescResponse(Parcel in) {
+        billerType = in.readString();
+        countryName = in.readString();
+        catalogVersion = in.readString();
+        countryCode = in.readString();
+        billerDescription = in.readString();
+        billerName = in.readString();
+        billerID = in.readString();
+    }
+
+    public static final Creator<BillerDescResponse> CREATOR = new Creator<BillerDescResponse>() {
+        @Override
+        public BillerDescResponse createFromParcel(Parcel in) {
+            return new BillerDescResponse(in);
+        }
+
+        @Override
+        public BillerDescResponse[] newArray(int size) {
+            return new BillerDescResponse[size];
+        }
+    };
 
     public String getBillerType() {
         return billerType;
@@ -89,4 +114,19 @@ public class BillerDescResponse {
         this.billerID = billerID;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(billerType);
+        dest.writeString(countryName);
+        dest.writeString(catalogVersion);
+        dest.writeString(countryCode);
+        dest.writeString(billerDescription);
+        dest.writeString(billerName);
+        dest.writeString(billerID);
+    }
 }

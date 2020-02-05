@@ -3,6 +3,8 @@ package com.mi.fillspay.retrofit;
 
 import com.mi.fillspay.model.BillerDescRequest;
 import com.mi.fillspay.model.BillerDescResponse;
+import com.mi.fillspay.model.CheckMobileRequest;
+import com.mi.fillspay.model.CheckMobileResponse;
 import com.mi.fillspay.model.ConsumerNoFormatRequest;
 import com.mi.fillspay.model.ConsumerNoFormatResponse;
 import com.mi.fillspay.model.CountryRequest;
@@ -55,5 +57,8 @@ public interface ApiRequest {
 
     @POST("/paykii/viewAmountDue")
     Call<ProcessPaymentResponse> processPayment(@Body ProcessPaymentRequest body, @Header("Authorization") String token );
+
+    @POST("/checkMobileNumber")
+    Call<CheckMobileResponse> checkMobileNumber(@Body CheckMobileRequest body);
 
 }

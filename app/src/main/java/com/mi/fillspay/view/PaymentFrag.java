@@ -41,6 +41,7 @@ public class PaymentFrag extends Fragment {
     }
 
     private void initValues() {
+
         radioGroup = getActivity().findViewById(R.id.radio_group);
         swipeButton = getActivity().findViewById(R.id.swipe_payment);
         card_type = getActivity().findViewById(R.id.et_card_type);

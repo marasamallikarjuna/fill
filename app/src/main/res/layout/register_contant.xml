@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:text="Email"
         android:textColor="@color/black_dull"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_12ssp"
         app:fontFamily="@font/amarante" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,7 +44,7 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:text="Mobile"
         android:textColor="@color/black_dull"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_12ssp"
         app:fontFamily="@font/amarante" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,7 +60,7 @@
             android:drawableStart="@drawable/ic_mobile"
             android:drawableLeft="@drawable/ic_mobile"
             android:drawablePadding="4dp"
-            android:inputType="number|textNoSuggestions"
+            android:inputType="number"
             android:maxLength="18"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@null"
@@ -76,7 +76,7 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:text="Password"
         android:textColor="@color/black_dull"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_12ssp"
         app:fontFamily="@font/amarante" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -113,7 +113,7 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:text="Confirm Password"
         android:textColor="@color/black_dull"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_12ssp"
         app:fontFamily="@font/amarante" />
 
     <com.google.android.material.textfield.TextInputLayout
