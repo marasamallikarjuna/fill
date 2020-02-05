@@ -1,6 +1,7 @@
 package com.mi.fillspay.view_model;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -20,8 +21,8 @@ public class ConsumerNoFormatViewModel extends AndroidViewModel {
         consumerNoFormatRepository=new ConsumerNoFormatRepository();
     }
 
-    public LiveData<ConsumerNoFormatResponse> getConsmerNoFarmat(ConsumerNoFormatRequest consumerNoFormatRequest, String token) {
-        this.data = consumerNoFormatRepository.getConsmerNoFarmat(consumerNoFormatRequest,token);
+    public LiveData<ConsumerNoFormatResponse> getConsmerNoFarmat(ConsumerNoFormatRequest consumerNoFormatRequest, String token, Context context) {
+        this.data = consumerNoFormatRepository.getConsmerNoFarmat(consumerNoFormatRequest,token,context);
         return data;
     }
 }

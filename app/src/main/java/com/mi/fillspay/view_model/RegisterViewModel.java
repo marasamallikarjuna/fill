@@ -1,6 +1,7 @@
 package com.mi.fillspay.view_model;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -19,8 +20,8 @@ public class RegisterViewModel extends AndroidViewModel {
         super(application);
         registerRepository=new RegisterRepository();
     }
-    public LiveData<ResponseData> getRegisterResponseLiveData(RegisterRequest registerRequest) {
-        this.responseDataLiveData = registerRepository.postRegisterRepository(registerRequest);
+    public LiveData<ResponseData> getRegisterResponseLiveData(RegisterRequest registerRequest, Context context) {
+        this.responseDataLiveData = registerRepository.postRegisterRepository(registerRequest,context);
         return responseDataLiveData;
     }
 }

@@ -1,6 +1,7 @@
 package com.mi.fillspay.view_model;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -19,8 +20,8 @@ public class SubutilityViewModel extends AndroidViewModel {
         utilitiesRepository=new SubutilityRepository();
     }
 
-    public LiveData<String> getSubUtilities(SubutilityRequest utilitiesRequest, String token) {
-        this.data = utilitiesRepository.getSubUtilities(utilitiesRequest,token);
+    public LiveData<String> getSubUtilities(SubutilityRequest utilitiesRequest, String token, Context context) {
+        this.data = utilitiesRepository.getSubUtilities(utilitiesRequest,token,context);
         return data;
     }
 }

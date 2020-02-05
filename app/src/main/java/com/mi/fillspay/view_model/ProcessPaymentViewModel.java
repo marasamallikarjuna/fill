@@ -1,6 +1,7 @@
 package com.mi.fillspay.view_model;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -20,8 +21,8 @@ public class ProcessPaymentViewModel extends AndroidViewModel {
         processPaymentRepository=new ProcessPaymentRepository();
     }
 
-    public LiveData<ProcessPaymentResponse> processPayment(ProcessPaymentRequest processPaymentRequest, String token) {
-        this.data = processPaymentRepository.processPayment(processPaymentRequest,token);
+    public LiveData<ProcessPaymentResponse> processPayment(ProcessPaymentRequest processPaymentRequest, String token, Context context) {
+        this.data = processPaymentRepository.processPayment(processPaymentRequest,token,context);
         return data;
     }
 }

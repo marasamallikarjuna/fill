@@ -1,6 +1,7 @@
 package com.mi.fillspay.view_model;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -22,8 +23,8 @@ public class BillerDescViewModel extends AndroidViewModel {
         billerDescRepository=new BillerDescRepository();
     }
 
-    public LiveData<List<BillerDescResponse>> getBillerDesc(BillerDescRequest billerDescRequest, String token) {
-        this.data = billerDescRepository.getBillerDesc(billerDescRequest,token);
+    public LiveData<List<BillerDescResponse>> getBillerDesc(BillerDescRequest billerDescRequest, String token, Context context) {
+        this.data = billerDescRepository.getBillerDesc(billerDescRequest,token,context);
         return data;
     }
 }
