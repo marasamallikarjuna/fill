@@ -1,6 +1,7 @@
 package com.mi.fillspay.view_model;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -20,8 +21,8 @@ public class LoginViewModel extends AndroidViewModel {
         loginRepository=new LoginRepository();
     }
 
-    public LiveData<LoginResponse> getLoginResponseLiveData(LoginRequest loginRequest) {
-        this.loginResponseLiveData = loginRepository.postLoginRepository(loginRequest);
+    public LiveData<LoginResponse> getLoginResponseLiveData(LoginRequest loginRequest, Context context) {
+        this.loginResponseLiveData = loginRepository.postLoginRepository(loginRequest,context);
         return loginResponseLiveData;
     }
 }

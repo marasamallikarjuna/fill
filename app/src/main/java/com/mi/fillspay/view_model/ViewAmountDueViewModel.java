@@ -1,6 +1,7 @@
 package com.mi.fillspay.view_model;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -20,8 +21,8 @@ public class ViewAmountDueViewModel extends AndroidViewModel {
         viewAmountDueRepository=new ViewAmountDueRepository();
     }
 
-    public LiveData<ViewAmountDueResponse> getViewAmountDue(ViewAmountDueRequest viewAmountDueRequest, String token) {
-        this.data = viewAmountDueRepository.getViewAmountDue(viewAmountDueRequest,token);
+    public LiveData<ViewAmountDueResponse> getViewAmountDue(ViewAmountDueRequest viewAmountDueRequest, String token, Context context) {
+        this.data = viewAmountDueRepository.getViewAmountDue(viewAmountDueRequest,token,context);
         return data;
     }
 }

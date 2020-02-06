@@ -1,6 +1,7 @@
 package com.mi.fillspay.view_model;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -17,8 +18,8 @@ public class CountryViewModel extends AndroidViewModel {
         countryRepository=new CountryRepository();
     }
 
-    public LiveData<String[]> getCountries(CountryRequest contryreq, String token) {
-        this.data = countryRepository.getCountries(contryreq,token);
+    public LiveData<String[]> getCountries(CountryRequest contryreq, String token, Context context) {
+        this.data = countryRepository.getCountries(contryreq,token,context);
         return data;
     }
 }
