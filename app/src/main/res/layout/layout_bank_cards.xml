@@ -8,14 +8,13 @@
     android:padding="@dimen/_2sdp">
 
     <com.mi.fillspay.utilities.GradientTextView
+        android:id="@+id/header_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/_5sdp"
-        android:paddingBottom="@dimen/_8sdp"
+        android:fontFamily="@font/amarante"
         android:text="Select Your Card"
-        android:textSize="@dimen/_14ssp"
-        android:textStyle="italic|bold"
-        app:fontFamily="@font/amarante" />
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

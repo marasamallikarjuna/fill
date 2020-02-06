@@ -33,7 +33,7 @@
         android:textSize="18sp"
         android:gravity="center"
         android:textStyle="bold"
-        app:fontFamily="@font/raspoutinedemibold_tb"
+        app:fontFamily="@font/amarante"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Select Amount"/>
