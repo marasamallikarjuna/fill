@@ -26,12 +26,12 @@ public class SubutilityRepository {
     public SubutilityRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
-    public LiveData<String> getSubUtilities(SubutilityRequest utilitiesRequest, String token, Context context) {
-        final MutableLiveData<String> data = new MutableLiveData<>();
+    public LiveData<String[]> getSubUtilities(SubutilityRequest utilitiesRequest, String token, Context context) {
+        final MutableLiveData<String[]> data = new MutableLiveData<>();
         try {
-            apiRequest.getSubUtilities(utilitiesRequest,token).enqueue(new Callback<String>() {
+            apiRequest.getSubUtilities(utilitiesRequest,token).enqueue(new Callback<String[]>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
+                public void onResponse(Call<String[]> call, Response<String[]> response) {
                     if (response.code()==200){
                         if (response.body() != null) {
                             data.setValue(response.body());
@@ -52,7 +52,7 @@ public class SubutilityRepository {
                     }
                 }
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
+                public void onFailure(Call<String[]> call, Throwable t) {
                     data.setValue(null);
                     Log.i("Mallikarjuna","+++error+++"+t.getMessage());
                 }

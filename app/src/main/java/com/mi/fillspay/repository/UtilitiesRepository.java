@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,29 +28,6 @@ public class UtilitiesRepository {
     public UtilitiesRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
-  /*  public LiveData<ArrayList<UtilityResponse>> getUtilities(UtilitiesRequest utilitiesRequest, String token) {
-        final MutableLiveData<ArrayList<UtilityResponse>> data = new MutableLiveData<>();
-        try {
-            apiRequest.getUtilities(utilitiesRequest,token).enqueue(new Callback<ArrayList<UtilityResponse>>() {
-                @Override
-                public void onResponse(Call<ArrayList<UtilityResponse>> call, Response<ArrayList<UtilityResponse>> response) {
-                    if (response.body() != null) {
-                        data.setValue(response.body());
-                        Log.i("Mallikarjuna","+++sucess+++"+response.toString());
-                    }
-                }
-                @Override
-                public void onFailure(Call<ArrayList<UtilityResponse>> call, Throwable t) {
-                    data.setValue(null);
-                    Log.i("Mallikarjuna","+++error+++"+t.getMessage());
-                }
-            });
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return data;
-    }*/
 
     public LiveData<String[]> getUtilities(UtilitiesRequest utilitiesRequest, String token, Context context) {
         final MutableLiveData<String[]> data = new MutableLiveData<>();
@@ -57,26 +35,24 @@ public class UtilitiesRepository {
             apiRequest.getUtilities(utilitiesRequest, token).enqueue(new Callback<String[]>() {
                 @Override
                 public void onResponse(Call<String[]> call, Response<String[]> response) {
-                    if (response.code()==200){
+                    if (response.code() == 200) {
                         if (response.body() != null) {
                             data.setValue(response.body());
                         }
-                    }else {
+                    } else {
                         try {
                             JSONObject jObjError = new JSONObject(response.errorBody().string());
-                            if (jObjError.has("message")){
-                                Toast.makeText(context,jObjError.get("message").toString(),Toast.LENGTH_LONG).show();
+                            if (jObjError.has("message")) {
+                                Toast.makeText(context, jObjError.get("message").toString(), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
                         data.setValue(null);
                     }
                 }
-
                 @Override
                 public void onFailure(Call<String[]> call, Throwable t) {
                     data.setValue(null);
@@ -89,5 +65,4 @@ public class UtilitiesRepository {
         }
         return data;
     }
-
 }

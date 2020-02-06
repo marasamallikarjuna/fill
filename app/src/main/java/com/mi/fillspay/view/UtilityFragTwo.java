@@ -77,7 +77,7 @@ public class UtilityFragTwo extends Fragment implements View.OnClickListener {
 
         utilitiesViewModel = ViewModelProviders.of(this).get(SubutilityViewModel.class);
 
-        utilitiesViewModel.getSubUtilities(new SubutilityRequest("1", "1","Utility",countryCode), _preferencesHelper.getAccessToken()).observe(this, new Observer<String[]>() {
+        utilitiesViewModel.getSubUtilities(new SubutilityRequest("1", "1","Utility",countryCode), _preferencesHelper.getAccessToken(),getActivity()).observe(this, new Observer<String[]>() {
             @Override
             public void onChanged(String[] utilityResponses) {
                 AppUtilities.stopProgress();
