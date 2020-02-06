@@ -73,7 +73,7 @@ public class UtilityFragThree extends Fragment {
         swipeButton = getActivity().findViewById(R.id.swipe_btn_id);
         actv = getActivity().findViewById(R.id.autoComBillers_ids);
         consumerLayout = getActivity().findViewById(R.id.layout_cnum_format);
-        et_bill_amount = getActivity().findViewById(R.id.amount_et_billerdes);
+       // et_bill_amount = getActivity().findViewById(R.id.amount_et_billerdes);
 
         if (getArguments() != null) {
             headerName.setText("Pay Your " + getArguments().getString(UTILITY_NAME) + " Bill");

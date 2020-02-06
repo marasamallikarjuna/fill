@@ -92,7 +92,7 @@ public class RegistrationActivity extends BaseActivity {
 
     private void sendLoginDetails(RegisterRequest data) {
 
-        registerViewModel.getRegisterResponseLiveData(data).observe(this, responseData -> {
+        registerViewModel.getRegisterResponseLiveData(data,this).observe(this, responseData -> {
 
             if (responseData.getMessage().equals("Success")) {
 

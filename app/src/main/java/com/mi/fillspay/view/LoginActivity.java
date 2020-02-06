@@ -79,7 +79,7 @@ public class LoginActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void sendLoginDetails(LoginRequest data) {
         showProgress();
-        loginViewModel.getLoginResponseLiveData(data).observe(this, loginResponse -> {
+        loginViewModel.getLoginResponseLiveData(data,this).observe(this, loginResponse -> {
             stopProgress();
             if (loginResponse!=null) {
                 if (loginResponse.getToken() != null) {

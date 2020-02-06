@@ -66,7 +66,7 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
 
         countryViewModel = ViewModelProviders.of(this).get(CountryViewModel.class);
 
-        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"), _preferencesHelper.getAccessToken()).observe(this, new Observer<String[]>() {
+        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"), _preferencesHelper.getAccessToken(),getActivity()).observe(this, new Observer<String[]>() {
             @Override
             public void onChanged(String[] utilityResponses) {
                 AppUtilities.stopProgress();

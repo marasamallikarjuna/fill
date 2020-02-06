@@ -6,26 +6,25 @@
     android:orientation="vertical"
     android:padding="@dimen/_5sdp">
 
-  <!--  <com.mi.fillspay.utilities.GradientTextView
-        android:id="@+id/header_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_5sdp"
-        android:textSize="@dimen/_14ssp"
-        android:textStyle="bold"
-        app:fontFamily="@font/amarante" />-->
+    <!--  <com.mi.fillspay.utilities.GradientTextView
+          android:id="@+id/header_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="@dimen/_5sdp"
+          android:textSize="@dimen/_14ssp"
+          android:textStyle="bold"
+          app:fontFamily="@font/amarante" />-->
 
     <com.mi.fillspay.utilities.GradientTextView
         android:id="@+id/header_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pay Your Bill"
+        android:fontFamily="@font/amarante"
         android:paddingEnd="@dimen/_2sdp"
-        android:textStyle="bold"
+        android:text="Pay Your Bill"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/_15ssp"
-        android:fontFamily="@font/amarante"
-        />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/board_name"
@@ -38,13 +37,13 @@
         app:fontFamily="@font/amarante" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/autoComBillers_ids"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_plug_icon"
         android:drawablePadding="@dimen/_4sdp"
-        android:id="@+id/autoComBillers_ids"
-        android:inputType="text|textNoSuggestions"
         android:focusable="false"
+        android:inputType="text|textNoSuggestions"
         android:maxLength="120"
         android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"
@@ -85,28 +84,11 @@
         app:backgroundTint="@color/colorEdit"
         app:fontFamily="@font/amarante" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:padding="@dimen/_3sdp"
-        android:text="Country"
-        android:textColor="@color/greyTextcolor"
-        app:fontFamily="@font/amarante" />
-
-    <androidx.appcompat.widget.AppCompatEditText
+    <LinearLayout
+        android:id="@+id/layout_cnum_format"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_country_icon"
-        android:drawablePadding="4dp"
-        android:inputType="text|textNoSuggestions"
-        android:maxLength="25"
-        android:textColor="@android:color/black"
-        android:textColorHint="@color/colorAccent"
-        android:textCursorDrawable="@null"
-        android:textSize="@dimen/_13ssp"
-        app:backgroundTint="@color/colorEdit"
-        app:fontFamily="@font/amarante" />
+        android:orientation="vertical" />
 
     <TextView
         android:layout_width="wrap_content"

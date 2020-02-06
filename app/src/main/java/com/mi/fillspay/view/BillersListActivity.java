@@ -46,7 +46,7 @@ public class BillersListActivity extends AppCompatActivity{
         _preferencesHelper = new AppPreferencesHelper(this, "Spandana");
         billerDescViewModel = ViewModelProviders.of(this).get(BillerDescViewModel.class);
         billerDescViewModel.getBillerDesc(new BillerDescRequest("1", "1", countryCode, "Utility", billerDescription),
-                _preferencesHelper.getAccessToken()).observe(this, new Observer<List<BillerDescResponse>>() {
+                _preferencesHelper.getAccessToken(),this).observe(this, new Observer<List<BillerDescResponse>>() {
             @Override
             public void onChanged(List<BillerDescResponse> billerDescResponses) {
                 AppUtilities.stopProgress();
