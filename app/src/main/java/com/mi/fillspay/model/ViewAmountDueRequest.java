@@ -5,6 +5,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class ViewAmountDueRequest {
 
+    public ViewAmountDueRequest(String locationId, String pointOfSaleId, String billerId, String input, String sku, String entityTransactionID) {
+        this.locationId = locationId;
+        this.pointOfSaleId = pointOfSaleId;
+        this.billerId = billerId;
+        this.input = input;
+        this.sku = sku;
+        this.entityTransactionID = entityTransactionID;
+    }
+
     @SerializedName("locationId")
     @Expose
     private String locationId;

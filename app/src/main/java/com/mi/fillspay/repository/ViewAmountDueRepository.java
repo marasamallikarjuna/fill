@@ -33,7 +33,7 @@ public class ViewAmountDueRepository {
             apiRequest.getViewAmountDue(viewAmountDueRequest,token).enqueue(new Callback<ViewAmountDueResponse>() {
                 @Override
                 public void onResponse(Call<ViewAmountDueResponse> call, Response<ViewAmountDueResponse> response) {
-                    if (response.code()==200){
+                    if (response.code() == 200){
                         if (response.body() != null) {
                             data.setValue(response.body());
                         }

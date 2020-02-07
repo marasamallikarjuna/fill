@@ -59,7 +59,9 @@
         android:background="@color/text_grey"
         android:layout_gravity="end"
         android:text="View Bill"
+        android:visibility="gone"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:gravity="center"
         android:textSize="@dimen/_10ssp"
@@ -76,12 +78,12 @@
         app:fontFamily="@font/amarante" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_amount_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_dollar"
         android:drawablePadding="@dimen/_2sdp"
         android:inputType="number|textNoSuggestions"
-        android:maxLength="8"
         android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"
         android:textCursorDrawable="@null"
@@ -91,9 +93,10 @@
 
     <com.mi.fillspay.utilities.SwipeButton
         android:id="@+id/swipe_btn_id"
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_marginStart="@dimen/_15ssp"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginBottom="@dimen/_5sdp" />
 

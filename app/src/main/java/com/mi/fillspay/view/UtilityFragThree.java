@@ -34,11 +34,14 @@ import com.mi.fillspay.model.ListOfIOCatalog;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
+import com.mi.fillspay.model.ViewAmountDueRequest;
+import com.mi.fillspay.model.ViewAmountDueResponse;
 import com.mi.fillspay.utilities.AppUtilities;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.GradientTextView;
 import com.mi.fillspay.utilities.SwipeButton;
 import com.mi.fillspay.view_model.ConsumerNoFormatViewModel;
+import com.mi.fillspay.view_model.ViewAmountDueViewModel;
 
 import java.util.ArrayList;
 
@@ -56,10 +59,13 @@ public class UtilityFragThree extends Fragment {
     TextView tv_boardName;
     AppCompatEditText actv, et_bill_amount;
     ConsumerNoFormatViewModel consumerViewModel;
+    ViewAmountDueViewModel viewAmountDueViewModel;
     LinearLayout consumerLayout;
     ArrayList<EditText> et_list;
     public int et_id;
     Button viewbill;
+    String biller_id;
+    String sku_id;
 
     public UtilityFragThree() {
         // Required empty public constructor
@@ -79,12 +85,16 @@ public class UtilityFragThree extends Fragment {
     }
 
     private void initValues() {
+
+        _preferencesHelper = new AppPreferencesHelper(getActivity(), "Spandana");
+
         headerName = getActivity().findViewById(R.id.header_name);
         tv_boardName = getActivity().findViewById(R.id.board_name);
         swipeButton = getActivity().findViewById(R.id.swipe_btn_id);
         actv = getActivity().findViewById(R.id.autoComBillers_ids);
         consumerLayout = getActivity().findViewById(R.id.layout_cnum_format);
         viewbill = getActivity().findViewById(R.id.view_bill);
+        et_bill_amount = getActivity().findViewById(R.id.et_amount_id);
 
         if (getArguments() != null) {
             headerName.setText("Pay Your " + getArguments().getString(UTILITY_NAME) + " Bill");
@@ -116,17 +126,31 @@ public class UtilityFragThree extends Fragment {
                 if (et_list.size() != 0) {
                     for (int j = 0; j < et_list.size(); j++) {
                         stringBuilder.append(et_list.get(j).getText().toString());
-                        if ( j != et_list.size() -1)
+                        if (j != et_list.size() - 1)
                             stringBuilder.append("|");
                     }
                     Log.d("dhfgdgf", String.valueOf(stringBuilder));
-                   viewBillAmount(String.valueOf(stringBuilder));
+                    viewBillAmount(String.valueOf(stringBuilder));
                 }
             }
         });
     }
 
-    private void viewBillAmount(String billerId) {
+    private void viewBillAmount(String input) {
+
+        AppUtilities.showProgress(getActivity());
+
+        viewAmountDueViewModel = ViewModelProviders.of(this).get(ViewAmountDueViewModel.class);
+
+        viewAmountDueViewModel.getViewAmountDue(new ViewAmountDueRequest("1", "1", biller_id, input, sku_id, ""), _preferencesHelper.getAccessToken(), getActivity())
+                .observe(this, new Observer<ViewAmountDueResponse>() {
+                    @Override
+                    public void onChanged(ViewAmountDueResponse viewAmountDueResponse) {
+                        AppUtilities.stopProgress();
+                        Log.d("sjhfasf", viewAmountDueResponse.getBillAmountDue() + "");
+                        et_bill_amount.setText(viewAmountDueResponse.getBillAmountDue() + "");
+                    }
+                });
 
     }
 
@@ -143,14 +167,17 @@ public class UtilityFragThree extends Fragment {
 
                 consumerLayout.removeAllViews();
 
+                biller_id = item.getBillerID();
+
                 getConsumerNumberFormat(item.getBillerID());
+
+                viewbill.setVisibility(View.VISIBLE);
+
             }
         }
     }
 
     private void getConsumerNumberFormat(String biller_id) {
-
-        _preferencesHelper = new AppPreferencesHelper(getActivity(), "Spandana");
 
         consumerViewModel = ViewModelProviders.of(getActivity()).get(ConsumerNoFormatViewModel.class);
 
@@ -162,6 +189,8 @@ public class UtilityFragThree extends Fragment {
 
                 et_id = 0;
                 et_list = new ArrayList<>();
+
+                sku_id = consumerNoFormatResponse.getListOfIOCatalog().get(0).getSKU();
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -179,7 +208,6 @@ public class UtilityFragThree extends Fragment {
     }
 
     public void onAddField(ListOfIOCatalog itemConstrains) {
-
         // add text view
         final TextView tv = new TextView(getActivity());
         tv.setText(itemConstrains.getName().trim());
@@ -187,7 +215,6 @@ public class UtilityFragThree extends Fragment {
         tv.setTextColor(getResources().getColor(R.color.greyTextcolor));
         tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         consumerLayout.addView(tv);
-
         // add edit text
         final EditText et_ = new EditText(getActivity());
         int img = R.drawable.ic_country_icon;
@@ -200,19 +227,15 @@ public class UtilityFragThree extends Fragment {
                 PorterDuff.Mode.SRC_ATOP);
         Typeface typeface = ResourcesCompat.getFont(getActivity(), R.font.amarante);
         et_.setTypeface(typeface);
-
         if (itemConstrains.getDatatype().equalsIgnoreCase("Numeric")) {
             et_.setInputType(InputType.TYPE_CLASS_NUMBER);
         } else {
             et_.setInputType(InputType.TYPE_CLASS_TEXT);
         }
-
         et_.setId(et_id);
         et_id++;
         et_list.add(et_);
-
         setEditTextMaxLength(et_, itemConstrains.getMaxLength());
-
         consumerLayout.addView(et_);
     }
 
