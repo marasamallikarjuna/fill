@@ -20,7 +20,6 @@ import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
 import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
 import com.mi.fillspay.view_model.CountryViewModel;
-
 import static com.mi.fillspay.interfaces.keys.COUNTRY_CODE;
 
 /**
@@ -66,7 +65,7 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
 
         countryViewModel = ViewModelProviders.of(this).get(CountryViewModel.class);
 
-        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"), _preferencesHelper.getAccessToken(),getActivity()).observe(this, new Observer<String[]>() {
+        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"), _preferencesHelper.getAccessToken(), getActivity()).observe(this, new Observer<String[]>() {
             @Override
             public void onChanged(String[] utilityResponses) {
                 AppUtilities.stopProgress();

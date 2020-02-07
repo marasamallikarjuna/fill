@@ -22,7 +22,7 @@ public class MobileRechargeHomeActivity extends AppCompatActivity {
 
         speedDialView.setBackground(getResources().getDrawable(R.drawable.fab_open_bg));
 
-        FragmentUtil.setFragment(new MobileRecFragOne(),this,"Mobile recharge fragment one",R.id.content_frag,false);
+        FragmentUtil.setFragment(new MobileRecFrag(),this,"Mobile recharge fragment one",R.id.content_frag,false);
 
         findViewById(R.id.icon_back).setOnClickListener(new View.OnClickListener() {
             @Override

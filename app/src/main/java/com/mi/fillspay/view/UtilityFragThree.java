@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,12 +126,18 @@ public class UtilityFragThree extends Fragment {
                 StringBuilder stringBuilder = new StringBuilder();
                 if (et_list.size() != 0) {
                     for (int j = 0; j < et_list.size(); j++) {
-                        stringBuilder.append(et_list.get(j).getText().toString());
-                        if (j != et_list.size() - 1)
-                            stringBuilder.append("|");
+                        if (!TextUtils.isEmpty(et_list.get(j).getText().toString())) {
+                            stringBuilder.append(et_list.get(j).getText().toString());
+                            if (j != et_list.size() - 1)
+                                stringBuilder.append("|");
+                        }
                     }
                     Log.d("dhfgdgf", String.valueOf(stringBuilder));
-                    viewBillAmount(String.valueOf(stringBuilder));
+                    if (!TextUtils.isEmpty(String.valueOf(stringBuilder))) {
+                        viewBillAmount(String.valueOf(stringBuilder));
+                    } else {
+                        Toast.makeText(getActivity(), "Please enter required fields", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -147,11 +154,10 @@ public class UtilityFragThree extends Fragment {
                     @Override
                     public void onChanged(ViewAmountDueResponse viewAmountDueResponse) {
                         AppUtilities.stopProgress();
-                        Log.d("sjhfasf", viewAmountDueResponse.getBillAmountDue() + "");
+                        //   Log.d("sjhfasf", viewAmountDueResponse.getBillAmountDue() + "");
                         et_bill_amount.setText(viewAmountDueResponse.getBillAmountDue() + "");
                     }
                 });
-
     }
 
     @Override
@@ -159,8 +165,11 @@ public class UtilityFragThree extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ACTIVITY_RESULT) {
+
             if (data != null) {
+
                 BillerDescResponse item = data.getParcelableExtra("MESSAGE");
+
                 actv.setText(item.getBillerName());
 
                 consumerLayout.removeAllViewsInLayout();
@@ -175,6 +184,7 @@ public class UtilityFragThree extends Fragment {
 
             }
         }
+
     }
 
     private void getConsumerNumberFormat(String biller_id) {
@@ -189,7 +199,6 @@ public class UtilityFragThree extends Fragment {
 
                 et_id = 0;
                 et_list = new ArrayList<>();
-
                 sku_id = consumerNoFormatResponse.getListOfIOCatalog().get(0).getSKU();
 
                 final Handler handler = new Handler();
@@ -208,6 +217,7 @@ public class UtilityFragThree extends Fragment {
     }
 
     public void onAddField(ListOfIOCatalog itemConstrains) {
+
         // add text view
         final TextView tv = new TextView(getActivity());
         tv.setText(itemConstrains.getName().trim());
@@ -215,6 +225,7 @@ public class UtilityFragThree extends Fragment {
         tv.setTextColor(getResources().getColor(R.color.greyTextcolor));
         tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         consumerLayout.addView(tv);
+
         // add edit text
         final EditText et_ = new EditText(getActivity());
         int img = R.drawable.ic_country_icon;
@@ -227,15 +238,16 @@ public class UtilityFragThree extends Fragment {
                 PorterDuff.Mode.SRC_ATOP);
         Typeface typeface = ResourcesCompat.getFont(getActivity(), R.font.amarante);
         et_.setTypeface(typeface);
+
         if (itemConstrains.getDatatype().equalsIgnoreCase("Numeric")) {
             et_.setInputType(InputType.TYPE_CLASS_NUMBER);
         } else {
             et_.setInputType(InputType.TYPE_CLASS_TEXT);
         }
+        setEditTextMaxLength(et_, itemConstrains.getMaxLength());
         et_.setId(et_id);
         et_id++;
         et_list.add(et_);
-        setEditTextMaxLength(et_, itemConstrains.getMaxLength());
         consumerLayout.addView(et_);
     }
 
