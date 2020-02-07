@@ -132,7 +132,7 @@ public class UtilityFragThree extends Fragment {
                                 stringBuilder.append("|");
                         }
                     }
-                    Log.d("dhfgdgf", String.valueOf(stringBuilder));
+                    //  Log.d("dhfgdgf", String.valueOf(stringBuilder));
                     if (!TextUtils.isEmpty(String.valueOf(stringBuilder))) {
                         viewBillAmount(String.valueOf(stringBuilder));
                     } else {
@@ -184,7 +184,6 @@ public class UtilityFragThree extends Fragment {
 
             }
         }
-
     }
 
     private void getConsumerNumberFormat(String biller_id) {

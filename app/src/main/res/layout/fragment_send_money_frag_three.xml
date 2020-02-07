@@ -8,12 +8,28 @@
     android:orientation="horizontal"
     tools:context=".view.SendMoneyFragThree">
 
-    <ImageView
-        android:src="@drawable/ic_dollar_circle"
+    <RelativeLayout
         android:layout_gravity="center_vertical"
-        android:layout_width="@dimen/_54sdp"
-        android:layout_height="@dimen/_54sdp"
-        />
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_64sdp">
+
+        <ImageView
+            android:src="@drawable/icon_side_header"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            />
+
+        <ImageView
+            android:layout_marginStart="@dimen/_8sdp"
+           android:layout_centerVertical="true"
+            android:tint="@color/white"
+            android:src="@drawable/ic_dollar"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp" />
+
+    </RelativeLayout>
 
     <ImageView
         android:layout_marginStart="-40dp"

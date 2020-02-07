@@ -17,23 +17,34 @@
         android:layout_height="200dp">
 
         <ImageView
-            android:id="@+id/logoImageView"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="@dimen/_16sdp"
+            android:id="@+id/icon"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_65sdp"
+            android:layout_marginStart="@dimen/_15sdp"
             android:src="@drawable/logo" />
 
-        <com.mi.fillspay.utilities.CircularImageView
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+        <RelativeLayout
+            android:id="@+id/relative_img"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:border="true"
-            app:shadow="true"
-            android:outlineAmbientShadowColor="@color/light_grey"
-            android:outlineSpotShadowColor="@color/black_dull"
-            android:background="@drawable/ic_white_circle"
-            android:id="@+id/userImageView" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/circle_bg_pf"
+                android:layout_width="@dimen/_82sdp"
+                android:layout_height="@dimen/_82sdp"/>
+
+            <com.mi.fillspay.utilities.CircularImageView
+                app:border="true"
+                app:shadow="true"
+                android:background="@drawable/ic_white_circle"
+                app:border_width="@dimen/_2sdp"
+                android:id="@+id/userImageView"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
 
         <ImageButton
             android:id="@+id/image_choose_button"
@@ -41,8 +52,8 @@
             android:layout_width="24dp"
             android:elevation="@dimen/_2sdp"
             android:layout_height="24dp"
-            android:layout_alignEnd="@+id/userImageView"
-            android:layout_alignBottom="@+id/userImageView"
+            android:layout_alignEnd="@+id/relative_img"
+            android:layout_alignBottom="@+id/relative_img"
             android:layout_margin="5dp"
             android:src="@drawable/ic_camera" />
 
@@ -52,7 +63,7 @@
             android:layout_margin="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/userImageView"
+            android:layout_below="@+id/relative_img"
             android:gravity="center"
             android:text="Profile Edit"
             android:textSize="24sp"
@@ -74,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_centerInParent="true"
-            android:id="@+id/loginImageView"
+            android:id="@+id/update_profile_btn"
             android:src="@drawable/ic_forword" />
     </RelativeLayout>
 

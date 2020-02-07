@@ -38,6 +38,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.mi.fillspay.utilities.GradientTextView
+            android:textStyle="bold"
+            app:fontFamily="@font/amarante"
+            android:textSize="@dimen/_15ssp"
+            android:paddingBottom="@dimen/_20sdp"
+            android:text="Choose Plan Type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <com.mi.fillspay.utilities.SwipeButton
             android:id="@+id/swipe_postpaid"
             android:layout_width="match_parent"

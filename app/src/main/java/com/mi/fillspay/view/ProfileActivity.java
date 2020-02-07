@@ -23,9 +23,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mi.fillspay.R;
 import com.mi.fillspay.utilities.AppUtilities;
 
+import java.io.File;
 import java.io.IOException;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final int PICK_IMAGE_REQUEST = 190;
     public static final int OPEN_CAMERA = 191;
@@ -33,23 +34,18 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView userImageView;
     private Bitmap myBitmap = null;
     Uri outputFileUri;
+    ImageView update_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         userImageView = findViewById(R.id.userImageView);
+        update_btn = findViewById(R.id.update_profile_btn);
 
-        findViewById(R.id.image_choose_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (hasPermissions()) {
-                    showFileChooser();
-                } else {
-                    requestPermissions();
-                }
-            }
-        });
+        update_btn.setOnClickListener(this);
+        userImageView.setOnClickListener(this);
+
     }
 
     private void requestPermissions() {
@@ -185,4 +181,29 @@ public class ProfileActivity extends AppCompatActivity {
         outputFileUri = savedInstanceState.getParcelable("pic_uri");
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.userImageView:
+
+                if (hasPermissions()) {
+                    showFileChooser();
+                } else {
+                    requestPermissions();
+                }
+                break;
+
+            case R.id.update_profile_btn:
+                if (outputFileUri != null && myBitmap != null) {
+                    updateProfilePicture();
+                }
+                break;
+        }
+    }
+
+    private void updateProfilePicture() {
+
+        File file = new File(AppUtilities.getRealPathFromURI(this,outputFileUri));
+
+    }
 }

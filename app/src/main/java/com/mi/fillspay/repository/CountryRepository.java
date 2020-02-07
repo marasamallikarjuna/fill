@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import com.mi.fillspay.model.CountryRequest;
 import com.mi.fillspay.retrofit.ApiRequest;
 import com.mi.fillspay.retrofit.RetrofitRequest;
@@ -19,28 +20,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class CountryRepository {
 
     private ApiRequest apiRequest;
+
     public CountryRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
+
     public LiveData<String[]> getCountries(CountryRequest countryRequest, String token, Context context) {
         final MutableLiveData<String[]> data = new MutableLiveData<>();
         try {
-            apiRequest.getCountries(countryRequest,token).enqueue(new Callback<String[]>() {
+            apiRequest.getCountries(countryRequest, token).enqueue(new Callback<String[]>() {
                 @Override
                 public void onResponse(Call<String[]> call, Response<String[]> response) {
-                    if (response.code()==200){
+                    if (response.code() == 200) {
                         if (response.body() != null) {
                             data.setValue(response.body());
                         }
-                    }else {
+                    } else {
                         try {
                             JSONObject jObjError = new JSONObject(response.errorBody().string());
-                            if (jObjError.has("message")){
-                                Toast.makeText(context,jObjError.get("message").toString(),Toast.LENGTH_LONG).show();
+                            if (jObjError.has("message")) {
+                                Toast.makeText(context, jObjError.get("message").toString(), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -51,14 +53,15 @@ public class CountryRepository {
                         data.setValue(null);
                     }
                 }
+
                 @Override
                 public void onFailure(Call<String[]> call, Throwable t) {
                     data.setValue(null);
-                    Log.i("Mallikarjuna","+++error+++"+t.getMessage());
+                    Log.i("Mallikarjuna", "+++error+++" + t.getMessage());
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return data;

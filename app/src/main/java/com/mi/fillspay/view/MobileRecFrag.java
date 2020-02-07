@@ -20,12 +20,11 @@ import com.mi.fillspay.utilities.SwipeButton;
  */
 public class MobileRecFrag extends Fragment {
 
-    SwipeButton prepaid_btn,postpaid_btn;
+    SwipeButton prepaid_btn, postpaid_btn;
 
     public MobileRecFrag() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,14 +47,14 @@ public class MobileRecFrag extends Fragment {
         prepaid_btn.setOnSwipedCompletedListener(new OnSwipeCompleted() {
             @Override
             public void onSwipeListener() {
-                FragmentUtil.setFragment(new MobileRecFragOne(),getActivity(),"Mobile recharge fragment one",R.id.content_frag,true);
+                FragmentUtil.setFragment(new MobileRecFragOne(), getActivity(), "Mobile recharge fragment one", R.id.content_frag, true);
             }
         });
 
         postpaid_btn.setOnSwipedCompletedListener(new OnSwipeCompleted() {
             @Override
             public void onSwipeListener() {
-                FragmentUtil.setFragment(new MobileRecFragOne(),getActivity(),"Mobile recharge fragment one",R.id.content_frag,true);
+                FragmentUtil.setFragment(new MobileRecFragOne(), getActivity(), "Mobile recharge fragment one", R.id.content_frag, true);
             }
         });
 

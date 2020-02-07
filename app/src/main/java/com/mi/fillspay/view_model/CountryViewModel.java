@@ -12,12 +12,10 @@ import com.mi.fillspay.repository.CountryRepository;
 public class CountryViewModel extends AndroidViewModel {
     private CountryRepository countryRepository;
     private LiveData<String[]> data;
-
     public CountryViewModel(@NonNull Application application) {
         super(application);
         countryRepository=new CountryRepository();
     }
-
     public LiveData<String[]> getCountries(CountryRequest contryreq, String token, Context context) {
         this.data = countryRepository.getCountries(contryreq,token,context);
         return data;
