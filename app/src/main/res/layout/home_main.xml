@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/icon_reg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_56sdp"
+            android:layout_height="@dimen/_56sdp"
             android:layout_below="@+id/titleTextView1"
             android:layout_marginStart="45dp"
             android:layout_marginTop="10dp"
@@ -59,6 +59,19 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:rotation="10"
+        app:layout_constraintBottom_toTopOf="@+id/bottomImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        android:src="@drawable/dotted_circle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_260sdp">
+    </ImageView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
@@ -79,7 +92,7 @@
                 android:id="@+id/inLayout"
                 layout="@layout/home_containt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_280sdp" />
+                android:layout_height="@dimen/_290sdp" />
 
             <LinearLayout
                 android:layout_width="@dimen/_155sdp"
@@ -95,11 +108,9 @@
                     android:rotation="28"
                     android:scaleType="fitStart"
                     android:src="@drawable/dragtext" />
-
             </LinearLayout>
 
         </RelativeLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView

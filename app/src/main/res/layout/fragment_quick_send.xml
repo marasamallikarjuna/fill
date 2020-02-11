@@ -23,7 +23,7 @@
             android:layout_height="@dimen/_120sdp"
             android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/_50sdp"
-            android:src="@drawable/quicksend" />
+            android:src="@drawable/quicksend_circle" />
 
     </RelativeLayout>
 

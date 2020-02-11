@@ -49,7 +49,6 @@ public class HomeActivity extends BaseActivity {
                         BottomSheetViewFragment.TAG);
             }
         });
-
     }
 
     public void transfer(){
@@ -88,7 +87,6 @@ public class HomeActivity extends BaseActivity {
                             ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(HomeActivity.this,pairs);
                             startActivity(intent,activityOptions.toBundle());
                         }
-
                     }else if (v.getId()== R.id.utilImageView){
                       //  Toast.makeText(HomeActivity.this,"Util",Toast.LENGTH_SHORT).show();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -98,7 +96,6 @@ public class HomeActivity extends BaseActivity {
                             ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(HomeActivity.this,pairs);
                             startActivity(intent,activityOptions.toBundle());
                         }
-
                     }else if (v.getId()== R.id.rechargImageView){
                       //  Toast.makeText(HomeActivity.this,"Mobile Recharge",Toast.LENGTH_SHORT).show();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -108,17 +105,13 @@ public class HomeActivity extends BaseActivity {
                             ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(HomeActivity.this,pairs);
                             startActivity(intent,activityOptions.toBundle());
                         }
-
                     }
                     break;
 
                 case DragEvent.ACTION_DRAG_ENDED:
                     break;
             }
-
             return true;
         }
     };
-
-
 }

@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen">
-        <activity android:name=".view.BillersListActivity"></activity>
+        <activity android:name=".view.BillersListActivity"/>
         <activity android:name=".view.HowToUseActivity" />
         <activity android:name=".view.NotificationActivity" />
         <activity android:name=".view.LoginActivity">

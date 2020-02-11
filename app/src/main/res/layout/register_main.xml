@@ -16,8 +16,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:id="@+id/icon_reg"
             android:src="@drawable/ic_registr_icon" />
 
@@ -27,6 +27,7 @@
             android:layout_below="@+id/icon_reg"
             android:text=" Register"
             android:textStyle="bold"
+            android:layout_marginTop="@dimen/_10sdp"
             app:fontFamily="@font/amarante"
             android:textColor="@android:color/black"
             android:textSize="20sp" />

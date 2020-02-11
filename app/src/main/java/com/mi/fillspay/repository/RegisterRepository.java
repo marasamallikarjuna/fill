@@ -48,7 +48,6 @@ public class RegisterRepository {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
                         data.setValue(null);
                     }
                 }
@@ -58,7 +57,6 @@ public class RegisterRepository {
                     Log.i("Mallikarjuna","+++error+++"+t.getMessage());
                 }
             });
-
         }catch (Exception e){
             e.printStackTrace();
         }

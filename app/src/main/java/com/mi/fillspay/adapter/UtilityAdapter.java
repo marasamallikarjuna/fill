@@ -46,6 +46,25 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         Holder hold = (Holder) holder;
         Glide.with(context).load(utilityResponses.get(holder.getAdapterPosition())).placeholder(R.drawable.ic_registr_icon).into(hold.imageView);
         hold.tv.setText(utilityResponses.get(holder.getAdapterPosition()).getUtilityname());
+
+      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                row_index=position;
+                notifyDataSetChanged();
+                manager.smoothScrollToPosition(position);
+                onItemClick.Onclick(stringArray[position]);
+            }
+        });
+
+        if(row_index==position){
+            hold.imageView.setBackground(context.getResources().getDrawable(R.drawable.ic_bg_logo));
+        }
+        else
+        {
+            hold.imageView.setBackgroundResource(0);
+        }*/
+
     }
 
     @Override
@@ -62,14 +81,14 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             tv = (GradientTextView) itemView.findViewById(R.id.tvText);
             imageView = (ImageView) itemView.findViewById(R.id.img_logo);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+           /* itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     imageView.setBackground(context.getResources().getDrawable(R.drawable.ic_bg_logo));
                     int adapterPosition = getAdapterPosition();
                     manager.smoothScrollToPosition(adapterPosition);
                 }
-            });
+            });*/
         }
     }
 }

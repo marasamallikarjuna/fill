@@ -43,7 +43,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Holder hold = (Holder) holder;
-        hold.tv.setText("Hello  World " + (position+1));
+        hold.tv.setText("User " + (position+1));
     }
 
     @Override

@@ -68,7 +68,7 @@
             android:textColorHint="@color/colorAccent"
             android:textCursorDrawable="@null"
             android:text="password"
-            android:textSize="@dimen/_16ssp"
+            android:textSize="@dimen/_14ssp"
             app:backgroundTint="@color/colorEdit"
             app:fontFamily="@font/amarante" />
     </com.google.android.material.textfield.TextInputLayout>

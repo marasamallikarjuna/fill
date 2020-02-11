@@ -46,6 +46,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         update_btn.setOnClickListener(this);
         userImageView.setOnClickListener(this);
 
+        findViewById(R.id.image_choose_button).setOnClickListener(this);
+
     }
 
     private void requestPermissions() {
@@ -184,7 +186,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.userImageView:
+            case R.id.image_choose_button:
 
                 if (hasPermissions()) {
                     showFileChooser();

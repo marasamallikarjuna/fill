@@ -16,8 +16,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
             android:id="@+id/icon_reg"
             android:layout_centerInParent="true"
             android:src="@drawable/ic_registr_icon" />

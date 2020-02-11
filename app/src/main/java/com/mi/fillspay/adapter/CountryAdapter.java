@@ -18,6 +18,7 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Context context;
     private OnItemClick onItemClick;
     private String[] stringArray;
+    private int row_index=-1;
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -42,6 +43,24 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Holder hold = (Holder) holder;
         hold.tv.setText(stringArray[position]);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                row_index=position;
+                notifyDataSetChanged();
+                manager.smoothScrollToPosition(position);
+                onItemClick.Onclick(stringArray[position]);
+            }
+        });
+
+        if(row_index==position){
+            hold.imageView.setBackground(context.getResources().getDrawable(R.drawable.ic_bg_logo));
+        }
+        else
+        {
+            hold.imageView.setBackgroundResource(0);
+        }
     }
 
     @Override
@@ -57,16 +76,6 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             super(itemView);
             tv = (GradientTextView) itemView.findViewById(R.id.tvText);
             imageView = (ImageView) itemView.findViewById(R.id.img_logo);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    imageView.setBackground(context.getResources().getDrawable(R.drawable.ic_bg_logo));
-                    int adapterPosition = getAdapterPosition();
-                    manager.smoothScrollToPosition(adapterPosition);
-                    onItemClick.Onclick(stringArray[adapterPosition]);
-                }
-            });
         }
     }
 }

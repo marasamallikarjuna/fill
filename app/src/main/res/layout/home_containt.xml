@@ -7,13 +7,6 @@
     android:gravity="center"
     android:orientation="vertical">
 
-        <!--<ImageView
-            android:rotation="180"
-            android:src="@drawable/semicircle_dotted"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ImageView>-->
-
     <LinearLayout
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_200sdp"
@@ -185,22 +178,23 @@
                 <LinearLayout
                     android:id="@+id/enterImageView"
                     android:layout_width="0dp"
+                    android:background="@drawable/ic_grey_circle"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:layout_weight="1">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
                         <ImageView
                             android:id="@+id/imageView2"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/ic_grey_circle"
-                            android:paddingEnd="@dimen/_5sdp"
+                            android:layout_height="match_parent"
+                            android:paddingStart="0dp"
+                            android:paddingBottom="@dimen/_1sdp"
+                            android:paddingEnd="@dimen/_4sdp"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:src="@drawable/ic_emty_cyc"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <TextView

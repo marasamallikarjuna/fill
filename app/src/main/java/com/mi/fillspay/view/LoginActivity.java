@@ -44,18 +44,18 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if (isNetworkConnected()) {
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                  /*  Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     Pair[] pairs = new Pair[1];
                     pairs[0] = new Pair<View, String>(titleTextView, "tvLogin");
                     ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, pairs);
-                    startActivity(intent, activityOptions.toBundle());
-                   /* if (TextUtils.isEmpty(emailEdit.getText().toString())){
+                    startActivity(intent, activityOptions.toBundle());*/
+                    if (TextUtils.isEmpty(emailEdit.getText().toString())){
                         Toast.makeText(getApplicationContext(), "enter valid email id", Toast.LENGTH_SHORT).show();
                     }else if (passwordEdit.getText().toString().equalsIgnoreCase("")){
                         Toast.makeText(getApplicationContext(), "enter valid password", Toast.LENGTH_SHORT).show();
                     }else{
                         sendLoginDetails(new LoginRequest(emailEdit.getText().toString(),passwordEdit.getText().toString()));
-                    }*/
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.network_error), Toast.LENGTH_SHORT).show();
                 }
