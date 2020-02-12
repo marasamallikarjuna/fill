@@ -154,7 +154,6 @@ public class RegistrationActivity extends BaseActivity {
                 //Getting the user entered otp from edittext
                 final String otp = editTextConfirmOtp.getText().toString().trim();
                 Toast.makeText(RegistrationActivity.this, otp, Toast.LENGTH_SHORT).show();
-
                 //Hiding the alert dialog
                 alertDialog.dismiss();
             }

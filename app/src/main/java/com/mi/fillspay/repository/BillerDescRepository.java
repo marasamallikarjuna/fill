@@ -25,42 +25,44 @@ import retrofit2.Response;
 public class BillerDescRepository {
 
     private ApiRequest apiRequest;
+
     public BillerDescRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
+
     public LiveData<List<BillerDescResponse>> getBillerDesc(BillerDescRequest billerDescRequest, String token, Context context) {
         final MutableLiveData<List<BillerDescResponse>> data = new MutableLiveData<>();
         try {
-            apiRequest.getBillerDesc(billerDescRequest,token).enqueue(new Callback<List<BillerDescResponse>>() {
+            apiRequest.getBillerDesc(billerDescRequest, token).enqueue(new Callback<List<BillerDescResponse>>() {
                 @Override
                 public void onResponse(Call<List<BillerDescResponse>> call, Response<List<BillerDescResponse>> response) {
-                    if (response.code()==200){
+                    if (response.code() == 200) {
                         if (response.body() != null) {
                             data.setValue(response.body());
                         }
-                    }else {
+                    } else {
                         try {
                             JSONObject jObjError = new JSONObject(response.errorBody().string());
-                            if (jObjError.has("message")){
-                                Toast.makeText(context,jObjError.get("message").toString(),Toast.LENGTH_LONG).show();
+                            if (jObjError.has("message")) {
+                                Toast.makeText(context, jObjError.get("message").toString(), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
                         data.setValue(null);
                     }
                 }
+
                 @Override
                 public void onFailure(Call<List<BillerDescResponse>> call, Throwable t) {
                     data.setValue(null);
-                    Log.i("Mallikarjuna","+++error+++"+t.getMessage());
+                    Log.i("Mallikarjuna", "+++error+++" + t.getMessage());
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return data;

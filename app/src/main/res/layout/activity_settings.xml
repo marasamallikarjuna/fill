@@ -107,9 +107,7 @@
             android:layout_marginBottom="15dp"
             android:gravity="center_vertical"
             android:text="Settings"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="italic|normal"
+            android:textSize="@dimen/_18ssp"
             app:fontFamily="@font/amarante" />
 
         <RelativeLayout
@@ -135,7 +133,7 @@
             <Switch
                 android:layout_alignParentEnd="true"
                 android:id="@+id/switch1"
-                android:layout_width="@dimen/_30sdp"
+                android:layout_width="@dimen/_26sdp"
                 android:layout_height="wrap_content"
                 android:textOff=""
                 android:textOn=""
@@ -169,7 +167,7 @@
 
             <Switch
                 android:id="@+id/switch11"
-                android:layout_width="@dimen/_30sdp"
+                android:layout_width="@dimen/_26sdp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:textOff=""
@@ -185,7 +183,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:drawableStart="@drawable/ic_theme_icon"
             android:drawableLeft="@drawable/ic_theme_icon"
             android:gravity="center_vertical"
@@ -235,7 +233,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:drawableStart="@drawable/ic_lang_icon"
             android:letterSpacing="0.1"
             android:padding="2dp"
@@ -283,7 +281,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:drawableStart="@drawable/ic_profile_icon"
             android:gravity="center_vertical"
             android:letterSpacing="0.1"
@@ -297,7 +295,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:drawableStart="@drawable/ic_login_icon"
             android:letterSpacing="0.1"
             android:padding="2dp"

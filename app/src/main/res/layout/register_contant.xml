@@ -69,6 +69,46 @@
             app:fontFamily="@font/amarante" />
     </com.google.android.material.textfield.TextInputLayout>
 
+ <!--   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ccpDialog_keyboardAutoPopup="false"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_countryPreference="in,us,nz,gb"
+            app:ccp_hintExampleNumber="true" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            app:backgroundTint="@color/colorEdit">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/mobileEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_mobile"
+                android:drawableLeft="@drawable/ic_mobile"
+                android:drawablePadding="4dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxLength="12"
+                android:textColor="@android:color/black"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/_13ssp"
+                app:backgroundTint="@color/colorEdit"
+                app:fontFamily="@font/amarante" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

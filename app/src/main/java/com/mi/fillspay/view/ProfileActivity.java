@@ -2,13 +2,19 @@ package com.mi.fillspay.view;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,10 +24,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mi.fillspay.R;
+import com.mi.fillspay.local.prefe.AppPreferencesHelper;
+import com.mi.fillspay.local.prefe.PreferencesHelper;
 import com.mi.fillspay.utilities.AppUtilities;
+import com.mi.fillspay.utilities.FilePath;
+import com.mi.fillspay.view_model.ProfilePictureViewModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView userImageView;
     private Bitmap myBitmap = null;
     Uri outputFileUri;
+    ProfilePictureViewModel profilePictureViewModel;
     ImageView update_btn;
 
     @Override
@@ -139,7 +151,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         startActivityForResult(intent, OPEN_CAMERA);
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -150,6 +161,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 try {
                     myBitmap = AppUtilities.getThumbnail(ProfileActivity.this, filePath);
                     userImageView.setImageBitmap(myBitmap);
+                    if (myBitmap != null) {
+                        updateProfilePicture(FilePath.savebitmap(myBitmap,this));
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -161,6 +175,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     if (myBitmap != null)
                         myBitmap = AppUtilities.getResizedBitmap(myBitmap, 1000);
                     userImageView.setImageBitmap(myBitmap);
+                    if (outputFileUri != null && myBitmap != null) {
+                        updateProfilePicture(FilePath.savebitmap(myBitmap,this));
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -186,8 +203,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.image_choose_button:
 
+            case R.id.image_choose_button:
                 if (hasPermissions()) {
                     showFileChooser();
                 } else {
@@ -196,16 +213,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.update_profile_btn:
-                if (outputFileUri != null && myBitmap != null) {
-                    updateProfilePicture();
-                }
                 break;
         }
     }
 
-    private void updateProfilePicture() {
+    public void updateProfilePicture(final File file) {
 
-        File file = new File(AppUtilities.getRealPathFromURI(this,outputFileUri));
+        PreferencesHelper _preferencesHelper = new AppPreferencesHelper(this, "Spandana");
 
+        profilePictureViewModel = ViewModelProviders.of(this).get(ProfilePictureViewModel.class);
+
+        profilePictureViewModel.uploadProfileImage(file, "919014250855", _preferencesHelper.getAccessToken(), this).observe(this, profileImageResponse -> {
+            if (profileImageResponse != null) {
+                if (profileImageResponse.getMessage().equalsIgnoreCase("Success") && profileImageResponse.getStatus().equalsIgnoreCase("OK")) {
+                    Toast.makeText(this, "Profile Image Updated", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
