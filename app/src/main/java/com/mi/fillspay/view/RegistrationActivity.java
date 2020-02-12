@@ -5,35 +5,53 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mi.fillspay.R;
 import com.mi.fillspay.model.CheckMobileRequest;
 import com.mi.fillspay.model.CheckMobileResponse;
+import com.mi.fillspay.model.IsdCode;
 import com.mi.fillspay.model.RegisterRequest;
 import com.mi.fillspay.repository.CheckNumberRepository;
+import com.mi.fillspay.utilities.AppUtilities;
+import com.mi.fillspay.utilities.ItemListDialog;
 import com.mi.fillspay.utilities.OtpEditText;
 import com.mi.fillspay.view_model.CheckNumberViewModel;
+import com.mi.fillspay.view_model.IsdCodesViewModel;
 import com.mi.fillspay.view_model.RegisterViewModel;
 
 import org.json.JSONException;
 
+import java.util.List;
+
 public class RegistrationActivity extends BaseActivity {
 
-    RegisterViewModel registerViewModel;
+    private RegisterViewModel registerViewModel;
 
-    AppCompatEditText emailEdit, mobileEdit, passwordEdit, confirmEdit;
+    private IsdCodesViewModel isdCodesViewModel;
 
-    CheckNumberViewModel checkNumberViewModel;
+    private AppCompatEditText emailEdit, mobileEdit, passwordEdit, confirmEdit;
+
+    private CheckNumberViewModel checkNumberViewModel;
+
+    private RelativeLayout countryPicker;
+
+    private ImageView img_flag;
+
+    private  ItemListDialog itemListDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +66,14 @@ public class RegistrationActivity extends BaseActivity {
         mobileEdit = findViewById(R.id.mobileEdit);
         passwordEdit = findViewById(R.id.passwordEdit);
         confirmEdit = findViewById(R.id.confirmEdit);
+        countryPicker = findViewById(R.id.countryCodeHolder);
+        img_flag = findViewById(R.id.image_flag);
 
         registerViewModel = ViewModelProviders.of(this).get(RegisterViewModel.class);
 
         checkNumberViewModel = ViewModelProviders.of(this).get(CheckNumberViewModel.class);
+
+        isdCodesViewModel = ViewModelProviders.of(this).get(IsdCodesViewModel.class);
 
         findViewById(R.id.loginTextview).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +85,7 @@ public class RegistrationActivity extends BaseActivity {
         findViewById(R.id.registerImageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 showOtpDialog();
-
                 if (isNetworkConnected()) {
                     if (!isValidEmail(emailEdit.getText().toString())) {
                         Toast.makeText(getApplicationContext(), "enter valid email id", Toast.LENGTH_SHORT).show();
@@ -78,7 +98,7 @@ public class RegistrationActivity extends BaseActivity {
                     } else if (!confirmEdit.getText().toString().equalsIgnoreCase(passwordEdit.getText().toString())) {
                         Toast.makeText(getApplicationContext(), "confirm password not matched", Toast.LENGTH_SHORT).show();
                     } else {
-                        sendLoginDetails(new RegisterRequest(mobileEdit.getText().toString(), emailEdit.getText().toString(), passwordEdit.getText().toString()));
+                        sendRegDetails(new RegisterRequest(mobileEdit.getText().toString(), emailEdit.getText().toString(), passwordEdit.getText().toString()));
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.network_error), Toast.LENGTH_SHORT).show();
@@ -92,11 +112,28 @@ public class RegistrationActivity extends BaseActivity {
                 checkMobileNumber(mobileEdit.getText().toString());
             }
         });
+
+        countryPicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemListDialog.show(getSupportFragmentManager(),"ItemList Dialog");
+            }
+        });
+
+        getIsoCodes();
+    }
+
+    private void getIsoCodes() {
+        AppUtilities.showProgress(this);
+        isdCodesViewModel.getCountries(this).observe(this, isdCodes -> {
+            AppUtilities.stopProgress();
+            itemListDialog = new ItemListDialog(this,isdCodes,mobileEdit,img_flag);
+        });
     }
 
     private void checkMobileNumber(String mobilenumber) {
         checkNumberViewModel.checkNumber(new CheckMobileRequest(mobilenumber)).observe(this, checkMobileResponse -> {
-            if (checkMobileResponse.getMessage() != null) {
+            if (checkMobileResponse != null) {
                 if (checkMobileResponse.getMessage().equalsIgnoreCase("Unavailable")) {
                     mobileEdit.setError(checkMobileResponse.getMessage());
                 }
@@ -104,9 +141,9 @@ public class RegistrationActivity extends BaseActivity {
         });
     }
 
-    private void sendLoginDetails(RegisterRequest data) {
+    private void sendRegDetails(RegisterRequest data) {
         registerViewModel.getRegisterResponseLiveData(data, this).observe(this, responseData -> {
-            if(responseData.getMessage().equals("Success")) {
+            if (responseData.getMessage().equals("Success")) {
 
             }
         });

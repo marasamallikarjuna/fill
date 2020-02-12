@@ -8,6 +8,7 @@ import com.mi.fillspay.model.CheckMobileResponse;
 import com.mi.fillspay.model.ConsumerNoFormatRequest;
 import com.mi.fillspay.model.ConsumerNoFormatResponse;
 import com.mi.fillspay.model.CountryRequest;
+import com.mi.fillspay.model.IsdCode;
 import com.mi.fillspay.model.LoginRequest;
 import com.mi.fillspay.model.LoginResponse;
 import com.mi.fillspay.model.ProcessPaymentRequest;
@@ -25,6 +26,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -61,6 +63,9 @@ public interface ApiRequest {
 
     @POST("/checkMobileNumber")
     Call<CheckMobileResponse> checkMobileNumber(@Body CheckMobileRequest body);
+
+    @GET("/isd_codes")
+    Call<List<IsdCode>> getIsdCodes();
 
     @Multipart
     @POST("uploadProfilePicture")

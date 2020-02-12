@@ -8,36 +8,47 @@ public class ListOfIOCatalog {
     @SerializedName("billerID")
     @Expose
     private String billerID;
+
     @SerializedName("s_k_u")
     @Expose
     private String sKU;
+
     @SerializedName("i_o_i_d")
     @Expose
     private Integer iOID;
+
     @SerializedName("type")
     @Expose
     private Integer type;
+
     @SerializedName("operation")
     @Expose
     private Integer operation;
+
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("description")
     @Expose
     private String description;
+
     @SerializedName("datatype")
     @Expose
     private String datatype;
+
     @SerializedName("minLength")
     @Expose
     private Integer minLength;
+
     @SerializedName("maxLength")
     @Expose
     private Integer maxLength;
+
     @SerializedName("validLengths")
     @Expose
     private String validLengths;
+
     @SerializedName("catalogVersion")
     @Expose
     private String catalogVersion;

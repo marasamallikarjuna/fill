@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="@dimen/_5sdp"
         android:text="Email"
         android:textColor="@color/black_dull"
@@ -27,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_email"
-            android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="4dp"
             android:inputType="textEmailAddress|textNoSuggestions"
             android:textColor="@android:color/black"
@@ -40,66 +39,58 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="@dimen/_5sdp"
         android:text="Mobile"
         android:textColor="@color/black_dull"
         android:textSize="@dimen/_12ssp"
         app:fontFamily="@font/amarante" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <!-- <com.google.android.material.textfield.TextInputLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="-8dp"
+         app:backgroundTint="@color/colorEdit">
+
+         <androidx.appcompat.widget.AppCompatEditText
+             android:id="@+id/mobileEdit"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:drawablePadding="4dp"
+             android:inputType="number"
+             android:maxLength="12"
+             android:textColor="@android:color/black"
+             android:textCursorDrawable="@null"
+             android:textSize="@dimen/_13ssp"
+             app:backgroundTint="@color/colorEdit"
+             app:fontFamily="@font/amarante" />
+     </com.google.android.material.textfield.TextInputLayout>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-8dp"
-        app:backgroundTint="@color/colorEdit">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/mobileEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_mobile"
-            android:drawableLeft="@drawable/ic_mobile"
-            android:drawablePadding="4dp"
-            android:inputType="number"
-            android:maxLength="12"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@null"
-            android:textSize="@dimen/_13ssp"
-            app:backgroundTint="@color/colorEdit"
-            app:fontFamily="@font/amarante" />
-    </com.google.android.material.textfield.TextInputLayout>
-
- <!--   <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:layout_marginEnd="@dimen/_3sdp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <com.hbb20.CountryCodePicker
-            android:id="@+id/ccp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:ccpDialog_keyboardAutoPopup="false"
-            app:ccp_autoDetectCountry="true"
-            app:ccp_countryPreference="in,us,nz,gb"
-            app:ccp_hintExampleNumber="true" />
+      <include layout="@layout/layout_code_picker"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-8dp"
+            android:layout_marginTop="-3dp"
             app:backgroundTint="@color/colorEdit">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/mobileEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_mobile"
-                android:drawableLeft="@drawable/ic_mobile"
+                android:background="@null"
                 android:drawablePadding="4dp"
                 android:inputType="number"
+                android:maxLength="20"
                 android:singleLine="true"
-                android:maxLength="12"
                 android:textColor="@android:color/black"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/_13ssp"
@@ -107,13 +98,20 @@
                 app:fontFamily="@font/amarante" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>-->
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:layout_marginEnd="@dimen/_3sdp"
+        android:background="@color/colorEdit" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:text="Password"
         android:textColor="@color/black_dull"
         android:textSize="@dimen/_12ssp"
@@ -135,13 +133,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock"
-            android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="4dp"
             android:inputType="textPassword|textNoSuggestions"
             android:textColor="@android:color/black"
             android:textColorHint="@color/colorAccent"
             android:textCursorDrawable="@null"
-            android:textSize="15dp"
+            android:textSize="@dimen/_13ssp"
             app:backgroundTint="@color/colorEdit"
             app:fontFamily="@font/amarante" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -149,7 +146,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="@dimen/_5sdp"
         android:text="Confirm Password"
         android:textColor="@color/black_dull"
@@ -170,7 +167,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock"
-            android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="4dp"
             android:inputType="textPassword|textNoSuggestions"
             android:textColor="@android:color/black"
