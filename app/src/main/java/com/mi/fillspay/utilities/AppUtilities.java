@@ -63,6 +63,13 @@ public class AppUtilities {
         _dialog.setCancelable(false);
     }
 
+    public static void showLoading(final Context context) {
+        _dialog = new ProgressDialog(context);
+        _dialog.show();
+        _dialog.setContentView(R.layout.progress);
+        _dialog.setCancelable(false);
+    }
+
     public static void stopProgress() {
         if (_dialog != null)
             if (_dialog.isShowing()) {

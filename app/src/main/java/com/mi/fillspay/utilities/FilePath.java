@@ -13,10 +13,10 @@ public class FilePath {
     public static File savebitmap(Bitmap bmp, Context context) {
         String extStorageDirectory = context.getExternalFilesDir(null).toString();
         OutputStream outStream = null;
-        File file = new File(extStorageDirectory, "temp.png");
+        File file = new File(extStorageDirectory, "tempImage.png");
         if (file.exists()) {
             file.delete();
-            file = new File(extStorageDirectory, "temp.png");
+            file = new File(extStorageDirectory, "tempImage.png");
         }
         try {
             outStream = new FileOutputStream(file);

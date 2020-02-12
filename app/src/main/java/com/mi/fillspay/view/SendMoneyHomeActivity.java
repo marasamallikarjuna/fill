@@ -1,5 +1,6 @@
 package com.mi.fillspay.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,25 +30,19 @@ public class SendMoneyHomeActivity extends AppCompatActivity {
 
         initValues();
 
-        FragmentUtil.setFragment(new SendMoneyFragOne(),this,"Send Mobile fragment one", R.id.content_frag,false);
-
+        FragmentUtil.setFragment(new SendMoneyFragOne(), this, "Send Mobile fragment one", R.id.content_frag, false);
     }
 
     private void initValues() {
-
         speedDialView = findViewById(R.id.speedDial_id);
-
         speedDialView.setBackground(getResources().getDrawable(R.drawable.fab_open_bg));
-
         initSpeedDial();
-
         findViewById(R.id.icon_reg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
-
     }
 
     private void initSpeedDial() {
@@ -61,15 +56,16 @@ public class SendMoneyHomeActivity extends AppCompatActivity {
         speedDialView.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
             @Override
             public boolean onActionSelected(SpeedDialActionItem actionItem) {
-                switch (actionItem.getId()){
+                switch (actionItem.getId()) {
                     case R.id.fab_item1:
-                        Toast.makeText(SendMoneyHomeActivity.this, "one", Toast.LENGTH_SHORT).show();
+                        Intent in = new Intent(SendMoneyHomeActivity.this, NotificationActivity.class);
+                        startActivity(in);
                         break;
                     case R.id.fab_item2:
-                        Toast.makeText(SendMoneyHomeActivity.this, "two", Toast.LENGTH_SHORT).show();
+                        Intent in1 = new Intent(SendMoneyHomeActivity.this, HowToUseActivity.class);
+                        startActivity(in1);
                         break;
                     case R.id.fab_item3:
-                        Toast.makeText(SendMoneyHomeActivity.this, "three", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;

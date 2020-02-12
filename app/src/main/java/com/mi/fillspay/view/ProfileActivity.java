@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.FileUtils;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     Uri outputFileUri;
     ProfilePictureViewModel profilePictureViewModel;
     ImageView update_btn;
+    PreferencesHelper _preferencesHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         userImageView.setOnClickListener(this);
 
         findViewById(R.id.image_choose_button).setOnClickListener(this);
-
+        _preferencesHelper = new AppPreferencesHelper(this, "Spandana");
     }
 
     private void requestPermissions() {
@@ -115,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         takePicture();
                     } catch (Exception e) {
                         Toast.makeText(ProfileActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
-                        Log.d("sjbdf", e.toString());
+//                        Log.d("sjbdf", e.toString());
                         e.printStackTrace();
                     }
                 }
@@ -162,7 +162,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     myBitmap = AppUtilities.getThumbnail(ProfileActivity.this, filePath);
                     userImageView.setImageBitmap(myBitmap);
                     if (myBitmap != null) {
-                        updateProfilePicture(FilePath.savebitmap(myBitmap,this));
+                        updateProfilePicture(FilePath.savebitmap(myBitmap, this));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -176,7 +176,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         myBitmap = AppUtilities.getResizedBitmap(myBitmap, 1000);
                     userImageView.setImageBitmap(myBitmap);
                     if (outputFileUri != null && myBitmap != null) {
-                        updateProfilePicture(FilePath.savebitmap(myBitmap,this));
+                        updateProfilePicture(FilePath.savebitmap(myBitmap, this));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -219,13 +219,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     public void updateProfilePicture(final File file) {
 
-        PreferencesHelper _preferencesHelper = new AppPreferencesHelper(this, "Spandana");
-
         profilePictureViewModel = ViewModelProviders.of(this).get(ProfilePictureViewModel.class);
+
+        AppUtilities.showProgress(this);
 
         profilePictureViewModel.uploadProfileImage(file, "919014250855", _preferencesHelper.getAccessToken(), this).observe(this, profileImageResponse -> {
             if (profileImageResponse != null) {
                 if (profileImageResponse.getMessage().equalsIgnoreCase("Success") && profileImageResponse.getStatus().equalsIgnoreCase("OK")) {
+                    AppUtilities.stopProgress();
                     Toast.makeText(this, "Profile Image Updated", Toast.LENGTH_SHORT).show();
                 }
             }
