@@ -14,18 +14,6 @@
         android:background="@drawable/ic_header"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:elevation="1dp"
-            android:src="@drawable/ic_menu"
-            app:backgroundTint="@android:color/transparent"
-            app:elevation="0dp"
-            app:fabSize="normal"
-            app:maxImageSize="40dp" />
 
         <ImageView
             android:id="@+id/icon"

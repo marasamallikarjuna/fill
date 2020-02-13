@@ -1,46 +1,30 @@
 package com.mi.fillspay.view;
 
-import android.Manifest;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
-import android.text.Editable;
+
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mi.fillspay.R;
 import com.mi.fillspay.model.CheckMobileRequest;
-import com.mi.fillspay.model.CheckMobileResponse;
 import com.mi.fillspay.model.IsdCode;
 import com.mi.fillspay.model.RegisterRequest;
-import com.mi.fillspay.repository.CheckNumberRepository;
 import com.mi.fillspay.utilities.AppUtilities;
 import com.mi.fillspay.utilities.ItemListDialog;
 import com.mi.fillspay.utilities.OtpEditText;
 import com.mi.fillspay.view_model.CheckNumberViewModel;
 import com.mi.fillspay.view_model.IsdCodesViewModel;
 import com.mi.fillspay.view_model.RegisterViewModel;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,21 +63,6 @@ public class RegistrationActivity extends BaseActivity {
         countryPicker = findViewById(R.id.countryCodeHolder);
         img_flag = findViewById(R.id.image_flag);
         tv_countrycode = findViewById(R.id.text_countrycode);
-
-      /*  TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        if (checkSelfPermission(Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    Activity#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for Activity#requestPermissions for more details.
-            return;
-        }
-        String mPhoneNumber = tMgr.getLine1Number();
-
-        mobileEdit.setText(mPhoneNumber);*/
 
         registerViewModel = ViewModelProviders.of(this).get(RegisterViewModel.class);
 
@@ -135,9 +104,9 @@ public class RegistrationActivity extends BaseActivity {
         passwordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-             if (!TextUtils.isEmpty(mobileEdit.getText().toString().trim()))
+                if (!TextUtils.isEmpty(mobileEdit.getText().toString().trim()))
                     mobileEdit.setError(null);
-                    checkMobileNumber(tv_countrycode.getText().toString().trim() + mobileEdit.getText().toString());
+                checkMobileNumber(tv_countrycode.getText().toString().trim() + mobileEdit.getText().toString());
             }
         });
 

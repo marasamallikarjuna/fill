@@ -46,74 +46,90 @@
         android:textSize="@dimen/_12ssp"
         app:fontFamily="@font/amarante" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_3sdp"
-        android:layout_marginEnd="@dimen/_3sdp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-      <include layout="@layout/layout_code_picker"/>
-
-        <TextView
-            android:paddingEnd="1dp"
-            android:paddingStart="1dp"
-            android:gravity="center"
-            android:textColor="@color/black_dull"
-            android:text="+"
-            android:textSize="@dimen/_13ssp"
-            app:fontFamily="@font/amarante"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:backgroundTint="@color/colorEdit">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/text_countrycode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="91 "
-                android:background="@null"
-                android:enabled="false"
-                android:inputType="number"
-                android:gravity="start"
-                android:maxLength="20"
-                android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="@dimen/_13ssp"
-                app:backgroundTint="@color/colorEdit"
-                app:fontFamily="@font/amarante" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:backgroundTint="@color/colorEdit">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/mobileEdit"
+            <ImageView
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:paddingEnd="1dp"
+                android:paddingStart="1dp"
+                android:gravity="bottom"
+                android:textColor="@color/black_dull"
+                android:text=" +"
+                android:textSize="@dimen/_13ssp"
+                app:fontFamily="@font/amarante"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:backgroundTint="@color/colorEdit">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/text_countrycode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="91 "
+                    android:background="@null"
+                    android:enabled="false"
+                    android:inputType="number"
+                    android:gravity="start"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/_13ssp"
+                    app:backgroundTint="@color/colorEdit"
+                    app:fontFamily="@font/amarante" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginEnd="@dimen/_64sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:inputType="number"
-                android:gravity="start"
-                android:maxLength="20"
-                android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="@dimen/_13ssp"
-                app:backgroundTint="@color/colorEdit"
-                app:fontFamily="@font/amarante" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:backgroundTint="@color/colorEdit">
 
-    </LinearLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/mobileEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/_13ssp"
+                    app:backgroundTint="@color/colorEdit"
+                    app:fontFamily="@font/amarante" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <include layout="@layout/layout_code_picker"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+    </RelativeLayout>
 
     <View
+        android:layout_marginTop="-2dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/_3sdp"

@@ -1,6 +1,5 @@
 package com.mi.fillspay.retrofit;
 
-
 import com.mi.fillspay.model.BillerDescRequest;
 import com.mi.fillspay.model.BillerDescResponse;
 import com.mi.fillspay.model.CheckMobileRequest;
@@ -17,9 +16,11 @@ import com.mi.fillspay.model.ProfileImageResponse;
 import com.mi.fillspay.model.RegisterRequest;
 import com.mi.fillspay.model.ResponseData;
 import com.mi.fillspay.model.SubutilityRequest;
+import com.mi.fillspay.model.UserProfile;
 import com.mi.fillspay.model.UtilitiesRequest;
 import com.mi.fillspay.model.ViewAmountDueRequest;
 import com.mi.fillspay.model.ViewAmountDueResponse;
+
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -66,6 +67,9 @@ public interface ApiRequest {
 
     @GET("/isd_codes")
     Call<List<IsdCode>> getIsdCodes();
+
+    @GET("/user_profile")
+    Call<UserProfile> getUserProfile(@Header("Authorization") String token);
 
     @Multipart
     @POST("uploadProfilePicture")

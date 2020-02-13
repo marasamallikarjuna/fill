@@ -2,33 +2,24 @@ package com.mi.fillspay.view;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mi.fillspay.R;
-import com.mi.fillspay.local.prefe.AppPreferencesHelper;
-import com.mi.fillspay.local.prefe.PreferencesHelper;
 import com.mi.fillspay.utilities.AppUtilities;
 import com.mi.fillspay.utilities.FilePath;
 import com.mi.fillspay.view_model.ProfilePictureViewModel;
@@ -36,7 +27,7 @@ import com.mi.fillspay.view_model.ProfilePictureViewModel;
 import java.io.File;
 import java.io.IOException;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProfileActivity extends BaseActivity implements View.OnClickListener {
 
     public static final int PICK_IMAGE_REQUEST = 190;
     public static final int OPEN_CAMERA = 191;
@@ -46,20 +37,27 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     Uri outputFileUri;
     ProfilePictureViewModel profilePictureViewModel;
     ImageView update_btn;
-    PreferencesHelper _preferencesHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        initValues();
+    }
+
+    private void initValues() {
         userImageView = findViewById(R.id.userImageView);
         update_btn = findViewById(R.id.update_profile_btn);
-
         update_btn.setOnClickListener(this);
         userImageView.setOnClickListener(this);
-
         findViewById(R.id.image_choose_button).setOnClickListener(this);
-        _preferencesHelper = new AppPreferencesHelper(this, "Spandana");
+        userImageView.setImageBitmap(AppUtilities.stringToBitmap(_preferencesHelper.getUserProfileImage()));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     private void requestPermissions() {
@@ -115,7 +113,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         takePicture();
                     } catch (Exception e) {
                         Toast.makeText(ProfileActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
-//                        Log.d("sjbdf", e.toString());
                         e.printStackTrace();
                     }
                 }
@@ -224,10 +221,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         AppUtilities.showProgress(this);
 
         profilePictureViewModel.uploadProfileImage(file, "919014250855", _preferencesHelper.getAccessToken(), this).observe(this, profileImageResponse -> {
+
             if (profileImageResponse != null) {
                 if (profileImageResponse.getMessage().equalsIgnoreCase("Success") && profileImageResponse.getStatus().equalsIgnoreCase("OK")) {
                     AppUtilities.stopProgress();
-                    Toast.makeText(this, "Profile Image Updated", Toast.LENGTH_SHORT).show();
                 }
             }
         });

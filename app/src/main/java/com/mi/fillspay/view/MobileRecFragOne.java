@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,14 @@ public class MobileRecFragOne extends Fragment implements View.OnClickListener {
 
     public MobileRecFragOne() {
         // Required empty public constructor
+    }
+
+    public static MobileRecFragOne newInstance(String type) {
+        MobileRecFragOne myFragment = new MobileRecFragOne();
+        Bundle args = new Bundle();
+        args.putString("type", type);
+        myFragment.setArguments(args);
+        return myFragment;
     }
 
 
@@ -74,6 +83,9 @@ public class MobileRecFragOne extends Fragment implements View.OnClickListener {
         helper.attachToRecyclerView(recyclerView);
         nextpage = getActivity().findViewById(R.id.nextPage_id);
         nextpage.setOnClickListener(this);
+
+        Toast.makeText(getActivity(), getArguments().getString("type"), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

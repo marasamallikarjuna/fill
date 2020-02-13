@@ -43,7 +43,7 @@ public class ProfileImageRepository {
             apiRequest.uploadProfileImage(part,name,token,"application/json").enqueue(new Callback<ProfileImageResponse>() {
                 @Override
                 public void onResponse(Call<ProfileImageResponse> call, Response<ProfileImageResponse> response) {
-                    Log.d("idfldsf", response.body()+"");
+                 //   Log.d("idfldsf", response.body()+"");
                     if (response.body() != null) {
                         data.setValue(response.body());
                         Log.i("Mallikarjuna", "+++sucess+++" + response.toString());

@@ -1,20 +1,15 @@
 package com.mi.fillspay.utilities;
 
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
 
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 
 import com.mi.fillspay.R;
@@ -26,7 +21,6 @@ import java.util.List;
 public class ItemListDialog  extends DialogFragment {
 
     private ListView listView;
-    private SearchView searchView;
     private Context context;
     private List<IsdCode> isdCodes;
     private ImageView img_dismiss;
@@ -47,7 +41,6 @@ public class ItemListDialog  extends DialogFragment {
         View rootView = inflater.inflate(R.layout.layout_item_list, null);
 
          listView = rootView.findViewById(R.id.countryDialog_list);
-         searchView = rootView.findViewById(R.id.searchview_id);
          img_dismiss = rootView.findViewById(R.id.img_dismiss);
 
         IsoCodesAdapter adapter = new IsoCodesAdapter(context,isdCodes);
