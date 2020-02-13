@@ -16,6 +16,12 @@ public class IsdCode {
     @Expose
     private String flag;
 
+    public IsdCode(String country, String isdCode, String flag) {
+        this.country = country;
+        this.isdCode = isdCode;
+        this.flag = flag;
+    }
+
     public String getCountry() {
         return country;
     }

@@ -1,17 +1,24 @@
 package com.mi.fillspay.view;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -35,6 +42,7 @@ import com.mi.fillspay.view_model.RegisterViewModel;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistrationActivity extends BaseActivity {
@@ -49,9 +57,11 @@ public class RegistrationActivity extends BaseActivity {
 
     private RelativeLayout countryPicker;
 
+    private AppCompatEditText tv_countrycode;
+
     private ImageView img_flag;
 
-    private  ItemListDialog itemListDialog;
+    private ItemListDialog itemListDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +78,22 @@ public class RegistrationActivity extends BaseActivity {
         confirmEdit = findViewById(R.id.confirmEdit);
         countryPicker = findViewById(R.id.countryCodeHolder);
         img_flag = findViewById(R.id.image_flag);
+        tv_countrycode = findViewById(R.id.text_countrycode);
+
+      /*  TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (checkSelfPermission(Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    Activity#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for Activity#requestPermissions for more details.
+            return;
+        }
+        String mPhoneNumber = tMgr.getLine1Number();
+
+        mobileEdit.setText(mPhoneNumber);*/
 
         registerViewModel = ViewModelProviders.of(this).get(RegisterViewModel.class);
 
@@ -109,26 +135,44 @@ public class RegistrationActivity extends BaseActivity {
         passwordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                checkMobileNumber(mobileEdit.getText().toString());
+             if (!TextUtils.isEmpty(mobileEdit.getText().toString().trim()))
+                    mobileEdit.setError(null);
+                    checkMobileNumber(tv_countrycode.getText().toString().trim() + mobileEdit.getText().toString());
             }
         });
 
         countryPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemListDialog.show(getSupportFragmentManager(),"ItemList Dialog");
+                itemListDialog.show(getSupportFragmentManager(), "ItemList Dialog");
             }
         });
-
         getIsoCodes();
     }
 
     private void getIsoCodes() {
+
         AppUtilities.showProgress(this);
+
         isdCodesViewModel.getCountries(this).observe(this, isdCodes -> {
-            AppUtilities.stopProgress();
-            itemListDialog = new ItemListDialog(this,isdCodes,mobileEdit,img_flag);
+            List<IsdCode> codes = new ArrayList<>();
+            for (int j = 0; j < isdCodes.size(); j++) {
+                String test = isdCodes.get(j).getIsdCode();
+                test = test.replaceAll("[\\(\\)\\[\\]\\{\\}]", "");
+                String[] arr = singleChars(test);
+                for (String str : arr) {
+                    codes.add(new IsdCode(isdCodes.get(j).getCountry(), str, isdCodes.get(j).getFlag()));
+                }
+            }
+            if (isdCodes.size() != 0) {
+                AppUtilities.stopProgress();
+                itemListDialog = new ItemListDialog(this, codes, img_flag, tv_countrycode);
+            }
         });
+    }
+
+    public static String[] singleChars(String s) {
+        return s.split(",");
     }
 
     private void checkMobileNumber(String mobilenumber) {
@@ -150,7 +194,6 @@ public class RegistrationActivity extends BaseActivity {
     }
 
     //This method would confirm the otp
-
     private void showOtpDialog() {
 
         //Creating a LayoutInflater object for the dialog box

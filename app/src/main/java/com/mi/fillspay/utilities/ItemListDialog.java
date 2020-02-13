@@ -10,8 +10,10 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 
@@ -24,18 +26,18 @@ import java.util.List;
 public class ItemListDialog  extends DialogFragment {
 
     private ListView listView;
-    private EditText editText;
     private SearchView searchView;
     private Context context;
     private List<IsdCode> isdCodes;
     private ImageView img_dismiss;
     private ImageView img_flag;
+    private AppCompatEditText text_countrycode;
 
-    public ItemListDialog(Context context, List<IsdCode> isdCodeList, EditText editText,ImageView img_flag) {
+    public ItemListDialog(Context context, List<IsdCode> isdCodeList,ImageView img_flag,AppCompatEditText textView) {
      this.context = context;
      this.isdCodes = isdCodeList;
-     this.editText = editText;
      this.img_flag = img_flag;
+     this.text_countrycode = textView;
     }
 
     @Override
@@ -61,7 +63,7 @@ public class ItemListDialog  extends DialogFragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                editText.setText("+"+isdCodes.get(position).getIsdCode()+" ");
+                text_countrycode.setText(isdCodes.get(position).getIsdCode()+" ");
                 img_flag.setImageBitmap(AppUtilities.stringToBitmap(isdCodes.get(position).getFlag()));
                 dismiss();
             }

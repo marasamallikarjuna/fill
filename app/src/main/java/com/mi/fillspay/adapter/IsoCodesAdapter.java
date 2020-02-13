@@ -60,8 +60,8 @@ public class IsoCodesAdapter extends ArrayAdapter<IsdCode> {
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result = convertView;
         }
+
         viewHolder.txtName.setText(dataModel.getCountry());
         viewHolder.txtType.setText(dataModel.getIsdCode());
         viewHolder.flag.setImageBitmap(AppUtilities.stringToBitmap(dataModel.getFlag()));
