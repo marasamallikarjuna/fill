@@ -90,6 +90,12 @@ public class HomeActivity extends BaseActivity {
         }
     };
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     View.OnDragListener dragListener = new View.OnDragListener() {
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         @Override

@@ -18,11 +18,11 @@ import com.mi.fillspay.model.ResponseData;
 import com.mi.fillspay.model.SubutilityRequest;
 import com.mi.fillspay.model.UserProfile;
 import com.mi.fillspay.model.UtilitiesRequest;
+import com.mi.fillspay.model.VerifyOtpRequest;
 import com.mi.fillspay.model.ViewAmountDueRequest;
 import com.mi.fillspay.model.ViewAmountDueResponse;
 
 import java.util.List;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -64,6 +64,12 @@ public interface ApiRequest {
 
     @POST("/checkMobileNumber")
     Call<CheckMobileResponse> checkMobileNumber(@Body CheckMobileRequest body);
+
+    @POST("/verifyMobileNumber")
+    Call<CheckMobileResponse> getOtp(@Body CheckMobileRequest body);
+
+    @POST("/checkVerifyMobileNumber")
+    Call<ResponseData> verifyOtp(@Body VerifyOtpRequest body);
 
     @GET("/isd_codes")
     Call<List<IsdCode>> getIsdCodes();

@@ -17,9 +17,24 @@ public class ResponseData {
     @SerializedName("path")
     @Expose
     private String path;
+
     @SerializedName("details")
     @Expose
-    private Object details;
+    private String[] details;
+
+    @SerializedName("details")
+    @Expose
+    private String error;
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+
 
     public String getTimeStamp() {
         return timeStamp;
@@ -53,11 +68,11 @@ public class ResponseData {
         this.path = path;
     }
 
-    public Object getDetails() {
+    public String[] getDetails() {
         return details;
     }
 
-    public void setDetails(Object details) {
+    public void setDetails(String[] details) {
         this.details = details;
     }
 

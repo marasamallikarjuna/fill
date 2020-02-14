@@ -21,6 +21,10 @@ public class CheckMobileResponse {
     @Expose
     private String details;
 
+    @SerializedName("request_id")
+    @Expose
+    private String requestId;
+
     public String getTimeStamp() {
         return timeStamp;
     }
@@ -59,6 +63,14 @@ public class CheckMobileResponse {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

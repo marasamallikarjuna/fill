@@ -7,8 +7,9 @@ import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.mi.fillspay.model.RegisterRequest;
-import com.mi.fillspay.model.ResponseData;
+import com.mi.fillspay.model.CheckMobileRequest;
+import com.mi.fillspay.model.CheckMobileResponse;
+import com.mi.fillspay.model.CountryRequest;
 import com.mi.fillspay.retrofit.ApiRequest;
 import com.mi.fillspay.retrofit.RetrofitRequest;
 
@@ -21,27 +22,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterRepository {
+public class VerifyMobileRepository {
     private ApiRequest apiRequest;
 
-    public RegisterRepository() {
+    public VerifyMobileRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
-    public LiveData<ResponseData> postRegisterRepository(RegisterRequest registerRequest, Context context) {
-        final MutableLiveData<ResponseData> data = new MutableLiveData<>();
+
+    public LiveData<CheckMobileResponse> verifyMobile(CheckMobileRequest otpRequest, Context context) {
+        final MutableLiveData<CheckMobileResponse> data = new MutableLiveData<>();
         try {
-            apiRequest.postRegister(registerRequest).enqueue(new Callback<ResponseData>() {
+            apiRequest.getOtp(otpRequest).enqueue(new Callback<CheckMobileResponse>() {
                 @Override
-                public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
-                    if (response.code() == 200 || response.code() == 500){
+                public void onResponse(Call<CheckMobileResponse> call, Response<CheckMobileResponse> response) {
+                    if (response.code() == 200) {
                         if (response.body() != null) {
                             data.setValue(response.body());
                         }
-                    }else {
+                    } else {
                         try {
                             JSONObject jObjError = new JSONObject(response.errorBody().string());
-                            if (jObjError.has("message")){
-                                Toast.makeText(context,jObjError.get("message").toString(),Toast.LENGTH_LONG).show();
+                            if (jObjError.has("message")) {
+                                Toast.makeText(context, jObjError.get("message").toString(), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -51,16 +53,17 @@ public class RegisterRepository {
                         data.setValue(null);
                     }
                 }
+
                 @Override
-                public void onFailure(Call<ResponseData> call, Throwable t) {
+                public void onFailure(Call<CheckMobileResponse> call, Throwable t) {
                     data.setValue(null);
-                    Log.i("Mallikarjuna","+++error+++"+t.getMessage());
+                    Log.i("Mallikarjuna", "+++error+++" + t.getMessage());
                 }
             });
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return data;
     }
 }
-
