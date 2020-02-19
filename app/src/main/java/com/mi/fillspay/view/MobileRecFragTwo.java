@@ -14,6 +14,9 @@ import com.mi.fillspay.R;
 import com.mi.fillspay.interfaces.OnSwipeCompleted;
 import com.mi.fillspay.utilities.SwipeButton;
 
+import static android.provider.ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY;
+import static com.mi.fillspay.interfaces.keys.SCHEME_TYPE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -25,6 +28,14 @@ public class MobileRecFragTwo extends Fragment {
         // Required empty public constructor
     }
 
+    public static MobileRecFragTwo newInstance(String country,String schemeType) {
+        MobileRecFragTwo myFragment = new MobileRecFragTwo();
+        Bundle args = new Bundle();
+        args.putString(COUNTRY, country);
+        args.putString(SCHEME_TYPE, schemeType);
+        myFragment.setArguments(args);
+        return myFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

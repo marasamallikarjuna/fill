@@ -27,4 +27,9 @@ public interface PreferencesHelper {
     String getUserProfileImage();
 
     void setUserProfileImage(String profilePicUrl);
+
+    String getUserContact();
+
+    void  setUserContact(String contactNumber);
+
 }

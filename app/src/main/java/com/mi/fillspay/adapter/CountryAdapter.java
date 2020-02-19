@@ -5,10 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
 import com.mi.fillspay.R;
 import com.mi.fillspay.interfaces.OnItemClick;
+import com.mi.fillspay.model.CountryPojo;
+import com.mi.fillspay.utilities.AppUtilities;
 import com.mi.fillspay.utilities.GradientTextView;
+
+import java.util.List;
+
 import static android.view.LayoutInflater.from;
 
 public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -17,7 +24,7 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private RecyclerView manager;
     private Context context;
     private OnItemClick onItemClick;
-    private String[] stringArray;
+    private List<CountryPojo> stringArray;
     private int row_index=-1;
 
     @Override
@@ -26,7 +33,7 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         manager = recyclerView;
     }
 
-    public CountryAdapter(Context context, String[] stringArray,OnItemClick onItemClick) {
+    public CountryAdapter(Context context, List<CountryPojo> stringArray, OnItemClick onItemClick) {
         inflater = from(context);
         this.context = context;
         this.stringArray = stringArray;
@@ -42,39 +49,47 @@ public class CountryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Holder hold = (Holder) holder;
-        hold.tv.setText(stringArray[position]);
+        hold.tv_active.setText(stringArray.get(position).getCountry());
+        hold.tv_inactive.setText(stringArray.get(position).getCountry());
+        hold.imageView.setImageBitmap(AppUtilities.stringToBitmap(stringArray.get(position).getLogo()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                row_index=position;
+                row_index = position;
                 notifyDataSetChanged();
                 manager.smoothScrollToPosition(position);
-                onItemClick.Onclick(stringArray[position]);
+                onItemClick.Onclick(stringArray.get(position).getCountryCode());
             }
         });
 
-        if(row_index==position){
+        if(row_index == position){
+            hold.tv_active.setVisibility(View.VISIBLE);
+            hold.tv_inactive.setVisibility(View.GONE);
             hold.imageView.setBackground(context.getResources().getDrawable(R.drawable.ic_bg_logo));
         }
         else
         {
+            hold.tv_active.setVisibility(View.GONE);
+            hold.tv_inactive.setVisibility(View.VISIBLE);
             hold.imageView.setBackgroundResource(0);
         }
     }
 
     @Override
     public int getItemCount() {
-        return stringArray.length;
+        return stringArray.size();
     }
 
     private class Holder extends RecyclerView.ViewHolder {
-        GradientTextView tv;
+        GradientTextView tv_active;
+        TextView tv_inactive;
         ImageView imageView;
 
         Holder(View itemView) {
             super(itemView);
-            tv = (GradientTextView) itemView.findViewById(R.id.tvText);
+            tv_active = (GradientTextView) itemView.findViewById(R.id.tvText);
+            tv_inactive = (TextView) itemView.findViewById(R.id.tv_util_name);
             imageView = (ImageView) itemView.findViewById(R.id.img_logo);
         }
     }

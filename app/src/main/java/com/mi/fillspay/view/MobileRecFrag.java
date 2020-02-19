@@ -47,14 +47,14 @@ public class MobileRecFrag extends Fragment {
         prepaid_btn.setOnSwipedCompletedListener(new OnSwipeCompleted() {
             @Override
             public void onSwipeListener() {
-                FragmentUtil.setFragment(new MobileRecFragOne().newInstance("Prepaid"), getActivity(), "Mobile recharge fragment one", R.id.content_frag, true);
+                FragmentUtil.setFragment(new MobileRecFragOne().newInstance("Mobile Prepaid"), getActivity(), "Mobile recharge fragment one", R.id.content_frag, true);
             }
         });
 
         postpaid_btn.setOnSwipedCompletedListener(new OnSwipeCompleted() {
             @Override
             public void onSwipeListener() {
-                FragmentUtil.setFragment(new MobileRecFragOne().newInstance("Postpaid"), getActivity(), "Mobile recharge fragment one", R.id.content_frag, true);
+                FragmentUtil.setFragment(new MobileRecFragOne().newInstance("Mobile Postpaid"), getActivity(), "Mobile recharge fragment one", R.id.content_frag, true);
             }
         });
     }

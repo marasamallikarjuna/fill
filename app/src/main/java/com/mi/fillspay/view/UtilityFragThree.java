@@ -2,6 +2,7 @@ package com.mi.fillspay.view;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,13 +13,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -41,7 +46,10 @@ import com.mi.fillspay.utilities.AppUtilities;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.GradientTextView;
 import com.mi.fillspay.utilities.SwipeButton;
+import com.mi.fillspay.utilities.ZoomableImageView;
+import com.mi.fillspay.utilities.circleRecyclerView.MainActivity;
 import com.mi.fillspay.view_model.ConsumerNoFormatViewModel;
+import com.mi.fillspay.view_model.SampleBillViewModel;
 import com.mi.fillspay.view_model.ViewAmountDueViewModel;
 
 import java.util.ArrayList;
@@ -57,16 +65,17 @@ public class UtilityFragThree extends Fragment {
     AppPreferencesHelper _preferencesHelper;
     GradientTextView headerName;
     SwipeButton swipeButton;
-    TextView tv_boardName;
+    TextView tv_boardName, tv_viewsample_bill;
     AppCompatEditText actv, et_bill_amount;
     ConsumerNoFormatViewModel consumerViewModel;
     ViewAmountDueViewModel viewAmountDueViewModel;
     LinearLayout consumerLayout;
     ArrayList<EditText> et_list;
-    public int et_id;
+    private int et_id;
     Button viewbill;
     String biller_id;
     String sku_id;
+    private String sampleBill_id;
 
     public UtilityFragThree() {
         // Required empty public constructor
@@ -96,9 +105,10 @@ public class UtilityFragThree extends Fragment {
         consumerLayout = getActivity().findViewById(R.id.layout_cnum_format);
         viewbill = getActivity().findViewById(R.id.view_bill);
         et_bill_amount = getActivity().findViewById(R.id.et_amount_id);
+        tv_viewsample_bill = getActivity().findViewById(R.id.tv_viewsample_bill);
 
         if (getArguments() != null) {
-            headerName.setText("Pay Your " + getArguments().getString(UTILITY_NAME) + " Bill");
+            headerName.setText(String.valueOf("Pay Your " + getArguments().getString(UTILITY_NAME) + " Bill"));
             tv_boardName.setText(getArguments().getString(UTILITY_NAME) + " Board");
         }
 
@@ -117,6 +127,14 @@ public class UtilityFragThree extends Fragment {
             public void onSwipeListener() {
                 Fragment frag = new PaymentFrag();
                 FragmentUtil.setFragment(frag, getActivity(), "Utility fragment one", R.id.content_frag, true);
+            }
+        });
+
+        tv_viewsample_bill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (biller_id != null)
+                    viewSampleBill(biller_id);
             }
         });
 
@@ -143,6 +161,25 @@ public class UtilityFragThree extends Fragment {
         });
     }
 
+    private void viewSampleBill(String biller_id) {
+
+        SampleBillViewModel sampleBillViewModel = ViewModelProviders.of(this).get(SampleBillViewModel.class);
+
+        AppUtilities.showProgress(getActivity());
+
+        sampleBillViewModel.getSampleBill(_preferencesHelper.getAccessToken(), biller_id, getActivity()).observe(this, sampleBillResponse -> {
+
+            AppUtilities.stopProgress();
+
+            if (sampleBillResponse.getPicBytes() != null) {
+                if (getActivity() != null)
+                    AppUtilities.fullScreenImageDialog(getActivity(), sampleBillResponse.getPicBytes());
+            }
+
+        });
+
+    }
+
     private void viewBillAmount(String input) {
 
         AppUtilities.showProgress(getActivity());
@@ -154,14 +191,15 @@ public class UtilityFragThree extends Fragment {
                     @Override
                     public void onChanged(ViewAmountDueResponse viewAmountDueResponse) {
                         AppUtilities.stopProgress();
-                        //   Log.d("sjhfasf", viewAmountDueResponse.getBillAmountDue() + "");
-                        et_bill_amount.setText(viewAmountDueResponse.getBillAmountDue() + "");
+                        // Log.d("sjhfasf", viewAmountDueResponse.getBillAmountDue() + "");
+                        et_bill_amount.setText(String.valueOf(viewAmountDueResponse.getBillAmountDue()));
                     }
                 });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ACTIVITY_RESULT) {
@@ -170,7 +208,7 @@ public class UtilityFragThree extends Fragment {
 
                 BillerDescResponse item = data.getParcelableExtra("MESSAGE");
 
-                actv.setText(item.getBillerName());
+                actv.setText(String.valueOf(item.getBillerName()));
 
                 consumerLayout.removeAllViewsInLayout();
 
@@ -180,8 +218,6 @@ public class UtilityFragThree extends Fragment {
 
                 getConsumerNumberFormat(item.getBillerID());
 
-                viewbill.setVisibility(View.VISIBLE);
-
             }
         }
     }
@@ -190,33 +226,28 @@ public class UtilityFragThree extends Fragment {
 
         consumerViewModel = ViewModelProviders.of(getActivity()).get(ConsumerNoFormatViewModel.class);
 
-        consumerViewModel.getConsmerNoFarmat(new ConsumerNoFormatRequest("1", "1", biller_id), _preferencesHelper.getAccessToken(), getActivity()).observe(this, new Observer<ConsumerNoFormatResponse>() {
-            @Override
-            public void onChanged(ConsumerNoFormatResponse consumerNoFormatResponse) {
+        consumerViewModel.getConsmerNoFarmat(new ConsumerNoFormatRequest("1", "1", biller_id), _preferencesHelper.getAccessToken(), getActivity()).observe(this, consumerNoFormatResponse -> {
+            AppUtilities.showProgress(getActivity());
+            et_id = 0;
+            et_list = new ArrayList<>();
+            sku_id = consumerNoFormatResponse.getListOfIOCatalog().get(0).getSKU();
 
-                AppUtilities.showProgress(getActivity());
-
-                et_id = 0;
-                et_list = new ArrayList<>();
-                sku_id = consumerNoFormatResponse.getListOfIOCatalog().get(0).getSKU();
-
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Do something after 100ms
-                        for (int i = 0; i < consumerNoFormatResponse.getListOfIOCatalog().size(); i++) {
-                            onAddField(consumerNoFormatResponse.getListOfIOCatalog().get(i));
-                        }
-                        AppUtilities.stopProgress();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 100ms
+                    for (int i = 0; i < consumerNoFormatResponse.getListOfIOCatalog().size(); i++) {
+                        onAddField(consumerNoFormatResponse.getListOfIOCatalog().get(i));
                     }
-                }, 1000);
-            }
+                    viewbill.setVisibility(View.VISIBLE);
+                    AppUtilities.stopProgress();
+                }
+            }, 1000);
         });
     }
 
-    public void onAddField(ListOfIOCatalog itemConstrains) {
-
+    private void onAddField(ListOfIOCatalog itemConstrains) {
         // add text view
         final TextView tv = new TextView(getActivity());
         tv.setText(itemConstrains.getName().trim());
@@ -224,7 +255,6 @@ public class UtilityFragThree extends Fragment {
         tv.setTextColor(getResources().getColor(R.color.greyTextcolor));
         tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         consumerLayout.addView(tv);
-
         // add edit text
         final EditText et_ = new EditText(getActivity());
         int img = R.drawable.ic_country_icon;
@@ -237,7 +267,6 @@ public class UtilityFragThree extends Fragment {
                 PorterDuff.Mode.SRC_ATOP);
         Typeface typeface = ResourcesCompat.getFont(getActivity(), R.font.amarante);
         et_.setTypeface(typeface);
-
         if (itemConstrains.getDatatype().equalsIgnoreCase("Numeric")) {
             et_.setInputType(InputType.TYPE_CLASS_NUMBER);
         } else {
@@ -250,7 +279,7 @@ public class UtilityFragThree extends Fragment {
         consumerLayout.addView(et_);
     }
 
-    public static void setEditTextMaxLength(EditText editText, int length) {
+    private static void setEditTextMaxLength(EditText editText, int length) {
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(length);
         editText.setFilters(FilterArray);

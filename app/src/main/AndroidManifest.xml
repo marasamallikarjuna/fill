@@ -17,13 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen">
-        <activity android:name=".view.BillersListActivity"/>
+        <activity android:name=".view.MobileRecOffers"></activity>
+        <activity android:name=".view.BillersListActivity" />
         <activity android:name=".view.HowToUseActivity" />
         <activity android:name=".view.NotificationActivity" />
         <activity android:name=".view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

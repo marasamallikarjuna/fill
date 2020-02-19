@@ -1,32 +1,30 @@
 package com.mi.fillspay.utilities;
 
-import android.annotation.SuppressLint;
+
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
-
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
-import androidx.loader.content.CursorLoader;
-
 import com.mi.fillspay.R;
-import com.mi.fillspay.view.BaseActivity;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AppUtilities {
 
@@ -53,6 +51,42 @@ public class AppUtilities {
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
         input.close();
         return bitmap;
+    }
+
+
+    public static void fullScreenImageDialog(Activity context,String imageString){
+
+        Rect displayRectangle = new Rect();
+
+        Window window =  context.getWindow();
+
+        window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.CustomAlertDialog);
+
+        ViewGroup viewGroup = context.findViewById(android.R.id.content);
+
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.fullscreen_image_dialog, viewGroup, false);
+        dialogView.setMinimumWidth((int)(displayRectangle.width() * 1f));
+        dialogView.setMinimumHeight((int)(displayRectangle.height() * 1f));
+        builder.setView(dialogView);
+
+        final AlertDialog alertDialog = builder.create();
+
+        ZoomableImageView billerImage = dialogView.findViewById(R.id.full_imageview);
+
+        billerImage.setImageBitmap(AppUtilities.stringToBitmap(imageString));
+
+        Button buttonOk = dialogView.findViewById(R.id.buttonOk);
+
+        buttonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 
     public static void showProgress(final Context context) {
@@ -86,9 +120,10 @@ public class AppUtilities {
 
     public static Bitmap stringToBitmap(final String imageString) {
         //decode base64 string to image
+        if (imageString == null)
+            return null;
         byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        return decodedImage;
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 
     public static byte[] bitmapToByte(Bitmap bitmap) {

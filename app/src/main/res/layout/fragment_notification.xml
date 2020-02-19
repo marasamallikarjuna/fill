@@ -5,6 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".view.NotificationFrag">
 
-   <include layout="@layout/content_notification"/>
+   <include layout="@layout/content_notification" />
 
 </RelativeLayout>

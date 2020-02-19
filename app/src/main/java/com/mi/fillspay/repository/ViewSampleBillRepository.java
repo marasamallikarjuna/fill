@@ -7,8 +7,7 @@ import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.mi.fillspay.model.ResponseData;
-import com.mi.fillspay.model.VerifyOtpRequest;
+import com.mi.fillspay.model.SampleBillResponse;
 import com.mi.fillspay.retrofit.ApiRequest;
 import com.mi.fillspay.retrofit.RetrofitRequest;
 
@@ -21,30 +20,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class VerifyOtpRepository {
+public class ViewSampleBillRepository {
     private ApiRequest apiRequest;
 
-    public VerifyOtpRepository() {
+    public ViewSampleBillRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
-    public LiveData<ResponseData> verifyOtp(VerifyOtpRequest registerRequest,final Context context) {
-        final MutableLiveData<ResponseData> data = new MutableLiveData<>();
+
+    public LiveData<SampleBillResponse> getSampleBill(String token,String billerId, Context context) {
+        final MutableLiveData<SampleBillResponse> data = new MutableLiveData<>();
         try {
-            apiRequest.verifyOtp(registerRequest).enqueue(new Callback<ResponseData>() {
+            apiRequest.viewSampleBill(token,billerId).enqueue(new Callback<SampleBillResponse>() {
                 @Override
-                public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
-                    if (response.code() == 200){
+                public void onResponse(Call<SampleBillResponse> call, Response<SampleBillResponse> response) {
+                    if (response.code() == 200) {
                         if (response.body() != null) {
                             data.setValue(response.body());
                         }
-                    }
-                    else if(response.code() == 500 ){
-                        Toast.makeText(context,response.body().getMessage() + "\n" +response.body().getError(),Toast.LENGTH_LONG).show();
-                    }else {
+                    } else {
                         try {
                             JSONObject jObjError = new JSONObject(response.errorBody().string());
-                            if (jObjError.has("message")){
-                                Toast.makeText(context,jObjError.get("message").toString(),Toast.LENGTH_LONG).show();
+                            if (jObjError.has("message")) {
+                                Toast.makeText(context, jObjError.get("message").toString(), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -54,13 +51,15 @@ public class VerifyOtpRepository {
                         data.setValue(null);
                     }
                 }
+
                 @Override
-                public void onFailure(Call<ResponseData> call, Throwable t) {
+                public void onFailure(Call<SampleBillResponse> call, Throwable t) {
                     data.setValue(null);
-                    Log.i("Mallikarjuna","+++error+++"+t.getMessage());
+                    Log.i("Mallikarjuna", "+++error+++" + t.getMessage());
                 }
             });
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return data;

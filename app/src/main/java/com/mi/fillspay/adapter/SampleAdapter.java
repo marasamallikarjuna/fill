@@ -23,20 +23,17 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.SampleView
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_sample, parent, false);
 
-
-
         return new SampleViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(SampleViewHolder holder, int position) {
 
-
     }
 
     @Override
     public int getItemCount() {
-        return 31;
+        return 12;
     }
 
     class SampleViewHolder extends RecyclerView.ViewHolder {

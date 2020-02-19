@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.mi.fillspay.model.CountryPojo;
 import com.mi.fillspay.model.CountryRequest;
 import com.mi.fillspay.retrofit.ApiRequest;
 import com.mi.fillspay.retrofit.RetrofitRequest;
@@ -15,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,12 +30,12 @@ public class CountryRepository {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
 
-    public LiveData<String[]> getCountries(CountryRequest countryRequest, String token, Context context) {
-        final MutableLiveData<String[]> data = new MutableLiveData<>();
+    public LiveData<List<CountryPojo>> getCountries(CountryRequest countryRequest, String token, Context context) {
+        final MutableLiveData<List<CountryPojo>> data = new MutableLiveData<>();
         try {
-            apiRequest.getCountries(countryRequest, token).enqueue(new Callback<String[]>() {
+            apiRequest.getCountries(countryRequest, token).enqueue(new Callback<List<CountryPojo>>() {
                 @Override
-                public void onResponse(Call<String[]> call, Response<String[]> response) {
+                public void onResponse(Call<List<CountryPojo>> call, Response<List<CountryPojo>> response) {
                     if (response.code() == 200) {
                         if (response.body() != null) {
                             data.setValue(response.body());
@@ -55,7 +57,7 @@ public class CountryRepository {
                 }
 
                 @Override
-                public void onFailure(Call<String[]> call, Throwable t) {
+                public void onFailure(Call<List<CountryPojo>> call, Throwable t) {
                     data.setValue(null);
                     Log.i("Mallikarjuna", "+++error+++" + t.getMessage());
                 }

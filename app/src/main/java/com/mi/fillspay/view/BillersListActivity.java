@@ -56,7 +56,8 @@ public class BillersListActivity extends AppCompatActivity{
                         Intent intent=new Intent();
                         intent.putExtra("MESSAGE",item);
                         setResult(ACTIVITY_RESULT,intent);
-                        finish();//finishing activity
+                        finish();
+                        //finishing activity
                     }
                 });
                 listView.setAdapter(adapter);

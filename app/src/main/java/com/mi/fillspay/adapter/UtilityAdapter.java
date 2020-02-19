@@ -5,12 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.mi.fillspay.R;
+import com.mi.fillspay.interfaces.OnClickView;
 import com.mi.fillspay.model.UtilityResponse;
+import com.mi.fillspay.utilities.AppUtilities;
 import com.mi.fillspay.utilities.GradientTextView;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.List;
+
 import static android.view.LayoutInflater.from;
 
 /**
@@ -21,18 +32,21 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private LayoutInflater inflater;
     private RecyclerView manager;
     private Context context;
-    private ArrayList<UtilityResponse> utilityResponses;
+    private int row_index=-1;
+    private List<UtilityResponse> utilityResponses;
+    private OnClickView onClickView;
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        manager = recyclerView;
+        this.manager = recyclerView;
     }
 
-    public UtilityAdapter(Context context, ArrayList<UtilityResponse> utilityResponse) {
+    public UtilityAdapter(Context context, List<UtilityResponse> utilityResponse,OnClickView onClickView) {
         inflater = from(context);
         this.context = context;
         this.utilityResponses = utilityResponse;
+        this.onClickView = onClickView;
     }
 
     @Override
@@ -44,26 +58,34 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Holder hold = (Holder) holder;
-        Glide.with(context).load(utilityResponses.get(holder.getAdapterPosition())).placeholder(R.drawable.ic_registr_icon).into(hold.imageView);
-        hold.tv.setText(utilityResponses.get(holder.getAdapterPosition()).getUtilityname());
 
-      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
+        hold.imageView.setImageBitmap(AppUtilities.stringToBitmap(utilityResponses.get(holder.getAdapterPosition()).getInActiveLogo()));
+
+        hold.tv_inactive.setVisibility(View.VISIBLE);
+        hold.tv_active.setText(utilityResponses.get(holder.getAdapterPosition()).getUtilityname());
+        hold.tv_inactive.setText(utilityResponses.get(holder.getAdapterPosition()).getUtilityname());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                row_index=position;
+                row_index = position;
                 notifyDataSetChanged();
                 manager.smoothScrollToPosition(position);
-                onItemClick.Onclick(stringArray[position]);
+                onClickView.onClickView(position);
             }
         });
 
-        if(row_index==position){
-            hold.imageView.setBackground(context.getResources().getDrawable(R.drawable.ic_bg_logo));
+        if(row_index == position){
+            hold.tv_active.setVisibility(View.VISIBLE);
+            hold.tv_inactive.setVisibility(View.GONE);
+            hold.imageView.setImageBitmap(AppUtilities.stringToBitmap(utilityResponses.get(holder.getAdapterPosition()).getActiveLogo()));
         }
         else
         {
-            hold.imageView.setBackgroundResource(0);
-        }*/
+            hold.tv_active.setVisibility(View.GONE);
+            hold.tv_inactive.setVisibility(View.VISIBLE);
+            hold.imageView.setImageBitmap(AppUtilities.stringToBitmap(utilityResponses.get(holder.getAdapterPosition()).getInActiveLogo()));
+        }
 
     }
 
@@ -73,22 +95,15 @@ public class UtilityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private class Holder extends RecyclerView.ViewHolder {
-        GradientTextView tv;
+        GradientTextView tv_active;
+        TextView tv_inactive;
         ImageView imageView;
 
         Holder(View itemView) {
             super(itemView);
-            tv = (GradientTextView) itemView.findViewById(R.id.tvText);
+            tv_active = (GradientTextView) itemView.findViewById(R.id.tvText);
+            tv_inactive = (TextView) itemView.findViewById(R.id.tv_util_name);
             imageView = (ImageView) itemView.findViewById(R.id.img_logo);
-
-           /* itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    imageView.setBackground(context.getResources().getDrawable(R.drawable.ic_bg_logo));
-                    int adapterPosition = getAdapterPosition();
-                    manager.smoothScrollToPosition(adapterPosition);
-                }
-            });*/
         }
     }
 }

@@ -6,6 +6,7 @@ import com.mi.fillspay.model.CheckMobileRequest;
 import com.mi.fillspay.model.CheckMobileResponse;
 import com.mi.fillspay.model.ConsumerNoFormatRequest;
 import com.mi.fillspay.model.ConsumerNoFormatResponse;
+import com.mi.fillspay.model.CountryPojo;
 import com.mi.fillspay.model.CountryRequest;
 import com.mi.fillspay.model.IsdCode;
 import com.mi.fillspay.model.LoginRequest;
@@ -15,9 +16,11 @@ import com.mi.fillspay.model.ProcessPaymentResponse;
 import com.mi.fillspay.model.ProfileImageResponse;
 import com.mi.fillspay.model.RegisterRequest;
 import com.mi.fillspay.model.ResponseData;
+import com.mi.fillspay.model.SampleBillResponse;
 import com.mi.fillspay.model.SubutilityRequest;
 import com.mi.fillspay.model.UserProfile;
 import com.mi.fillspay.model.UtilitiesRequest;
+import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.model.VerifyOtpRequest;
 import com.mi.fillspay.model.ViewAmountDueRequest;
 import com.mi.fillspay.model.ViewAmountDueResponse;
@@ -32,6 +35,8 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiRequest {
 
@@ -42,13 +47,13 @@ public interface ApiRequest {
     Call<LoginResponse> postLogin(@Body LoginRequest body);
 
     @POST("/paykii/getCountries")
-    Call<String[]> getCountries(@Body CountryRequest body, @Header("Authorization") String token);
+    Call<List<CountryPojo>> getCountries(@Body CountryRequest body, @Header("Authorization") String token);
 
     @POST("/paykii/getutilities")
     Call<String[]> getUtilities(@Body UtilitiesRequest body, @Header("Authorization") String token);
 
     @POST("/paykii/getsubutility")
-    Call<String[]> getSubUtilities(@Body SubutilityRequest body, @Header("Authorization") String token);
+    Call<List<UtilityResponse>> getSubUtilities(@Body SubutilityRequest body, @Header("Authorization") String token);
 
     @POST("/paykii/listOfEachBillerTypeCatalog")
     Call<List<BillerDescResponse>> getBillerDesc(@Body BillerDescRequest body, @Header("Authorization") String token);
@@ -73,6 +78,9 @@ public interface ApiRequest {
 
     @GET("/isd_codes")
     Call<List<IsdCode>> getIsdCodes();
+
+    @GET("/paykii/getSampleBill/{id}")
+    Call<SampleBillResponse> viewSampleBill(@Header("Authorization") String token, @Path("id") String id);
 
     @GET("/user_profile")
     Call<UserProfile> getUserProfile(@Header("Authorization") String token);

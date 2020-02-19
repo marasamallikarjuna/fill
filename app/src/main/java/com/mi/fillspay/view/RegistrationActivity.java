@@ -25,6 +25,7 @@ import com.mi.fillspay.model.RegisterRequest;
 import com.mi.fillspay.model.ResponseData;
 import com.mi.fillspay.model.VerifyOtpRequest;
 import com.mi.fillspay.utilities.AppUtilities;
+import com.mi.fillspay.utilities.GradientTextView;
 import com.mi.fillspay.utilities.ItemListDialog;
 import com.mi.fillspay.utilities.OtpEditText;
 import com.mi.fillspay.view_model.CheckNumberViewModel;
@@ -118,6 +119,13 @@ public class RegistrationActivity extends BaseActivity {
             }
         });
 
+     /*   findViewById(R.id.registerImageView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOtpDialog("", "");
+            }
+        });
+*/
         passwordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -177,7 +185,7 @@ public class RegistrationActivity extends BaseActivity {
 
         Log.d("aasdfasdf", data.getEmailId() + data.getContactNumber() + data.getPassword());
 
-        registerViewModel.getRegisterResponseLiveData(data,this).observe(this, responseData -> {
+        registerViewModel.getRegisterResponseLiveData(data, this).observe(this, responseData -> {
             if (responseData != null) {
                 if (responseData.getMessage().equals("Success") && responseData.getStatus().equals("OK")) {
                     sendOtp(data);
@@ -196,8 +204,7 @@ public class RegistrationActivity extends BaseActivity {
         sendOtpViewModel.sendOtp(new CheckMobileRequest(registerRequest.getContactNumber()), this).observe(this, checkMobileResponse -> {
             if (checkMobileResponse.getStatus().equalsIgnoreCase("0") && !TextUtils.isEmpty(checkMobileResponse.getRequestId())) {
                 showOtpDialog(registerRequest.getContactNumber(), checkMobileResponse.getRequestId());
-            }
-            else if(checkMobileResponse.getStatus().equalsIgnoreCase("9")){
+            } else if (checkMobileResponse.getStatus().equalsIgnoreCase("9")) {
                 // no sms balance in admin account
                 Toast.makeText(this, "Please activate your account after some time", Toast.LENGTH_LONG).show();
             }
@@ -214,7 +221,8 @@ public class RegistrationActivity extends BaseActivity {
         View confirmDialog = li.inflate(R.layout.reg_otp_dialog, null);
 
         //Initizliaing confirm button fo dialog box and edittext of dialog box
-        Button buttonConfirm = (Button) confirmDialog.findViewById(R.id.otp_submit_btn);
+        GradientTextView buttonConfirm = (GradientTextView) confirmDialog.findViewById(R.id.otp_submit_btn);
+
         OtpEditText editTextConfirmOtp = (OtpEditText) confirmDialog.findViewById(R.id.et_otp);
 
         //Creating an alertdialog builder
@@ -227,6 +235,8 @@ public class RegistrationActivity extends BaseActivity {
         final AlertDialog alertDialog = alert.create();
 
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        alertDialog.setCancelable(false);
 
         //Displaying the alert dialog
         alertDialog.show();
@@ -246,32 +256,29 @@ public class RegistrationActivity extends BaseActivity {
                 if (editTextConfirmOtp.getText().toString().trim().length() < 4) {
                     Toast.makeText(RegistrationActivity.this, "Please enter valid otp", Toast.LENGTH_SHORT).show();
                 } else {
-                    verifyOtp(alertDialog,new VerifyOtpRequest(mobile,req_id,editTextConfirmOtp.getText().toString()));
+                    verifyOtp(alertDialog, new VerifyOtpRequest(mobile, req_id, editTextConfirmOtp.getText().toString()));
                 }
-                final String otp = editTextConfirmOtp.getText().toString().trim();
-                Toast.makeText(RegistrationActivity.this, otp, Toast.LENGTH_SHORT).show();
-                //Hiding the alert dialog
-                alertDialog.dismiss();
+                //  Hiding the alert dialog
+                //  alertDialog.dismiss();
             }
         });
     }
 
-    private void verifyOtp(final AlertDialog alertDialog,VerifyOtpRequest verifyOtpRequest) {
+    private void verifyOtp(final AlertDialog alertDialog, VerifyOtpRequest verifyOtpRequest) {
 
-        if(alertDialog.isShowing()){
-            alertDialog.dismiss();
-        }
-
-        verifyOtpViewModel.verifyOtp(verifyOtpRequest,this).observe(this, new Observer<ResponseData>() {
+        verifyOtpViewModel.verifyOtp(verifyOtpRequest, this).observe(this, new Observer<ResponseData>() {
             @Override
             public void onChanged(ResponseData responseData) {
-                if(responseData != null){
-                    if(responseData.getStatus().equals("OK") && responseData.getMessage().equals("Verified")){
-                        // successfully registered with fillspay
-                        // redirect to home Login page
+                if (responseData != null) {
+                    if (responseData.getStatus().equals("OK") && responseData.getMessage().equals("Verified")) {
+                        if (alertDialog.isShowing()) {
+                            alertDialog.dismiss();
+                        }
+                        // Successfully registered with fillspay
+                        // Redirect to home Login page
                         Toast.makeText(RegistrationActivity.this, "Registered successfully \n Please Login ..", Toast.LENGTH_SHORT).show();
-                        Intent login = new Intent(RegistrationActivity.this,LoginActivity.class);
-                        login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK   | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Intent login = new Intent(RegistrationActivity.this, LoginActivity.class);
+                        login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(login);
                         finish();
                     }

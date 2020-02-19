@@ -19,6 +19,7 @@ import com.mi.fillspay.adapter.ReccmdAdapter;
  * A simple {@link Fragment} subclass.
  */
 public class NotificationFrag extends Fragment {
+
     RecyclerView notifi_listview, recmmd_listview;
     NotificationAdapter notificationAdapter;
     ReccmdAdapter recAdpter;

@@ -15,6 +15,8 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     private static final String PREF_KEY_USER_IMAGE = "PREF_KEY_USER_IMAGE";
 
+    private static final String PREF_USER_CONTACT = "PREF_USER_CONTACT";
+
     private static final String PREF_KEY_CURRENT_USER_PROFILE_PIC_URL = "PREF_KEY_CURRENT_USER_PROFILE_PIC_URL";
 
     private static final String PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE";
@@ -90,6 +92,16 @@ public class AppPreferencesHelper implements PreferencesHelper {
     @Override
     public void setUserProfileImage(String profilePicUrl) {
         mPrefs.edit().putString(PREF_KEY_USER_IMAGE, profilePicUrl).apply();
+    }
+
+    @Override
+    public String getUserContact() {
+        return mPrefs.getString(PREF_USER_CONTACT, null);
+    }
+
+    @Override
+    public void setUserContact(String contactNumber) {
+        mPrefs.edit().putString(PREF_USER_CONTACT, contactNumber).apply();
     }
 
 }

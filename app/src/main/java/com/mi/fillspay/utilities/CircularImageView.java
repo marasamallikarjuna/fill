@@ -52,10 +52,8 @@ public class CircularImageView extends ImageView {
             setBorderWidth(attributes.getDimensionPixelOffset(R.styleable.CircularImageView_border_width, defaultBorderSize));
             setBorderColor(attributes.getColor(R.styleable.CircularImageView_border_color, Color.WHITE));
         }
-
         if (attributes.getBoolean(R.styleable.CircularImageView_shadow, false))
             addShadow();
-
     }
 
     public void setBorderWidth(int borderWidth) {
@@ -142,6 +140,7 @@ public class CircularImageView extends ImageView {
     }
 
     public Bitmap drawableToBitmap(Drawable drawable) {
+
         if (drawable == null) {
             return null;
         } else if (drawable instanceof BitmapDrawable) {

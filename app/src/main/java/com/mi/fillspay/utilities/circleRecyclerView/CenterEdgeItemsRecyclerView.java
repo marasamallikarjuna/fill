@@ -1,17 +1,5 @@
 /*
- * Copyright (C) 2013 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Created by Srikar on 7/5/2017.
  */
 package com.mi.fillspay.utilities.circleRecyclerView;
 
@@ -30,15 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
-@TargetApi(23)
 public class CenterEdgeItemsRecyclerView extends RecyclerView {
-    private static final String TAG      = CenterEdgeItemsRecyclerView.class.getSimpleName();
-    private static final int    NO_VALUE = -2147483648;
+    private static final String TAG = CenterEdgeItemsRecyclerView.class.getSimpleName();
+    private static final int NO_VALUE = -2147483648;
     private final OnPreDrawListener mPaddingPreDrawListener;
-    private       boolean           mCenterEdgeItems;
-    private       boolean           mCenterEdgeItemsWhenThereAreChildren;
-    private       int               mOriginalPaddingTop;
-    private       int               mOriginalPaddingBottom;
+    private boolean mCenterEdgeItems;
+    private boolean mCenterEdgeItemsWhenThereAreChildren;
+    private int mOriginalPaddingTop;
+    private int mOriginalPaddingBottom;
 
     public CenterEdgeItemsRecyclerView(Context context) {
         this(context, (AttributeSet) null);
@@ -152,6 +139,7 @@ public class CenterEdgeItemsRecyclerView extends RecyclerView {
                 public PointF computeScrollVectorForPosition(int targetPosition) {
                     return ChildLayoutManager.this.computeScrollVectorForPosition(targetPosition);
                 }
+
                 @Override
                 protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
                     return super.calculateSpeedPerPixel(displayMetrics) * factor;

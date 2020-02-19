@@ -5,17 +5,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class UtilityResponse {
 
-    public UtilityResponse(String utilityname, String image) {
-        this.utilityname = utilityname;
-        this.image = image;
-    }
-
-    @SerializedName("utilityname")
+    @SerializedName("billerDescription")
     @Expose
     private String utilityname;
-    @SerializedName("image")
+    @SerializedName("activeLogo")
     @Expose
-    private String image;
+    private String activeLogo;
+    @SerializedName("inActiveLogo")
+    @Expose
+    private String inActiveLogo;
 
     public String getUtilityname() {
         return utilityname;
@@ -25,12 +23,20 @@ public class UtilityResponse {
         this.utilityname = utilityname;
     }
 
-    public String getImage() {
-        return image;
+    public String getActiveLogo() {
+        return activeLogo;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setActiveLogo(String activeLogo) {
+        this.activeLogo = activeLogo;
+    }
+
+    public String getInActiveLogo() {
+        return inActiveLogo;
+    }
+
+    public void setInActiveLogo(String inActiveLogo) {
+        this.inActiveLogo = inActiveLogo;
     }
 
 }

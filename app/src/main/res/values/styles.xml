@@ -33,5 +33,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- full screen dialog  -->
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/popup_background</item>
+    </style>
 
 </resources>

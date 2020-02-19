@@ -87,13 +87,16 @@ public class SwipeButton extends RelativeLayout {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
         // load the styled attributes and set their properties
-        @SuppressLint("Recycle")
+
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.SwipeButton, defStyleAttr, 0);
 
         if (attributes.getString(R.styleable.SwipeButton_swipeText) != null) {
-            centerText.setText("  "+attributes.getString(R.styleable.SwipeButton_swipeText)); //add any text you need
-        }else {
-            centerText.setText("  Swipe To Proceed "); //add any text you need
+            //add any text you need
+            String string = "  " + attributes.getString(R.styleable.SwipeButton_swipeText);
+            centerText.setText(string);
+        } else {
+            // Default text
+            centerText.setText("  Swipe To Proceed ");
         }
 
         // setTextSize(attributes.getDimension(R.styleable.CircularImageView_border_width, textSize));
@@ -128,7 +131,6 @@ public class SwipeButton extends RelativeLayout {
         swipeButton.setImageDrawable(disabledDrawable);
         addView(swipeButton, layoutParamsButton);
         setOnTouchListener(getButtonTouchListener());
-
     }
 
     public void setOnSwipedCompletedListener(OnSwipeCompleted onSwipeListener) {
@@ -152,12 +154,10 @@ public class SwipeButton extends RelativeLayout {
                             slidingButton.setX(event.getX() - slidingButton.getWidth() / 2);
                             centerText.setAlpha(1 - 1.3f * (slidingButton.getX() + slidingButton.getWidth()) / getWidth());
                         }
-
                         if (event.getX() + slidingButton.getWidth() / 2 > getWidth() &&
                                 slidingButton.getX() + slidingButton.getWidth() / 2 < getWidth()) {
                             slidingButton.setX(getWidth() - slidingButton.getWidth());
                         }
-
                         if (event.getX() < slidingButton.getWidth() / 2 &&
                                 slidingButton.getX() > 0) {
                             slidingButton.setX(0);
@@ -253,6 +253,7 @@ public class SwipeButton extends RelativeLayout {
     }
 
     private void moveButtonBack() {
+
         final ValueAnimator positionAnimator =
                 ValueAnimator.ofFloat(slidingButton.getX(), 0);
         positionAnimator.setInterpolator(new AccelerateDecelerateInterpolator());

@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.mi.fillspay.model.SubutilityRequest;
+import com.mi.fillspay.model.UtilityResponse;
 import com.mi.fillspay.retrofit.ApiRequest;
 import com.mi.fillspay.retrofit.RetrofitRequest;
 
@@ -15,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +28,12 @@ public class SubutilityRepository {
     public SubutilityRepository() {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
-    public LiveData<String[]> getSubUtilities(SubutilityRequest utilitiesRequest, String token, Context context) {
-        final MutableLiveData<String[]> data = new MutableLiveData<>();
+    public LiveData<List<UtilityResponse>> getSubUtilities(SubutilityRequest utilitiesRequest, String token, Context context) {
+        final MutableLiveData<List<UtilityResponse>> data = new MutableLiveData<>();
         try {
-            apiRequest.getSubUtilities(utilitiesRequest,token).enqueue(new Callback<String[]>() {
+            apiRequest.getSubUtilities(utilitiesRequest,token).enqueue(new Callback<List<UtilityResponse>>() {
                 @Override
-                public void onResponse(Call<String[]> call, Response<String[]> response) {
+                public void onResponse(Call<List<UtilityResponse>> call, Response<List<UtilityResponse>> response) {
                     if (response.code()==200){
                         if (response.body() != null) {
                             data.setValue(response.body());
@@ -52,7 +54,7 @@ public class SubutilityRepository {
                     }
                 }
                 @Override
-                public void onFailure(Call<String[]> call, Throwable t) {
+                public void onFailure(Call<List<UtilityResponse>> call, Throwable t) {
                     data.setValue(null);
                     Log.i("Mallikarjuna","+++error+++"+t.getMessage());
                 }

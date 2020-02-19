@@ -14,12 +14,16 @@ import com.mi.fillspay.R;
 import com.mi.fillspay.adapter.CountryAdapter;
 import com.mi.fillspay.interfaces.OnItemClick;
 import com.mi.fillspay.local.prefe.AppPreferencesHelper;
+import com.mi.fillspay.model.CountryPojo;
 import com.mi.fillspay.model.CountryRequest;
 import com.mi.fillspay.utilities.AppUtilities;
 import com.mi.fillspay.utilities.FragmentUtil;
 import com.mi.fillspay.utilities.circleRecyclerView.CenterEdgeItemsRecyclerView;
 import com.mi.fillspay.utilities.circleRecyclerView.HalfCurveLayoutManager;
 import com.mi.fillspay.view_model.CountryViewModel;
+
+import java.util.List;
+
 import static com.mi.fillspay.interfaces.keys.COUNTRY_CODE;
 
 /**
@@ -65,9 +69,9 @@ public class UtilityFragOne extends Fragment implements View.OnClickListener {
 
         countryViewModel = ViewModelProviders.of(this).get(CountryViewModel.class);
 
-        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"), _preferencesHelper.getAccessToken(), getActivity()).observe(this, new Observer<String[]>() {
+        countryViewModel.getCountries(new CountryRequest("1", "1", "Utility"), _preferencesHelper.getAccessToken(), getActivity()).observe(this, new Observer<List<CountryPojo>>() {
             @Override
-            public void onChanged(String[] utilityResponses) {
+            public void onChanged(List<CountryPojo> utilityResponses) {
                 AppUtilities.stopProgress();
                 recyclerView.setCenterEdgeItems(true);
                 HalfCurveLayoutManager manager = new HalfCurveLayoutManager(getActivity(), 1.0f);

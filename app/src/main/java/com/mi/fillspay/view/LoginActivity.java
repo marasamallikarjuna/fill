@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.auth0.android.jwt.JWT;
 import com.mi.fillspay.R;
 import com.mi.fillspay.model.LoginRequest;
 import com.mi.fillspay.view_model.LoginViewModel;
@@ -49,12 +50,12 @@ public class LoginActivity extends BaseActivity {
                     pairs[0] = new Pair<View, String>(titleTextView, "tvLogin");
                     ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, pairs);
                     startActivity(intent, activityOptions.toBundle());*/
-                    if (TextUtils.isEmpty(emailEdit.getText().toString())){
+                    if (TextUtils.isEmpty(emailEdit.getText().toString())) {
                         Toast.makeText(getApplicationContext(), "enter valid email id", Toast.LENGTH_SHORT).show();
-                    }else if (passwordEdit.getText().toString().equalsIgnoreCase("")){
+                    } else if (passwordEdit.getText().toString().equalsIgnoreCase("")) {
                         Toast.makeText(getApplicationContext(), "enter valid password", Toast.LENGTH_SHORT).show();
-                    }else{
-                        sendLoginDetails(new LoginRequest(emailEdit.getText().toString(),passwordEdit.getText().toString()));
+                    } else {
+                        sendLoginDetails(new LoginRequest(emailEdit.getText().toString(), passwordEdit.getText().toString()));
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.network_error), Toast.LENGTH_SHORT).show();
@@ -78,12 +79,18 @@ public class LoginActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void sendLoginDetails(LoginRequest data) {
         showProgress();
-        loginViewModel.getLoginResponseLiveData(data,this).observe(this, loginResponse -> {
+        loginViewModel.getLoginResponseLiveData(data, this).observe(this, loginResponse -> {
             stopProgress();
-            if (loginResponse!=null) {
+            if (loginResponse != null) {
                 if (loginResponse.getToken() != null) {
                     if (!loginResponse.getToken().equalsIgnoreCase("")) {
-                        _preferencesHelper.setAccessToken("Bearer "+loginResponse.getToken());
+                        try {
+                            _preferencesHelper.setAccessToken("Bearer " + loginResponse.getToken());
+                            JWT jwt = new JWT(loginResponse.getToken());
+                            _preferencesHelper.setUserContact(jwt.getSubject());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         Pair[] pairs = new Pair[1];
                         pairs[0] = new Pair<View, String>(titleTextView, "tvLogin");

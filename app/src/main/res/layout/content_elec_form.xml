@@ -41,13 +41,14 @@
         app:fontFamily="@font/amarante" />
 
     <TextView
+        android:id="@+id/tv_viewsample_bill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
+        android:fontFamily="@font/amarante"
         android:padding="@dimen/_3sdp"
         android:text="View Sample Bill"
-        android:textColor="@color/color_start"
-        android:visibility="gone" />
+        android:textColor="@color/color_start" />
 
     <LinearLayout
         android:id="@+id/layout_cnum_format"

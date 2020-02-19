@@ -8,12 +8,15 @@ public class ResponseData {
     @SerializedName("timeStamp")
     @Expose
     private String timeStamp;
+
     @SerializedName("status")
     @Expose
     private String status;
+
     @SerializedName("message")
     @Expose
     private String message;
+
     @SerializedName("path")
     @Expose
     private String path;
@@ -22,7 +25,7 @@ public class ResponseData {
     @Expose
     private String[] details;
 
-    @SerializedName("details")
+    @SerializedName("error")
     @Expose
     private String error;
 

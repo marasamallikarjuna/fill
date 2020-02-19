@@ -20,7 +20,7 @@ public class VerifyOtpViewModel extends AndroidViewModel {
         verifyMobileRepository = new VerifyOtpRepository();
     }
 
-    public LiveData<ResponseData> verifyOtp(VerifyOtpRequest checkMobileRequest, Context context) {
+    public LiveData<ResponseData> verifyOtp(VerifyOtpRequest checkMobileRequest,final Context context) {
         this.data = verifyMobileRepository.verifyOtp(checkMobileRequest,context);
         return data;
     }

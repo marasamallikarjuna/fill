@@ -200,7 +200,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.image_choose_button:
                 if (hasPermissions()) {
                     showFileChooser();
@@ -208,7 +207,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     requestPermissions();
                 }
                 break;
-
             case R.id.update_profile_btn:
                 break;
         }
@@ -220,7 +218,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
         AppUtilities.showProgress(this);
 
-        profilePictureViewModel.uploadProfileImage(file, "919014250855", _preferencesHelper.getAccessToken(), this).observe(this, profileImageResponse -> {
+        profilePictureViewModel.uploadProfileImage(file, _preferencesHelper.getUserContact(), _preferencesHelper.getAccessToken(), this).observe(this, profileImageResponse -> {
 
             if (profileImageResponse != null) {
                 if (profileImageResponse.getMessage().equalsIgnoreCase("Success") && profileImageResponse.getStatus().equalsIgnoreCase("OK")) {

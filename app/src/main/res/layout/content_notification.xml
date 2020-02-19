@@ -18,11 +18,12 @@
         android:textStyle="bold|italic" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/noti_header"
         android:id="@+id/notifi_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/noti_rec"
-        android:layout_below="@+id/noti_header"
         android:orientation="horizontal"
         android:padding="@dimen/_2sdp"
         tools:itemCount="2"

@@ -24,6 +24,18 @@
         android:fontFamily="@font/amarante"
         android:text="Hello World"
         android:textColor="#000"
+        android:visibility="gone"
+        android:textSize="@dimen/_13ssp"
+        android:textStyle="italic|bold" />
+
+    <TextView
+        android:id="@+id/tv_util_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"
+        android:fontFamily="@font/amarante"
+        android:textColor="@color/black_dull"
         android:textSize="@dimen/_13ssp"
         android:textStyle="italic|bold" />
 

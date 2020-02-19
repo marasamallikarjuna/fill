@@ -9,14 +9,6 @@ public class LoginResponse {
     @Expose
     private String token;
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     @SerializedName("timeStamp")
     @Expose
     private String timeStamp;
@@ -72,4 +64,12 @@ public class LoginResponse {
     public void setDetails(String details) {
         this.details = details;
     }
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
 }
